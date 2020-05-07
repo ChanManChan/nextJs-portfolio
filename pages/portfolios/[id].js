@@ -30,6 +30,7 @@ import { useRouter } from 'next/router';
 
 //! 3rd method:- getInitialProps on a functional component
 const PortfolioDetail = ({ query }) => {
+  console.log('USE ROUTER: ', useRouter().query);
   const { id } = query;
   return <h1>I'm detail page with ID: {id}</h1>;
 };

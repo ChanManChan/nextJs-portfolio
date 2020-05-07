@@ -1,30 +1,24 @@
+import ThemeAnimation from '../styles/Fire';
+import styled from 'styled-components';
+
+const HeroContainer = styled.div`
+  height: 100vh;
+  background-image: url('/mern-stack.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 2fr;
+  }
+`;
+
 const Hero = () => (
-  <section className='fj-hero'>
-    <div className='fj-hero-wrapper row'>
-      <div className='hero-left col-md-6'>
-        <h1 className='white hero-title'>
-          Hey I'm Nanda Gopal. Experienced full stack developer
-        </h1>
-        <h2 className='white hero-subtitle'>
-          Check my portfolio and video tutorials
-        </h2>
-        <div className='button-container'>
-          <a href='' className='btn btn-main bg-blue ttu'>
-            See my work
-          </a>
-        </div>
-      </div>
-      <div className='hero-right col-md-6'>
-        <div className='hero-image-container'>
-          <a className='grow hero-link'>
-            <img
-              className='hero-image'
-              src='https://i.udemycdn.com/course/750x422/1652608_662b_8.jpg'
-            ></img>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroContainer>
+    <ThemeAnimation />
+  </HeroContainer>
 );
 export default Hero;
+//  Hey I'm Nanda Gopal. Experienced full stack developer
+// Check my portfolio and video tutorials

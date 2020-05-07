@@ -1,36 +1,29 @@
 import App from 'next/app';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/index.scss';
-
-import Navbar from '../components/shared/Navbar';
 import Hero from '../components/shared/Hero';
+import Page from '../components/global/Page';
 
 //! Entry point to all of my pages i'm navigating to (Responsible for rendering all of my pages)
 //! "Component" <- actual page i'm are navigating to
 
 const MyApp = ({ Component, pageProps }) => {
-
-  const isHomePage = () => Component.name === 'Home'
+  const isHomePage = () => Component.name === 'Home';
 
   //? debugger;
   // console.log("PAGE I'M NAVIGATING TO: ", Component);
   // PAGE I'M NAVIGATING TO:  [Function: Topics]
   // PAGE I'M NAVIGATING TO:  [Function: Portfolios]
   return (
-    <div className='portfolio-app'>
-      <Navbar />
+    <Page>
       {isHomePage() && <Hero />}
-      <div className='container'>
-        <Component {...pageProps} />
-      </div>
-      {isHomePage() &&
+      <Component {...pageProps} />
+      {isHomePage() && (
         <footer id='sticky-footer' className='py-4 bg-black text-white-50 py-3'>
           <div className='container text-center'>
             <small>Copyright &copy; Your Website</small>
           </div>
         </footer>
-      }
-    </div>
+      )}
+    </Page>
   );
 };
 
