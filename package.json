@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "formik": "^2.1.4",
     "next": "9.3.6",
     "nprogress": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7"
