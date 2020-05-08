@@ -22,7 +22,10 @@ const Input = styled.input`
     /* Cover the top and right face of the cuboid when focused */
     /* Increase the top thickness of "Bg_inner" to cover the face*/
     top: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: ${(p) =>
+      p.theme.id === 'light'
+        ? p.theme.secondaryColor
+        : 'rgba(255, 255, 255, 0.5)'};
   }
 `;
 
@@ -32,7 +35,10 @@ const Control = styled.div`
   position: relative;
   > ${Bg_top},> ${Bg_right},> ${Bg} {
     /* Grey outline color for the input boxes */
-    background: rgba(255, 255, 255, 0.5);
+    background: ${(p) =>
+      p.theme.id === 'light'
+        ? p.theme.secondaryColor
+        : 'rgba(255, 255, 255, 0.5)'};
     /* Light grey glow transition when hovering over */
     transition: background 0.2s ease-in-out;
   }
@@ -46,7 +52,10 @@ const Control = styled.div`
   &:focus {
     > ${Bg_top},> ${Bg_right},> ${Bg} {
       /* Light grey glow */
-      background: rgba(255, 255, 255, 0.8);
+      background: ${(p) =>
+        p.theme.id === 'light'
+          ? 'rgba(33, 33, 33,0.8)'
+          : 'rgba(255, 255, 255, 0.8)'};
     }
   }
 `;

@@ -4,6 +4,7 @@ const theme = {
   secondaryColor: '#000',
   staticColor1: '#eeeeee',
   staticColor2: '#757575',
+  staticColor3: '#424242',
   bodyBackgroundColor: '#000',
   bodyFontColor: '#fff',
   bg_gradient:

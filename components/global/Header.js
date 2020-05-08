@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import AppNavbar from '../shared/Navbar';
+import Logo from '../styles/Logo';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -15,24 +16,6 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Logo = styled.h1`
-  font-size: 4rem;
-  position: fixed;
-  left: 2rem;
-  z-index: 2;
-  transform: skew(-7deg);
-  a {
-    padding: 0.5rem 1rem;
-    background: ${(p) => p.theme.primaryColor};
-    color: #fff;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  @media (max-width: 81.25rem) {
-    margin: 0;
-    text-align: center;
-  }
-`;
 const StyledHeader = styled.header`
   .bar {
     position: relative;
@@ -50,14 +33,15 @@ const StyledHeader = styled.header`
 const Header = () => (
   <StyledHeader>
     <div className='bar'>
-      <Logo>
-        <Link href='/'>
-          <a>Nanda Gopal</a>
-        </Link>
-      </Logo>
+      <Logo></Logo>
       <AppNavbar />
     </div>
   </StyledHeader>
 );
 
 export default Header;
+{
+  /* <Link href='/'>
+<a></a>
+</Link> */
+}
