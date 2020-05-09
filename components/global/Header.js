@@ -17,31 +17,29 @@ Router.onRouteChangeError = () => {
 };
 
 const StyledHeader = styled.header`
-  .bar {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: space-between;
-    align-items: stretch;
-    @media (max-width: 81.25rem) {
-      grid-template-columns: 1fr;
-      justify-content: center;
-    }
-  }
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  display: grid;
+  grid-template-columns: 10% auto 40%;
+  justify-items: center;
+  align-items: center;
+  height: 7rem;
+  width: 100%;
+  padding: 0 1.6rem;
+  background: ${(p) => p.theme.secondaryColor};
+  border-bottom: 0.5rem solid ${(p) => p.theme.primaryColor};
 `;
 
 const Header = () => (
   <StyledHeader>
-    <div className='bar'>
-      <Logo></Logo>
-      <AppNavbar />
-    </div>
+    <Link href='/'>
+      <a>
+        <Logo />
+      </a>
+    </Link>
+    <AppNavbar />
   </StyledHeader>
 );
 
 export default Header;
-{
-  /* <Link href='/'>
-<a></a>
-</Link> */
-}

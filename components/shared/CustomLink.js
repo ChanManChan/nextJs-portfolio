@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const StyledLink = styled.a`
-  color: ${(p) => (p.isActive ? '#fff' : p.theme.secondaryColor)};
+  color: ${(p) => (p.isActive ? '#fff' : p.theme.staticColor2)};
   font-size: 2rem;
   text-decoration: none;
   text-transform: uppercase;
@@ -10,9 +10,10 @@ const StyledLink = styled.a`
   margin: 0 1rem;
   position: relative;
   transition: all 0.5s;
+  white-space: nowrap;
   &:hover {
     background-color: ${(p) => p.theme.primaryColor};
-    color: #fff;
+    color: ${(p) => p.theme.staticColor3};
   }
   &:before {
     content: '';

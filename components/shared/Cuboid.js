@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-//! Cuboid edge thickness
+//! Cuboid face color and edge thickness
 export const Bg_inner = styled.div`
-  background: ${(p) =>
-    p.theme.id === 'light' ? p.theme.staticColor2 : p.theme.staticColor3};
+  background: ${(p) => p.theme.secondaryColor};
   position: absolute;
   left: 0.2rem;
   top: 0.2rem;
@@ -46,7 +45,7 @@ export const Bg_top = styled.div`
 export const Bg_right = styled.div`
   position: absolute;
   /* "background" <- only for the button */
-  background: rgba(0, 212, 255, 1);
+  background: ${(p) => p.theme.bg_gradient};
   top: -0.5rem;
   z-index: 0;
   bottom: 0.5rem;

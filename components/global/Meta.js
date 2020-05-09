@@ -9,8 +9,16 @@ const Meta = () => (
       rel='stylesheet'
     />
     <link
-      href='https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap'
+      href='https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
       rel='stylesheet'
+    />
+    <link
+      rel='stylesheet'
+      href='https://use.fontawesome.com/releases/v5.6.1/css/all.css'
+    />
+    <link
+      rel='stylesheet'
+      href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'
     />
     <link rel='stylesheet' type='text/css' href='/nprogress.css' />
     <link rel='shortcut icon' href='/favicon.png' />

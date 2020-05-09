@@ -22,10 +22,7 @@ const Input = styled.input`
     /* Cover the top and right face of the cuboid when focused */
     /* Increase the top thickness of "Bg_inner" to cover the face*/
     top: 100%;
-    background: ${(p) =>
-      p.theme.id === 'light'
-        ? p.theme.secondaryColor
-        : 'rgba(255, 255, 255, 0.5)'};
+    background: ${(p) => p.theme.bg_gradient};
   }
 `;
 
@@ -34,12 +31,9 @@ const Control = styled.div`
   margin: 0 0 3rem;
   position: relative;
   > ${Bg_top},> ${Bg_right},> ${Bg} {
-    /* Grey outline color for the input boxes */
-    background: ${(p) =>
-      p.theme.id === 'light'
-        ? p.theme.secondaryColor
-        : 'rgba(255, 255, 255, 0.5)'};
-    /* Light grey glow transition when hovering over */
+    /* Gradient outline color for the input boxes */
+    background: ${(p) => p.theme.bg_gradient};
+    /* Light gradient glow transition when hovering over */
     transition: background 0.2s ease-in-out;
   }
   > ${Bg_top},> ${Bg_right} {
@@ -54,8 +48,8 @@ const Control = styled.div`
       /* Light grey glow */
       background: ${(p) =>
         p.theme.id === 'light'
-          ? 'rgba(33, 33, 33,0.8)'
-          : 'rgba(255, 255, 255, 0.8)'};
+          ? 'rgba(0, 188, 212, 1)'
+          : 'rgba(255, 193, 7, 1)'};
     }
   }
 `;

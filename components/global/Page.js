@@ -1,3 +1,5 @@
+import Hero from '../shared/Hero';
+import Footer from './Footer';
 import Meta from './Meta';
 import Header from './Header';
 import GlobalStyle from '../styles/GlobalStyles';
@@ -6,7 +8,7 @@ import LightTheme from '../styles/themes/light';
 import DarkTheme from '../styles/themes/dark';
 
 const Inner = styled.main`
-  max-width: 110rem;
+  max-width: 120rem;
   margin: 15rem auto 0 auto;
   padding: 0 1rem;
   font-family: 'Open Sans', sans-serif;
@@ -16,15 +18,16 @@ const Inner = styled.main`
   h4,
   h5,
   h6 {
-    font-family: 'Kaushan Script', cursive;
+    font-family: 'Press Start 2P', cursive;
   }
 `;
+
 const StyledPage = styled.div`
   background: ${(p) => p.theme.bodyBackgroundColor};
   color: ${(p) => p.theme.bodyFontColor};
 `;
 
-export default function Page({ children }) {
+export default function Page({ children, component }) {
   const [theme, setTheme] = React.useState(LightTheme);
 
   const providerValue = React.useMemo(
@@ -36,17 +39,18 @@ export default function Page({ children }) {
     }),
     [theme, setTheme]
   );
+  const checkLanding = () => component.name === 'Home';
 
   return (
-    <>
-      <ThemeProvider theme={providerValue}>
-        <GlobalStyle />
-        <StyledPage>
-          <Meta />
-          <Header />
-          <Inner>{children}</Inner>
-        </StyledPage>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={providerValue}>
+      <GlobalStyle />
+      <StyledPage>
+        <Meta />
+        <Header />
+        {checkLanding() && <Hero />}
+        <Inner>{children}</Inner>
+        {checkLanding() && <Footer />}
+      </StyledPage>
+    </ThemeProvider>
   );
 }

@@ -5,19 +5,8 @@ import Menu from './Menu';
 import CustomLink from './CustomLink';
 import Toggle from './Toggle';
 
-const NavWrapper = styled.header`
-  height: 6rem;
-  width: 100%;
-  display: flex;
-  padding: 0 1.6rem;
-  position: fixed;
-  top: 0;
-  background-image: linear-gradient(
-    to right,
-    ${(p) => p.theme.staticColor1},
-    ${(p) => p.theme.staticColor2}
-  );
-  border-bottom: 0.3rem solid ${(p) => p.theme.staticColor2};
+const NavWrapper = styled.div`
+  grid-column: 3/-1;
 `;
 
 const AppNavbar = () => {
