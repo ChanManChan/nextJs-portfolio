@@ -18,7 +18,7 @@ Router.onRouteChangeError = () => {
 
 const StyledHeader = styled.header`
   position: fixed;
-  z-index: 10000;
+  z-index: 100;
   top: 0;
   display: grid;
   grid-template-columns: 10% auto 40%;
