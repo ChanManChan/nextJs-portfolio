@@ -5,6 +5,7 @@ const theme = {
   staticColor1: '#eeeeee',
   staticColor2: '#757575',
   staticColor3: '#424242',
+  gridColor: '#ffff63',
   bodyBackgroundColor: '#fff',
   bodyFontColor: '#000',
   bg_gradient:

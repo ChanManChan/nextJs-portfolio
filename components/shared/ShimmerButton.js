@@ -4,14 +4,15 @@ const Button = styled.a`
   display: inline-block;
   text-transform: capitalize;
   text-decoration: none;
-  color: #fff;
+  color: ${(p) => p.themeColor};
   font-family: inherit;
   font-size: 2rem;
-  border: 0.3rem solid #fff;
+  border: 0.3rem solid ${(p) => p.themeColor};
   padding: 2rem 4rem;
   transition: background-color 0.3s, color 0.3s;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   &:hover {
     background-color: ${(p) => p.theme.primaryColor};
     color: ${(p) => p.theme.secondaryColor};

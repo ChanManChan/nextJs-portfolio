@@ -45,7 +45,7 @@ const Control = styled.div`
   &:hover,
   &:focus {
     > ${Bg_top},> ${Bg_right},> ${Bg} {
-      /* Light grey glow */
+      /* Light gradient glow */
       background: ${(p) =>
         p.theme.id === 'light'
           ? 'rgba(0, 188, 212, 1)'

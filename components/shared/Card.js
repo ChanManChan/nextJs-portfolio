@@ -1,92 +1,106 @@
 import styled from 'styled-components';
 
+//! Initial tech icons and right arrow styles
 const Icon = styled.i`
   opacity: 0;
-  font-size: 18px;
+  font-size: 2.5rem;
   color: #fff;
-  will-change: transform;
+  will-change: transform, opacity;
   transform: scale(0.1);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 `;
 
+//! Tech image container
 const ImageContainer = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 40rem;
+  height: 20rem;
   background-image: ${(p) => p.projectImage};
+  /* The size of the background image is set in percent of the parent element; 100% width and 100% height. ie. within this 40 X 20 rem ImageContainer */
   background-size: 100% 100%;
   filter: grayscale(100%);
+  will-change: filter;
+  transition: filter 0.2s ease;
 `;
 
+//! Expanding (radius wise) button
 const Button = styled.button`
   position: absolute;
+  /* Initial position of the bottom-right corner circle */
   right: 1.4rem;
   bottom: 1.4rem;
   width: 3rem;
   height: 3rem;
+  border-radius: 3rem;
   background-color: ${(p) => p.buttonBg};
   border: none;
-  border-radius: 3rem;
-  cursor: pointer;
   outline: none;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transform: scale(1);
+  will-change: transform;
+  transition: transform 0.3s ease;
+  /* The mix-blend-mode CSS property sets how an element's content should blend with the content of the element's parent and the element's background. */
   mix-blend-mode: hard-light;
-  ${Icon} {
-    font-size: 3rem;
-  }
 `;
 
 const Card = styled.div`
   position: relative;
-  width: 500px;
-  height: 200px;
+  width: 50rem;
+  height: 20rem;
   background-color: #fff;
   overflow: hidden;
-  margin-bottom: 4px;
+  margin-bottom: 0.4rem;
 
+  /*Movie ticket like top cutout semicircle */
   &:before {
     content: '';
     z-index: 99;
     position: absolute;
-    top: -10px;
-    left: 32px;
+    top: -1rem;
+    left: 3.2rem;
     display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 16px;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 1.6rem;
     background-color: #e6e5e1;
   }
+  /*Movie ticket like bottom cutout semicircle */
   &:after {
     content: '';
     z-index: 99;
     position: absolute;
-    bottom: -10px;
-    left: 32px;
+    bottom: -1rem;
+    left: 3.2rem;
     display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 16px;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 1.6rem;
     background-color: #e6e5e1;
   }
+
+  /* Movie ticket like punched holes */
   ul {
     z-index: 99;
     position: absolute;
-    left: 39px;
-    top: 5px;
+    left: 3.9rem;
+    top: 0.5rem;
     list-style-type: none;
     li {
-      width: 2px;
-      height: 2px;
-      border-radius: 2px;
-      margin: 6px 0;
+      width: 0.2rem;
+      height: 0.2rem;
+      border-radius: 0.2rem;
+      margin: 0.6rem 0;
       background-color: #e6e5e1;
     }
   }
+
+  /* Project title */
   h3 {
     pointer-events: none;
+    user-select: none;
     z-index: 99;
     position: absolute;
-    bottom: 10px;
-    right: 130px;
+    bottom: 1rem;
+    right: 13rem;
     font-size: 2rem;
     color: #fff;
   }
@@ -94,53 +108,58 @@ const Card = styled.div`
   .fa-arrow-right {
     z-index: 100;
     position: absolute;
-    right: 75px;
-    bottom: 25px;
-    font-size: 40px;
+    right: 7.5rem;
+    bottom: 2.5rem;
+    font-size: 4rem;
     cursor: pointer;
   }
+  /* Tech stack */
   p {
     z-index: 99;
     position: absolute;
-    top: 20px;
-    right: 70px;
+    top: 2rem;
+    right: 7rem;
     color: #333;
     opacity: 0.7;
-    font-size: 12px;
+    font-size: 1.2rem;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
+    /* The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress.  */
     writing-mode: vertical-lr;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
   }
 
-  .social {
+  /* Tech icons container*/
+  .tech {
     position: absolute;
-    left: 60px;
+    left: 6rem;
     top: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 180px;
-    height: 64px;
-    border-radius: 80px;
+    width: 18rem;
+    height: 6.4rem;
+    border-radius: 8rem;
   }
 
-  .social ${Icon}:nth-of-type(1) {
+  /* Tech icons (display them one after the other)*/
+  .tech ${Icon}:nth-of-type(1) {
     transition-delay: 0.4s;
   }
 
-  .social ${Icon}:nth-of-type(2) {
+  .tech ${Icon}:nth-of-type(2) {
     transition-delay: 0.3s;
   }
 
-  .social ${Icon}:nth-of-type(3) {
+  .tech ${Icon}:nth-of-type(3) {
     transition-delay: 0.2s;
   }
 
-  .social ${Icon}:nth-of-type(4) {
+  .tech ${Icon}:nth-of-type(4) {
     transition-delay: 0.1s;
   }
 
+  /* Display the tech icons and right arrow when hovering*/
   &:hover ${Icon} {
     opacity: 1;
     transform: scale(1);
@@ -158,8 +177,14 @@ const Card = styled.div`
   }
 `;
 
-const CustomCard = ({ projectName, techStack, projectImage, buttonBg }) => (
-  <Card>
+const CustomCard = ({
+  projectName,
+  techStack,
+  projectImage,
+  buttonBg,
+  ...props
+}) => (
+  <Card {...props}>
     <h3>{projectName}</h3>
     <Icon className='fas fa-arrow-right'></Icon>
     <p>{techStack}</p>
@@ -189,7 +214,7 @@ const CustomCard = ({ projectName, techStack, projectImage, buttonBg }) => (
       <li></li>
       <li></li>
     </ul>
-    <div className='social'>
+    <div className='tech'>
       <Icon className='fab fa-node-js'></Icon>
       <Icon className='fab fa-react'></Icon>
       <Icon className='fas fa-database'></Icon>

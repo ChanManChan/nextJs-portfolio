@@ -3,18 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "nodemon --watch server server/index.js",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
     "formik": "^2.1.4",
+    "graphql": "^15.0.0",
     "next": "9.3.6",
     "nprogress": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "styled-components": "^5.1.0",
+    "uuid": "^8.0.0",
     "yup": "^0.28.5"
   },
   "devDependencies": {
