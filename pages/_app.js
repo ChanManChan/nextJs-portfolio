@@ -4,16 +4,14 @@ import Page from '../components/global/Page';
 //! "Component" <- actual page i'm are navigating to
 
 const MyApp = ({ Component, pageProps }) => {
-  //? debugger;
+  //! debugger;
   // console.log("PAGE I'M NAVIGATING TO: ", Component);
   // PAGE I'M NAVIGATING TO:  [Function: Topics]
   // PAGE I'M NAVIGATING TO:  [Function: Portfolios]
   return (
-    <>
-      <Page component={Component}>
-        <Component {...pageProps} />
-      </Page>
-    </>
+    <Page component={Component}>
+      <Component {...pageProps} />
+    </Page>
   );
 };
 

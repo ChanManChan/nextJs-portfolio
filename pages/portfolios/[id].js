@@ -44,6 +44,7 @@ const Border = styled.div`
 
 const Grid = styled.div`
   display: grid;
+  margin: -10rem auto 5rem;
   grid: 15rem repeat(9, 13rem) / repeat(4, 1fr);
   & > * > ${Border} {
     will-change: background, color;
@@ -57,6 +58,9 @@ const Grid = styled.div`
 
 const ProjectTitle = styled.div`
   grid-area: 1 / 1 / 3 / 5;
+  justify-self: center;
+  align-self: center;
+  font-size: 2.2rem;
 `;
 const Stack = styled.div`
   position: relative;
@@ -126,10 +130,10 @@ const Screenshot4 = styled.div`
   }
 `;
 const Title = styled.div`
+  grid-area: 3 / 2 / 5 / 4;
   display: flex;
   margin-top: -1rem;
   justify-content: center;
-  grid-area: 3 / 2 / 5 / 4;
   position: relative;
   z-index: 1;
   p {
@@ -138,6 +142,9 @@ const Title = styled.div`
     line-height: 1.5;
     display: inline-block;
     span {
+      border-radius: 0.3rem;
+      font-size: 2.3rem;
+      color: ${(p) => p.theme.secondaryColor};
       background: ${(p) => p.theme.gridColor};
       padding: 0.5rem 1rem;
       letter-spacing: 0.1rem;
@@ -151,10 +158,12 @@ const PortfolioDetail = ({ query }) => {
   const { id } = query;
   return (
     <Grid>
-      <ProjectTitle />
+      <ProjectTitle>
+        <h1>Testing title</h1>
+      </ProjectTitle>
       <Title>
         <p>
-          <span>Testing</span>
+          <span>details</span>
         </p>
       </Title>
       <Stack>

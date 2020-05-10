@@ -2,15 +2,6 @@ import Card from '@/components/shared/Card';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
 //! Pretend we're making some asynchronous calls
 // const apiCall = () => {
 // return new Promise((res, rej) => {
@@ -47,14 +38,21 @@ const fetchPortfolios = () => {
     });
 };
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+  grid-row-gap: 3rem;
+`;
+
 const Portfolios = (props) => {
   // debugger;
   return (
     <Container>
-      {props.portfolios.map((p) => {
+      {props.portfolios.map((p, i) => {
         return (
           <Card
-            key={p._id}
+            key={i}
+            id={p._id}
             projectName={p.title}
             techStack={p.techStack}
             projectImage="url('/bg.jpeg')"

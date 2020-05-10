@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 //! Initial tech icons and right arrow styles
 const Icon = styled.i`
@@ -23,7 +24,7 @@ const ImageContainer = styled.div`
 `;
 
 //! Expanding (radius wise) button
-const Button = styled.button`
+const Button = styled.a`
   position: absolute;
   /* Initial position of the bottom-right corner circle */
   right: 1.4rem;
@@ -95,6 +96,7 @@ const Card = styled.div`
 
   /* Project title */
   h3 {
+    text-align: end;
     pointer-events: none;
     user-select: none;
     z-index: 99;
@@ -119,6 +121,7 @@ const Card = styled.div`
     position: absolute;
     top: 2rem;
     right: 7rem;
+    margin-right: -2rem;
     color: #333;
     opacity: 0.7;
     font-size: 1.2rem;
@@ -182,6 +185,7 @@ const CustomCard = ({
   techStack,
   projectImage,
   buttonBg,
+  id,
   ...props
 }) => (
   <Card {...props}>
@@ -220,7 +224,9 @@ const CustomCard = ({
       <Icon className='fas fa-database'></Icon>
       <Icon className='fab fa-github'></Icon>
     </div>
-    <Button buttonBg={buttonBg} />
+    <Link href={`/portfolios/${id}`} passHref>
+      <Button buttonBg={buttonBg} />
+    </Link>
   </Card>
 );
 export default CustomCard;

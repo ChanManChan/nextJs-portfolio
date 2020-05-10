@@ -40,7 +40,6 @@ export default function Page({ children, component }) {
     [theme, setTheme]
   );
   const checkLanding = () => component.name === 'Home';
-
   return (
     <ThemeProvider theme={providerValue}>
       <GlobalStyle />
