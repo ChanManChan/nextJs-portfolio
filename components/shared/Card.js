@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Anchor from './CustomIcon';
 
 //! Initial tech icons and right arrow styles
 const Icon = styled.i`
@@ -50,6 +51,29 @@ const Card = styled.div`
   background-color: #fff;
   overflow: hidden;
   margin-bottom: 0.4rem;
+
+  .actionIcons {
+    position: absolute;
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    will-change: color, border;
+    transition: border 0.2s ease, color 0.2s ease;
+  }
+  .editIcon {
+    &:before {
+      content: '\f0ad';
+    }
+    left: 7rem;
+    top: 6.6rem;
+  }
+  .deleteIcon {
+    &:before {
+      content: '\f2ed';
+    }
+    left: 11.6rem;
+    top: 6.6rem;
+  }
 
   /*Movie ticket like top cutout semicircle */
   &:before {
@@ -168,6 +192,12 @@ const Card = styled.div`
     transform: scale(1);
   }
 
+  &:hover .editIcon,
+  &:hover .deleteIcon {
+    color: #fff;
+    border: 0.1rem solid #fff;
+  }
+
   &:hover ${Button} {
     transform: scale(16.5);
   }
@@ -186,6 +216,8 @@ const CustomCard = ({
   projectImage,
   buttonBg,
   id,
+  update,
+  remove,
   ...props
 }) => (
   <Card {...props}>
@@ -219,12 +251,18 @@ const CustomCard = ({
       <li></li>
     </ul>
     <div className='tech'>
-      <Icon className='fab fa-node-js'></Icon>
-      <Icon className='fab fa-react'></Icon>
-      <Icon className='fas fa-database'></Icon>
-      <Icon className='fab fa-github'></Icon>
+      <Icon className='fab fa-node-js' />
+      <Icon className='fab fa-react' />
+      <Icon className='fas fa-database' />
+      <Icon className='fab fa-github' />
     </div>
-    <Link href={`/portfolios/${id}`} passHref>
+    <Anchor onClick={update} className='actionIcons editIcon'>
+      <Icon className='fas fa-wrench' />
+    </Anchor>
+    <Anchor onClick={remove} className='actionIcons deleteIcon'>
+      <Icon className='fas fa-trash-alt' />
+    </Anchor>
+    <Link href='/portfolios/[id]' as={`/portfolios/${id}`} passHref>
       <Button buttonBg={buttonBg} />
     </Link>
   </Card>

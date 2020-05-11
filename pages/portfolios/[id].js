@@ -1,6 +1,10 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useLazyQuery } from '@apollo/react-hooks';
+import { GET_PORTFOLIO } from '@/apollo/queries';
+import Loading from '@/components/styles/Loading';
+import withApollo from '@/hoc/withApollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 
 //! 1st method:- Functional component without getInitialProps
 // const PortfolioDetail = () => {
@@ -154,48 +158,71 @@ const Title = styled.div`
 
 //! 3rd method:- getInitialProps on a functional component
 const PortfolioDetail = ({ query }) => {
-  console.log('USE ROUTER: ', useRouter().query);
-  const { id } = query;
+  const [portfolio, setPortfolio] = React.useState(null);
+  //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
+  const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
+
+  //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
+  React.useEffect(() => {
+    getPortfolio({ variables: { id: query.id } });
+  }, []);
+
+  if (data && !portfolio) setPortfolio(data.portfolio);
   return (
-    <Grid>
-      <ProjectTitle>
-        <h1>Testing title</h1>
-      </ProjectTitle>
-      <Title>
-        <p>
-          <span>details</span>
-        </p>
-      </Title>
-      <Stack>
-        <Border />
-      </Stack>
-      <Description>
-        <Border />
-      </Description>
-      <Deployed>
-        <Border />
-      </Deployed>
-      <Repository>
-        <Border />
-      </Repository>
-      <Screenshot1>
-        <Border />
-      </Screenshot1>
-      <Screenshot2>
-        <Border />
-      </Screenshot2>
-      <Screenshot3>
-        <Border />
-      </Screenshot3>
-      <Screenshot4>
-        <Border />
-      </Screenshot4>
-    </Grid>
+    <>
+      {loading || !portfolio ? (
+        <Loading />
+      ) : (
+        <Grid>
+          <ProjectTitle>
+            <h1>{portfolio.title}</h1>
+          </ProjectTitle>
+          <Title>
+            <p>
+              <span>details</span>
+            </p>
+          </Title>
+          <Stack>
+            <Border>
+              <span>{portfolio.techStack}</span>
+            </Border>
+          </Stack>
+          <Description>
+            <Border>
+              <span>{portfolio.description}</span>
+            </Border>
+          </Description>
+          <Deployed>
+            <Border>{portfolio.deployed}</Border>
+          </Deployed>
+          <Repository>
+            <Border>
+              <span>{portfolio.repoAPI}</span>
+              <span>{portfolio.repoClient}</span>
+            </Border>
+          </Repository>
+          <Screenshot1>
+            <Border>Screenshot1</Border>
+          </Screenshot1>
+          <Screenshot2>
+            <Border>Screenshot2</Border>
+          </Screenshot2>
+          <Screenshot3>
+            <Border>Screenshot3</Border>
+          </Screenshot3>
+          <Screenshot4>
+            <Border>Screenshot4</Border>
+          </Screenshot4>
+        </Grid>
+      )}
+    </>
   );
 };
 
-PortfolioDetail.getInitialProps = ({ query }) => {
+PortfolioDetail.getInitialProps = async ({ query }) => {
   return { query };
 };
 
-export default PortfolioDetail;
+//! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
+
+export default withApollo(PortfolioDetail, { getDataFromTree });

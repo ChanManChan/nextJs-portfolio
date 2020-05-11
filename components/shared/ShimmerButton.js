@@ -1,4 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const sizeStyles = ({ large }) => {
+  if (large)
+    return css`
+      padding: 2rem 4rem;
+      border: 0.3rem solid ${(p) => p.themeColor};
+      font-size: 2rem;
+    `;
+  else
+    return css`
+      padding: 1rem 2rem;
+      border: 0.15rem solid ${(p) => p.themeColor};
+      font-size: 1rem;
+    `;
+};
 
 const Button = styled.a`
   display: inline-block;
@@ -6,9 +21,7 @@ const Button = styled.a`
   text-decoration: none;
   color: ${(p) => p.themeColor};
   font-family: inherit;
-  font-size: 2rem;
-  border: 0.3rem solid ${(p) => p.themeColor};
-  padding: 2rem 4rem;
+  ${sizeStyles}
   transition: background-color 0.3s, color 0.3s;
   position: relative;
   overflow: hidden;
