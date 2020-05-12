@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { GET_PORTFOLIO } from '@/apollo/queries';
 import Loading from '@/components/styles/Loading';
 import withApollo from '@/hoc/withApollo';
@@ -58,6 +58,10 @@ const Grid = styled.div`
       color: #ffff63;
     }
   }
+  .border {
+    position: relative;
+    background: ${(p) => p.theme.bg_gradient};
+  }
 `;
 
 const ProjectTitle = styled.div`
@@ -67,21 +71,15 @@ const ProjectTitle = styled.div`
   font-size: 2.2rem;
 `;
 const Stack = styled.div`
-  position: relative;
-  background: ${(p) => p.theme.bg_gradient};
   grid-area: 3 / 1 / 6 / 3;
   > ${Border} {
     right: 0;
   }
 `;
 const Description = styled.div`
-  position: relative;
-  background: ${(p) => p.theme.bg_gradient};
   grid-area: 3 / 3 / 7 / 5;
 `;
 const Deployed = styled.div`
-  position: relative;
-  background: ${(p) => p.theme.bg_gradient};
   grid-area: 6 / 1 / 8 / 2;
   > ${Border} {
     top: 0;
@@ -90,8 +88,6 @@ const Deployed = styled.div`
 
 const Repository = styled.div`
   grid-area: 6 / 2 / 8 / 3;
-  position: relative;
-  background: ${(p) => p.theme.bg_gradient};
   > ${Border} {
     left: 0;
     right: 0;
@@ -100,8 +96,6 @@ const Repository = styled.div`
 `;
 const Screenshot1 = styled.div`
   grid-area: 7/ 3 / 9 / 4;
-  position: relative;
-  background: ${(p) => p.theme.bg_gradient};
   > ${Border} {
     bottom: 0;
     right: 0;
@@ -109,16 +103,12 @@ const Screenshot1 = styled.div`
   }
 `;
 const Screenshot2 = styled.div`
-  background: ${(p) => p.theme.bg_gradient};
-  position: relative;
   grid-area: 7 / 4 / 11 / 5;
   > ${Border} {
     top: 0;
   }
 `;
 const Screenshot3 = styled.div`
-  background: ${(p) => p.theme.bg_gradient};
-  position: relative;
   grid-area: 8 / 1 / 11 / 3;
   > ${Border} {
     right: 0;
@@ -126,8 +116,6 @@ const Screenshot3 = styled.div`
   }
 `;
 const Screenshot4 = styled.div`
-  background: ${(p) => p.theme.bg_gradient};
-  position: relative;
   grid-area: 9 / 3 / 11 / 4;
   > ${Border} {
     right: 0;
@@ -158,64 +146,64 @@ const Title = styled.div`
 
 //! 3rd method:- getInitialProps on a functional component
 const PortfolioDetail = ({ query }) => {
-  const [portfolio, setPortfolio] = React.useState(null);
+  // const [portfolio, setPortfolio] = React.useState(null);
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
-  const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
+  //! "useQuery" <- will be called immediately
+  // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
+  const { data } = useQuery(GET_PORTFOLIO, { variables: { id: query.id } });
+  const { title, techStack, description, deployed, repoAPI, repoClient } =
+    (data && data.portfolio) || {};
 
   //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
-  React.useEffect(() => {
-    getPortfolio({ variables: { id: query.id } });
-  }, []);
+  // React.useEffect(() => {
+  //   getPortfolio({ variables: { id: query.id } });
+  // }, []);
 
-  if (data && !portfolio) setPortfolio(data.portfolio);
+  //! We dont need to handle "loading" since our data will be loaded server-side & we dont need to set our state also.
+  // if (data && !portfolio) setPortfolio(data.portfolio);
+
   return (
-    <>
-      {loading || !portfolio ? (
-        <Loading />
-      ) : (
-        <Grid>
-          <ProjectTitle>
-            <h1>{portfolio.title}</h1>
-          </ProjectTitle>
-          <Title>
-            <p>
-              <span>details</span>
-            </p>
-          </Title>
-          <Stack>
-            <Border>
-              <span>{portfolio.techStack}</span>
-            </Border>
-          </Stack>
-          <Description>
-            <Border>
-              <span>{portfolio.description}</span>
-            </Border>
-          </Description>
-          <Deployed>
-            <Border>{portfolio.deployed}</Border>
-          </Deployed>
-          <Repository>
-            <Border>
-              <span>{portfolio.repoAPI}</span>
-              <span>{portfolio.repoClient}</span>
-            </Border>
-          </Repository>
-          <Screenshot1>
-            <Border>Screenshot1</Border>
-          </Screenshot1>
-          <Screenshot2>
-            <Border>Screenshot2</Border>
-          </Screenshot2>
-          <Screenshot3>
-            <Border>Screenshot3</Border>
-          </Screenshot3>
-          <Screenshot4>
-            <Border>Screenshot4</Border>
-          </Screenshot4>
-        </Grid>
-      )}
-    </>
+    <Grid>
+      <ProjectTitle>
+        <h1>{title}</h1>
+      </ProjectTitle>
+      <Title>
+        <p>
+          <span>details</span>
+        </p>
+      </Title>
+      <Stack className='border'>
+        <Border>
+          <span>{techStack}</span>
+        </Border>
+      </Stack>
+      <Description className='border'>
+        <Border>
+          <span>{description}</span>
+        </Border>
+      </Description>
+      <Deployed className='border'>
+        <Border>{deployed}</Border>
+      </Deployed>
+      <Repository className='border'>
+        <Border>
+          <span>{repoAPI}</span>
+          <span>{repoClient}</span>
+        </Border>
+      </Repository>
+      <Screenshot1 className='border'>
+        <Border>Screenshot1</Border>
+      </Screenshot1>
+      <Screenshot2 className='border'>
+        <Border>Screenshot2</Border>
+      </Screenshot2>
+      <Screenshot3 className='border'>
+        <Border>Screenshot3</Border>
+      </Screenshot3>
+      <Screenshot4 className='border'>
+        <Border>Screenshot4</Border>
+      </Screenshot4>
+    </Grid>
   );
 };
 

@@ -2,13 +2,11 @@ import Card from '@/components/shared/Card';
 import styled from 'styled-components';
 import Button from '@/components/shared/ShimmerButton';
 import {
-  GET_PORTFOLIOS,
-  CREATE_PORTFOLIO,
-  UPDATE_PORTFOLIO,
-  DELETE_PORTFOLIO,
-} from '@/apollo/queries';
-import { useLazyQuery, useMutation } from '@apollo/react-hooks';
-import Loading from '@/components/styles/Loading';
+  useGetPortfolios,
+  useCreatePortfolio,
+  useUpdatePortfolio,
+  useDeletePortfolio,
+} from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -30,77 +28,79 @@ const Container = styled.div`
 
 const Portfolios = () => {
   // debugger;
-  const [portfolios, setPortfolios] = React.useState([]);
-  const [getPortfolios, { loading, data }] = useLazyQuery(GET_PORTFOLIOS);
+  //! we dont need state because we are fetching data from server now onwards and rendering the HTML with the fetched data server-side and sending it to the client.
+  // const [portfolios, setPortfolios] = React.useState([]);
+
+  const { data } = useGetPortfolios();
+  const portfolios = (data && data.portfolios) || [];
+
+  const [createPortfolio] = useCreatePortfolio();
+  const [updatePortfolio] = useUpdatePortfolio();
+  const [deletePortfolio] = useDeletePortfolio();
+
+  //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards
+  // React.useEffect(() => {
+  //   getPortfolios();
+  // }, []);
 
   // const [createPortfolio] = useMutation(CREATE_PORTFOLIO, {
   //   onCompleted: (dataC) =>
   //     setPortfolios((cs) => [...cs, dataC.createPortfolio]),
   // });
 
-  const [createPortfolio] = useMutation(CREATE_PORTFOLIO, {
-    update(cache, { data: { createPortfolio } }) {
-      //! Get old portfolios from cache
-      const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
-      //! Update the cache with the recently created portfolio
-      cache.writeQuery({
-        query: GET_PORTFOLIOS,
-        data: { portfolios: [...portfolios, createPortfolio] },
-      });
-    },
-  });
-  React.useEffect(() => {
-    getPortfolios();
-  }, []);
+  // if (
+  //   data &&
+  //   data.portfolios.length > 0 &&
+  //   (portfolios.length === 0 || data.portfolios.length !== portfolios.length)
+  // )
+  //   setPortfolios(data.portfolios);
 
-  if (
-    data &&
-    data.portfolios.length > 0 &&
-    (portfolios.length === 0 || data.portfolios.length !== portfolios.length)
-  )
-    setPortfolios(data.portfolios);
+  // const updatePortfolio = async (id) => {
+  // await graphUpdatePortfolio(id);
+  // const updatedPortfolio = await graphUpdatePortfolio(id);
+  // const i = portfolios.findIndex((p) => p._id === id);
+  // const ns = [...portfolios];
+  // ns[i] = updatedPortfolio;
+  // setPortfolios(ns);
+  // };
 
-  const updatePortfolio = async (id) => {
-    const updatedPortfolio = await graphUpdatePortfolio(id);
-    const i = portfolios.findIndex((p) => p._id === id);
-    const ns = [...portfolios];
-    ns[i] = updatedPortfolio;
-    setPortfolios(ns);
-  };
-
-  const deletePortfolio = async (id) => {
-    if (window.confirm(`Permanently Delete Portfolio with ID: ${id}?`)) {
-      const deletedId = await graphDeletePortfolio(id);
-      const i = portfolios.findIndex((p) => p._id === deletedId);
-      const ns = [...portfolios];
-      ns.splice(i, 1);
-      setPortfolios(ns);
-    }
-  };
+  // const deletePortfolio = async (id) => {
+  // if (window.confirm(`Permanently Delete Portfolio with ID: ${id}?`)) {
+  // await graphDeletePortfolio(id);
+  // const deletedId = await graphDeletePortfolio(id);
+  // const i = portfolios.findIndex((p) => p._id === deletedId);
+  // const ns = [...portfolios];
+  // ns.splice(i, 1);
+  // setPortfolios(ns);
+  // }
+  // };
 
   return (
     <>
       <Button onClick={createPortfolio}>create portfolio</Button>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Container>
-          {portfolios.map((p, i) => {
-            return (
-              <Card
-                key={i}
-                id={p._id}
-                projectName={p.title}
-                techStack={p.techStack}
-                projectImage="url('/bg.jpeg')"
-                buttonBg={p.theme}
-                update={() => updatePortfolio(p._id)}
-                remove={() => deletePortfolio(p._id)}
-              />
-            );
-          })}
-        </Container>
-      )}
+      <Container>
+        {portfolios.map((p, i) => {
+          return (
+            <Card
+              key={i}
+              id={p._id}
+              projectName={p.title}
+              techStack={p.techStack}
+              projectImage="url('/bg.jpeg')"
+              buttonBg={p.theme}
+              update={() => updatePortfolio({ variables: { id: p._id } })}
+              remove={() => {
+                if (
+                  window.confirm(
+                    `Permanently Delete Portfolio with ID: ${p._id}?`
+                  )
+                )
+                  return deletePortfolio({ variables: { id: p._id } });
+              }}
+            />
+          );
+        })}
+      </Container>
     </>
   );
 };

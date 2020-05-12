@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const GET_PORTFOLIO = gql`
-  query Portfolios($id: ID) {
+  query Portfolio($id: ID) {
     portfolio(id: $id) {
       _id
       title
