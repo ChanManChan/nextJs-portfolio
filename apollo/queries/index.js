@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 export const GET_PORTFOLIO = gql`
   query Portfolio($id: ID) {

@@ -25,3 +25,17 @@ exports.portfolioMutations = {
     return deletedPortfolio._id;
   },
 };
+
+//! Provide "User" model to the resolvers (go to "graphql/index.js" and "User" model to the context)
+exports.authenticationMutations = {
+  signIn: (root, args, ctx) => {
+    return ctx.models.User.signIn();
+  },
+  signUp: async (root, { input }, ctx) => {
+    const registeredUser = await ctx.models.User.signUp(input);
+    return registeredUser._id;
+  },
+  signOut: (root, args, ctx) => {
+    return ctx.models.User.signOut();
+  },
+};

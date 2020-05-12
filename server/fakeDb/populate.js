@@ -9,6 +9,8 @@ mongoose.connect(
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
   },
   async () => {
     console.log('> STARTED POPULATING DB...');

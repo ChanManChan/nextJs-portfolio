@@ -1,5 +1,12 @@
+const mongoose = require('mongoose');
+
 //! INITIAL DATA IN DB
 const data = {
+  users: [
+    {
+      _id: mongoose.Types.ObjectId(),
+    },
+  ],
   portfolios: [
     {
       title: 'E-commerce',
