@@ -21,12 +21,29 @@ exports.portfolioTypes = `
 `;
 
 exports.authenticationTypes = `
+  type User {
+    _id: ID,
+    avatar: Upload!
+    username: String
+    name: String
+    email: String
+    role: String
+  }
   input SignUpInput {
-    avatar: String
+    avatar: Upload!
     username: String!
     name: String
     email: String!
     password: String!
-    passwordConfirmation: String!
+  }
+  input SignInInput {
+    email: String!
+    password: String!
   }
 `;
+
+// username: String!
+//name: String
+//email: String!
+//password: String!
+//passwordConfirmation: String!

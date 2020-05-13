@@ -36,8 +36,8 @@ const Button = styled.button`
   }
 `;
 
-const CustomButton = ({ buttonText, disabled }) => (
-  <Button disabled={disabled}>
+const CustomButton = ({ buttonText, disabled, ...props }) => (
+  <Button disabled={disabled} {...props}>
     <Bg_top>
       <Bg_inner />
     </Bg_top>

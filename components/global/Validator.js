@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const validationSchema = yup.object().shape({
+const validationSchemaSignIn = yup.object({
   username: yup.string().min(5).max(35).required('Please Enter a username'),
   password: yup
     .string()
@@ -11,6 +11,24 @@ const validationSchema = yup.object().shape({
     ),
 });
 
+const validationSchemaRegister = yup.object({
+  username: yup.string().min(5).max(35).required('Please Enter a username'),
+  email: yup.string().required('Please Enter your Email').email(),
+  password: yup
+    .string()
+    .required('Please Enter your password')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
+    ),
+  confirmPassword: yup
+    .string()
+    .required('Confirm Password and Password do not match')
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+  file: yup.mixed().required('Add a profile image'),
+});
+
 module.exports = {
-  validationSchema,
+  validationSchemaSignIn,
+  validationSchemaRegister,
 };

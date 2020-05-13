@@ -10,5 +10,8 @@ const theme = {
   bodyFontColor: '#fff',
   bg_gradient:
     'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(191, 54, 12, 1) 37%, rgba(237, 109, 58, 1) 94%)',
+  error_gradient:
+    'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(213, 0, 0, 1) 20%, rgba(239, 154, 154, 1) 94%)',
+  error_text: '#ef9a9a',
 };
 export default theme;

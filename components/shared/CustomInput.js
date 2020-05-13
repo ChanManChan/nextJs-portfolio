@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { Bg_right, Bg_top, Bg_inner, Bg } from './Cuboid';
+import { useField } from 'formik';
 
-const Input = styled.input`
+const Input = styled.input.attrs((props) => ({
+  placeholder: props.helperText ? props.helperText : props.placeholder,
+}))`
   width: 100%;
   padding: 1.4rem 1.6rem;
   border: 0;
@@ -24,6 +27,9 @@ const Input = styled.input`
     top: 100%;
     background: ${(p) => p.theme.bg_gradient};
   }
+  &::placeholder {
+    color: ${(p) => (p.helperText ? p.theme.error_text : '#fff')};
+  }
 `;
 
 const Control = styled.div`
@@ -32,7 +38,8 @@ const Control = styled.div`
   position: relative;
   > ${Bg_top},> ${Bg_right},> ${Bg} {
     /* Gradient outline color for the input boxes */
-    background: ${(p) => p.theme.bg_gradient};
+    background: ${(p) =>
+      p.helperText ? p.theme.error_gradient : p.theme.bg_gradient};
     /* Light gradient glow transition when hovering over */
     transition: background 0.2s ease-in-out;
   }
@@ -54,18 +61,27 @@ const Control = styled.div`
   }
 `;
 
-const InputField = ({ ...props }) => (
-  <Control>
-    <Input {...props} />
-    <Bg_top>
-      <Bg_inner />
-    </Bg_top>
-    <Bg_right>
-      <Bg_inner />
-    </Bg_right>
-    <Bg>
-      <Bg_inner />
-    </Bg>
-  </Control>
-);
+const InputField = ({ type, placeholder, ...props }) => {
+  const [field, meta] = useField(props);
+  const errorText = meta.error && meta.touched ? meta.error : '';
+  return (
+    <Control helperText={errorText}>
+      <Input
+        {...field}
+        placeholder={placeholder}
+        type={type}
+        helperText={errorText}
+      />
+      <Bg_top>
+        <Bg_inner />
+      </Bg_top>
+      <Bg_right>
+        <Bg_inner />
+      </Bg_right>
+      <Bg>
+        <Bg_inner />
+      </Bg>
+    </Control>
+  );
+};
 export default InputField;

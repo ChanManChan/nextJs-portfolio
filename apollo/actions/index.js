@@ -5,8 +5,10 @@ import {
   CREATE_PORTFOLIO,
   UPDATE_PORTFOLIO,
   DELETE_PORTFOLIO,
+  SIGN_UP,
 } from '@/apollo/queries';
 
+//! PORTFOLIOS------------------------------
 export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
 
 export const useCreatePortfolio = () =>
@@ -37,3 +39,6 @@ export const useDeletePortfolio = () =>
       });
     },
   });
+
+//! AUTHENTICATION ----------------------------------
+export const useSignUp = () => useMutation(SIGN_UP);

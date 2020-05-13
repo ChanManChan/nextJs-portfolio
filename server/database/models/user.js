@@ -3,39 +3,44 @@ const Schema = mongoose.Schema;
 const crypto = require('crypto');
 
 //!  each email is unique, so we need to provide index in combination with unique in order to compare emails of other users.
-const userSchema = new Schema({
-  avatar: String,
-  email: {
-    type: String,
-    required: 'Email is required',
-    lowercase: true,
-    index: true,
-    unique: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
+const userSchema = new Schema(
+  {
+    avatar: {
+      type: Buffer,
+      contentType: String,
+    },
+    email: {
+      type: String,
+      required: 'Email is required',
+      lowercase: true,
+      index: true,
+      unique: true,
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
+    },
+    name: {
+      type: String,
+      minlength: [6, 'Minimum name length is six characters'],
+    },
+    username: {
+      type: String,
+      required: true,
+      minlength: [6, 'Minimum username length is six characters'],
+    },
+    hashed_password: {
+      type: String,
+      required: true,
+    },
+    salt: String,
+    role: {
+      enum: ['admin', 'guest'],
+      type: String,
+      required: true,
+      default: 'guest',
+    },
+    info: String,
   },
-  name: {
-    type: String,
-    minlength: [6, 'Minimum name length is six characters'],
-  },
-  username: {
-    type: String,
-    required: true,
-    minlength: [6, 'Minimum username length is six characters'],
-  },
-  hashed_password: {
-    type: String,
-    required: true,
-  },
-  salt: String,
-  role: {
-    enum: ['admin', 'guest'],
-    type: String,
-    required: true,
-    default: 'guest',
-  },
-  info: String,
-  createdAt: { type: Date, default: Date.now },
-});
+  { timestamps: true }
+);
 
 userSchema
   .virtual('password')

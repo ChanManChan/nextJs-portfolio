@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 //! Cuboid face color and edge thickness
 export const Bg_inner = styled.div`
-  background: ${(p) => p.theme.secondaryColor};
+  background: ${(p) =>
+    p.theme.id === 'light' ? p.theme.staticColor3 : p.theme.secondaryColor};
   position: absolute;
   left: 0.2rem;
   top: 0.2rem;

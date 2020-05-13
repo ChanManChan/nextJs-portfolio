@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import CustomButton from './CustomButton';
-import CustomInput from './CustomInput';
-import { Formik, Form, Field } from 'formik';
-import { validationSchema } from '../global/Validator';
+import { Formik, Form } from 'formik';
+import Dropzone from '@/components/shared/Dropzone';
+import { useSignUp } from '@/apollo/actions';
+import withApollo from '@/hoc/withApollo';
 
 //! Container
 const FormWrapper = styled.div`
@@ -20,54 +21,57 @@ const PageFunction = styled.div`
   }
 `;
 
-const loginForm = (buttonText) => (
+const S_Mutations = (data, f2u) => {
+  if (f2u) {
+  }
+};
+
+const C_Form = (buttonText, children, formValues, f2u, validator) => (
   <Formik
-    initialValues={{
-      username: '',
-      password: '',
-    }}
-    validationSchema={validationSchema}
+    initialValues={formValues}
+    validationSchema={validator}
     onSubmit={(data, { setSubmitting, resetForm }) => {
       setSubmitting(true);
-      setTimeout(() => {
-        console.log('FORM DATA: ', data);
-        setSubmitting(false);
-        resetForm();
-      }, 2000);
+      const recon_Data = (({ confirmPassword, ...rest }) => rest)(data);
+      signUp({ variables: recon_Data });
+      // S_Mutations(data, f2u);
+      console.log('FORM DATA: ', recon_Data);
+      setSubmitting(false);
+      // resetForm();
     }}
   >
-    {({ isSubmitting, errors }) => (
+    {({ isSubmitting, setFieldValue }) => (
       <Form>
-        <Field
-          name='username'
-          placeholder='Enter your name'
-          type='text'
-          as={CustomInput}
-        />
-        <Field
-          name='password'
-          placeholder='Enter your password'
-          type='password'
-          as={CustomInput}
-        />
+        {f2u && <Dropzone setFieldValue={setFieldValue} maxSize={100000} />}
+        {children}
         <CustomButton
+          type='submit'
           disabled={isSubmitting}
           buttonText={buttonText}
-          type='submit'
         />
-        <pre>{JSON.stringify(errors, null, 2)}</pre>
       </Form>
     )}
   </Formik>
 );
 
-const CustomForm = ({ page, buttonText }) => (
-  <FormWrapper>
-    <PageFunction>
-      <h1>{page}</h1>
-    </PageFunction>
-    {loginForm(buttonText)}
-  </FormWrapper>
-);
+const CustomForm = ({
+  pageFunction,
+  buttonText,
+  children,
+  formValues,
+  f2u,
+  validator,
+}) => {
+  const [signUp] = useSignUp();
 
-export default CustomForm;
+  return (
+    <FormWrapper>
+      <PageFunction>
+        <h1>{pageFunction}</h1>
+      </PageFunction>
+      {C_Form(buttonText, children, formValues, f2u, validator)}
+    </FormWrapper>
+  );
+};
+
+export default withApollo(CustomForm);

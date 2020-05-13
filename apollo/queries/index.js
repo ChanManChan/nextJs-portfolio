@@ -75,3 +75,22 @@ export const DELETE_PORTFOLIO = gql`
     deletePortfolio(id: $id)
   }
 `;
+
+//! AUTHENTICATION QUERIES
+export const SIGN_UP = gql`
+  mutation SignUp(
+    $avatar: Upload!
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
+    signUp(
+      input: {
+        avatar: $avatar
+        username: $username
+        email: $email
+        password: $password
+      }
+    )
+  }
+`;

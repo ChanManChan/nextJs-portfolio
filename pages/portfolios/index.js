@@ -28,7 +28,7 @@ const Container = styled.div`
 
 const Portfolios = () => {
   // debugger;
-  //! we dont need state because we are fetching data from server now onwards and rendering the HTML with the fetched data server-side and sending it to the client.
+  //! we dont need state because we are fetching data from server now onwards and rendering the HTML with the fetched data from server-side and sending it to the client.
   // const [portfolios, setPortfolios] = React.useState([]);
 
   const { data } = useGetPortfolios();
@@ -38,7 +38,7 @@ const Portfolios = () => {
   const [updatePortfolio] = useUpdatePortfolio();
   const [deletePortfolio] = useDeletePortfolio();
 
-  //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards
+  //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards.
   // React.useEffect(() => {
   //   getPortfolios();
   // }, []);
