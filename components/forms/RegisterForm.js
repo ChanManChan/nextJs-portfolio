@@ -16,7 +16,6 @@ const RegisterForm = ({ req_Parent }) => (
     validationSchema={validationSchemaRegister}
     onSubmit={(data, { setSubmitting, resetForm }) => {
       setSubmitting(true);
-      console.log('DATA: ', data);
       req_Parent(data);
       setSubmitting(false);
       resetForm();

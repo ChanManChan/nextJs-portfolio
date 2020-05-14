@@ -31,9 +31,9 @@ exports.authenticationMutations = {
   signIn: (_, _a, ctx) => {
     return ctx.models.User.signIn();
   },
-  signUp: (_, { input }, ctx) => {
-    const registeredUser = ctx.models.User.signUp(input);
-    return registeredUser._id;
+  signUp: async (_, { input }, ctx) => {
+    const r_User = await ctx.models.User.signUp(input);
+    return r_User._id;
   },
   signOut: (_, _a, ctx) => {
     return ctx.models.User.signOut();

@@ -13,7 +13,7 @@ exports.connectDB = () => {
       useCreateIndex: true,
     },
     () => {
-      console.log('CONNECTED TO DB');
+      console.log('> CONNECTED TO DB');
     }
   );
 };
