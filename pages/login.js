@@ -1,27 +1,28 @@
-import L_Form from '@/components/shared/CustomForm.js';
-import CustomInput from '@/components/shared/CustomInput';
-import { Field } from 'formik';
-import { validationSchemaSignIn } from '@/components/global/Validator';
+import LoginForm from '@/components/forms/LoginForm';
+import styled from 'styled-components';
+//! Container
+const FormWrapper = styled.div`
+  width: 100%;
+  /* padding: top | right & left | bottom */
+  padding: 6.4rem 1.5rem 2.4rem;
+`;
 
-const Login = () => (
-  <L_Form
-    pageFunction='Sign In'
-    buttonText='Log In'
-    formValues={{ username: '', password: '' }}
-    validator={validationSchemaSignIn}
-  >
-    <Field
-      name='username'
-      placeholder='Enter your name'
-      type='text'
-      as={CustomInput}
-    />
-    <Field
-      name='password'
-      placeholder='Enter your password'
-      type='password'
-      as={CustomInput}
-    />
-  </L_Form>
-);
+//! Page title
+const PageFunction = styled.h1`
+  /* margin: top | right & left | bottom */
+  margin: 0 0 4rem;
+  font-size: 3rem;
+`;
+
+const Login = () => {
+  const login = (loginData) => {
+    alert(JSON.stringify(loginData));
+  };
+  return (
+    <FormWrapper>
+      <PageFunction>SignIn</PageFunction>
+      <LoginForm alertSubmit={login} />
+    </FormWrapper>
+  );
+};
 export default Login;

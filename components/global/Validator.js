@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const validationSchemaSignIn = yup.object({
-  username: yup.string().min(5).max(35).required('Please Enter a username'),
+  email: yup.string().required('Please Enter your Email').email(),
   password: yup
     .string()
     .required('Please Enter your password')
@@ -25,7 +25,7 @@ const validationSchemaRegister = yup.object({
     .string()
     .required('Confirm Password and Password do not match')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  file: yup.mixed().required('Add a profile image'),
+  avatar: yup.mixed().required('Add a profile image'),
 });
 
 module.exports = {

@@ -5,10 +5,7 @@ const crypto = require('crypto');
 //!  each email is unique, so we need to provide index in combination with unique in order to compare emails of other users.
 const userSchema = new Schema(
   {
-    avatar: {
-      type: Buffer,
-      contentType: String,
-    },
+    avatar: String,
     email: {
       type: String,
       required: 'Email is required',
