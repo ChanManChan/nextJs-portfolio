@@ -11,8 +11,10 @@ class User {
   constructor(model) {
     this.Model = model;
   }
-  signIn() {
-    return 'Signing In';
+  signIn(log_Data, ctx) {
+    const isAuthenticated = ctx.authenticate(log_Data);
+    if (isAuthenticated) console.log('USER IS AUTHENTICATED');
+    return `Signing In user data: ${log_Data.email} - ${log_Data.password}`;
   }
   async signUp(reg_Data) {
     const { createReadStream } = await reg_Data.avatar;

@@ -28,6 +28,10 @@ const portfolioSchema = new Schema(
       required: true,
       minlength: 10,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );

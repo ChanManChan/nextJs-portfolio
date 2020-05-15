@@ -8,6 +8,8 @@ const {
 } = require('./resolvers');
 //! Types
 const { portfolioTypes, authenticationTypes } = require('./types');
+//! Authentication
+const { buildAuthContext } = require('./context');
 //! GraphQl Models
 const Portfolio = require('./models/Portfolio');
 const User = require('./models/User');
@@ -30,7 +32,7 @@ exports.createApolloServer = () => {
       deletePortfolio(id: ID): ID
 
       signUp(input: SignUpInput): String
-      signIn(input: SignInInput): User
+      signIn(input: SignInInput): String
       signOut: String
     }
   `;
@@ -55,6 +57,7 @@ exports.createApolloServer = () => {
     typeDefs,
     resolvers,
     context: () => ({
+      ...buildAuthContext(),
       models: {
         Portfolio: new Portfolio(mongoose.model('Portfolio')),
         User: new User(mongoose.model('User')),

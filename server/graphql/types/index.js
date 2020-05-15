@@ -41,9 +41,3 @@ exports.authenticationTypes = `
     password: String!
   }
 `;
-
-// username: String!
-//name: String
-//email: String!
-//password: String!
-//passwordConfirmation: String!

@@ -25,11 +25,11 @@ const Register = () => {
     <FormWrapper>
       <PageFunction>Register</PageFunction>
       <RegisterForm
-        req_Parent={(registerData) => {
+        req_Parent={(registerData) =>
           signUp({
             variables: (({ confirmPassword, ...rest }) => rest)(registerData),
-          });
-        }}
+          })
+        }
         loading={loading}
       />
     </FormWrapper>

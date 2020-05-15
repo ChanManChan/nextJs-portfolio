@@ -28,8 +28,8 @@ exports.portfolioMutations = {
 
 //! Provide "User" model to the resolvers (go to "graphql/index.js" and "User" model to the context)
 exports.authenticationMutations = {
-  signIn: (_, _a, ctx) => {
-    return ctx.models.User.signIn();
+  signIn: (_, { input }, ctx) => {
+    return ctx.models.User.signIn(input, ctx);
   },
   signUp: async (_, { input }, ctx) => {
     const r_User = await ctx.models.User.signUp(input);

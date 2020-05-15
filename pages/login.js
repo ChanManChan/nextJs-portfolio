@@ -1,5 +1,8 @@
 import LoginForm from '@/components/forms/LoginForm';
 import styled from 'styled-components';
+import withApollo from '@/hoc/withApollo';
+import { useSignIn } from '@/apollo/actions';
+
 //! Container
 const FormWrapper = styled.div`
   width: 100%;
@@ -15,14 +18,16 @@ const PageFunction = styled.h1`
 `;
 
 const Login = () => {
-  const login = (loginData) => {
-    alert(JSON.stringify(loginData));
-  };
+  const [signIn, { data, error, loading }] = useSignIn();
+
   return (
     <FormWrapper>
       <PageFunction>SignIn</PageFunction>
-      <LoginForm alertSubmit={login} />
+      <LoginForm
+        req_Parent={(signInData) => signIn({ variables: signInData })}
+        loading={loading}
+      />
     </FormWrapper>
   );
 };
-export default Login;
+export default withApollo(Login);

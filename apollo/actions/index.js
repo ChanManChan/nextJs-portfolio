@@ -7,6 +7,7 @@ import {
   UPDATE_PORTFOLIO,
   DELETE_PORTFOLIO,
   SIGN_UP,
+  SIGN_IN,
 } from '@/apollo/queries';
 
 //! PORTFOLIOS------------------------------
@@ -56,3 +57,5 @@ export const useSignUp = () =>
         });
     },
   });
+
+export const useSignIn = () => useMutation(SIGN_IN);
