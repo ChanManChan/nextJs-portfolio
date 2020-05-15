@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { toast } from 'react-toastify';
 
 import {
   GET_PORTFOLIOS,
@@ -41,4 +42,17 @@ export const useDeletePortfolio = () =>
   });
 
 //! AUTHENTICATION ----------------------------------
-export const useSignUp = () => useMutation(SIGN_UP);
+export const useSignUp = () =>
+  useMutation(SIGN_UP, {
+    onCompleted() {
+      toast.success('Successfully registered user', {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    },
+    onError: (error) => {
+      if (error.graphQLErrors && error.graphQLErrors[0].message)
+        toast.error(error.graphQLErrors[0].message, {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+    },
+  });

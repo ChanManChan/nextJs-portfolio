@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
+const Button = styled.button.attrs((props) => ({
+  disabled: props.loading === 'true' ? true : false,
+}))`
   width: 100%;
   height: 6rem;
   margin-bottom: 4rem;
@@ -55,6 +57,12 @@ const Button = styled.button`
   }
   &:hover {
     color: ${(p) => p.theme.bodyFontColor};
+  }
+  &:disabled {
+    background: #eee;
+    color: #666;
+    cursor: none;
+    pointer-events: none;
   }
 `;
 

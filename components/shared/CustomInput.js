@@ -4,6 +4,7 @@ import { useField } from 'formik';
 
 const Input = styled.input.attrs((props) => ({
   placeholder: props.helperText ? props.helperText : props.placeholder,
+  disabled: props.loading === 'true' ? true : false,
 }))`
   width: 100%;
   padding: 1.4rem 1.6rem;
@@ -61,7 +62,7 @@ const Control = styled.div`
   }
 `;
 
-const InputField = ({ type, placeholder, ...props }) => {
+const InputField = ({ loading, type, placeholder, ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
   return (
@@ -70,6 +71,7 @@ const InputField = ({ type, placeholder, ...props }) => {
         {...field}
         placeholder={placeholder}
         type={type}
+        loading={loading}
         helperText={errorText}
       />
       <Bg_top>
