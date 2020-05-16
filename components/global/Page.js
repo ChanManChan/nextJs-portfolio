@@ -39,16 +39,30 @@ export default function Page({ children, component }) {
     }),
     [theme, setTheme]
   );
-  const checkLanding = () => component.name === 'Home';
+
+  const checkLanding = (children, component) => {
+    if (component.name === 'Home')
+      return (
+        <>
+          <Hero />
+          <Inner>{children}</Inner>
+          <Footer />
+        </>
+      );
+    else return <Inner>{children}</Inner>;
+  };
+
+  const landing = React.useMemo(() => checkLanding(children, component), [
+    component,
+  ]);
+
   return (
     <ThemeProvider theme={providerValue}>
       <GlobalStyle />
       <StyledPage>
         <Meta />
         <Header />
-        {checkLanding() && <Hero />}
-        <Inner>{children}</Inner>
-        {checkLanding() && <Footer />}
+        {landing}
       </StyledPage>
     </ThemeProvider>
   );
