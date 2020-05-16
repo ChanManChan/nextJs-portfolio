@@ -11,10 +11,13 @@ class User {
   constructor(model) {
     this.Model = model;
   }
-  signIn(log_Data, ctx) {
-    const isAuthenticated = ctx.authenticate(log_Data);
-    if (isAuthenticated) console.log('USER IS AUTHENTICATED');
-    return `Signing In user data: ${log_Data.email} - ${log_Data.password}`;
+  async signIn(log_Data, ctx) {
+    try {
+      const user = await ctx.authenticate(log_Data);
+      return user;
+    } catch (err) {
+      return err;
+    }
   }
   async signUp(reg_Data) {
     const { createReadStream } = await reg_Data.avatar;
@@ -56,8 +59,17 @@ class User {
       throw e;
     }
   }
-  signOut() {
-    return 'Signing Out';
+  signOut(ctx) {
+    try {
+      console.log('BEFORE LOGOUT (is authenticated):- ', ctx.isAuthenticated());
+      console.log('USER FROM REQ.USER: ', ctx.fetchUser());
+      ctx.logout();
+      console.log('AFTER LOGOUT (is authenticated):- ', ctx.isAuthenticated());
+      console.log('USER FROM REQ.USER: ', ctx.fetchUser());
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
 module.exports = User;

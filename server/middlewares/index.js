@@ -15,4 +15,9 @@ exports.init = (server, db) => {
     store: db.initSessionStore(),
   };
   server.use(session(sess));
+
+  //! Propagate this "req" object returned from "passport.initialize()" into the graphql context.
+  server.use(passport.initialize());
+  //! " req.isAuthenticated()" in graphql > context is depended on "session" middleware from passport.
+  server.use(passport.session());
 };

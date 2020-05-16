@@ -23,12 +23,14 @@ exports.portfolioTypes = `
 exports.authenticationTypes = `
   type User {
     _id: ID,
-    avatar: Upload!
+    avatar: String
     username: String
     name: String
     email: String
     role: String
+    info: String
   }
+
   input SignUpInput {
     avatar: Upload!
     username: String!
@@ -36,6 +38,7 @@ exports.authenticationTypes = `
     email: String!
     password: String!
   }
+
   input SignInInput {
     email: String!
     password: String!

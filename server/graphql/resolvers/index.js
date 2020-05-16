@@ -36,6 +36,6 @@ exports.authenticationMutations = {
     return r_User._id;
   },
   signOut: (_, _a, ctx) => {
-    return ctx.models.User.signOut();
+    return ctx.models.User.signOut(ctx);
   },
 };

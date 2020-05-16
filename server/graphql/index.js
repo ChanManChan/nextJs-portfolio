@@ -32,8 +32,8 @@ exports.createApolloServer = () => {
       deletePortfolio(id: ID): ID
 
       signUp(input: SignUpInput): String
-      signIn(input: SignInInput): String
-      signOut: String
+      signIn(input: SignInInput): User
+      signOut: Boolean
     }
   `;
 
@@ -56,8 +56,8 @@ exports.createApolloServer = () => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    context: () => ({
-      ...buildAuthContext(),
+    context: ({ req }) => ({
+      ...buildAuthContext(req),
       models: {
         Portfolio: new Portfolio(mongoose.model('Portfolio')),
         User: new User(mongoose.model('User')),

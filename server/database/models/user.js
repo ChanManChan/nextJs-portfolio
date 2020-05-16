@@ -51,8 +51,10 @@ userSchema
   });
 
 userSchema.methods = {
-  authenticate: function (plainText) {
-    return this.encryptPassword(plainText) === this.hashed_password;
+  validatePassword: function (plainText, done) {
+    const status = this.encryptPassword(plainText) === this.hashed_password;
+    if (status) return done(status);
+    return done(status, 'Invalid email or password');
   },
   encryptPassword: function (password) {
     if (!password) return '';
@@ -78,6 +80,11 @@ userSchema.methods = {
 //       next();
 //     });
 //   });
+// });
+//! [OR] <- for validatePassword
+// bcrypt.compare(plainText, this.hashed_password, function (err, isSuccess) {
+//   if (err) return done(err);
+//   done(null, isSuccess);
 // });
 
 module.exports = mongoose.model('User', userSchema);
