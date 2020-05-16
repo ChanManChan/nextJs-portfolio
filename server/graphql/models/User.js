@@ -11,6 +11,12 @@ class User {
   constructor(model) {
     this.Model = model;
   }
+
+  fetchAuthUser(ctx) {
+    if (ctx.isAuthenticated()) return ctx.fetchUser();
+    else return null;
+  }
+
   async signIn(log_Data, ctx) {
     try {
       const user = await ctx.authenticate(log_Data);
@@ -19,6 +25,7 @@ class User {
       return err;
     }
   }
+
   async signUp(reg_Data) {
     const { createReadStream } = await reg_Data.avatar;
     let resultSecure_URL = '';
@@ -59,13 +66,14 @@ class User {
       throw e;
     }
   }
+
   signOut(ctx) {
     try {
-      console.log('BEFORE LOGOUT (is authenticated):- ', ctx.isAuthenticated());
-      console.log('USER FROM REQ.USER: ', ctx.fetchUser());
+      // console.log('BEFORE LOGOUT (is authenticated):- ', ctx.isAuthenticated());
+      // console.log('USER FROM REQ.USER: ', ctx.fetchUser());
       ctx.logout();
-      console.log('AFTER LOGOUT (is authenticated):- ', ctx.isAuthenticated());
-      console.log('USER FROM REQ.USER: ', ctx.fetchUser());
+      // console.log('AFTER LOGOUT (is authenticated):- ', ctx.isAuthenticated());
+      // console.log('USER FROM REQ.USER: ', ctx.fetchUser());
       return true;
     } catch (e) {
       return false;

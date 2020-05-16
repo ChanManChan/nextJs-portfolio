@@ -105,3 +105,20 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const FETCH_USER = gql`
+  query User {
+    user {
+      _id
+      username
+      role
+      avatar
+    }
+  }
+`;
+
+export const SIGN_OUT = gql`
+  mutation SignOut {
+    signOut
+  }
+`;

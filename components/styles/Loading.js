@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const spin = (p) => keyframes`
    0%, 100% {
@@ -307,6 +307,23 @@ const spin = (p) => keyframes`
   }
 `;
 
+const state_Msg = ({ msg }) => {
+  if (msg)
+    return css`
+      &:after {
+        content: '${msg}';
+        position: absolute;
+        top: 500%;
+        left: 0;
+        transform:translateX(-50%);
+        z-index: 11;
+        color: ${(p) => (p.theme.id === 'light' ? '#fff' : '#000')};
+        font-family: 'Open Sans', sans-serif;
+        font-size: 3rem;
+      }
+    `;
+};
+
 const Spinner = styled.div`
   height: 1rem;
   width: 1rem;
@@ -317,7 +334,8 @@ const Spinner = styled.div`
   left: 50%;
   margin: -0.5rem;
   animation: ${spin} 1s linear infinite;
+  ${state_Msg}
 `;
 
-const Loading = ({ loading }) => <Spinner loading={loading} />;
+const Loading = ({ ...props }) => <Spinner {...props} />;
 export default Loading;

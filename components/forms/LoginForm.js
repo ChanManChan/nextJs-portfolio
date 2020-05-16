@@ -3,6 +3,7 @@ import { Field, Formik, Form } from 'formik';
 import { validationSchemaSignIn } from '@/components/global/Validator';
 import CustomButton from '@/components/shared/CustomButton';
 import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 
 const LoginForm = ({ req_Parent, loading }) => (
   <Formik
@@ -41,6 +42,7 @@ const LoginForm = ({ req_Parent, loading }) => (
             buttonText='SignIn'
           />
         </Form>
+        <Loading loading={`${loading}`} />
       </Disabled_State>
     )}
   </Formik>

@@ -8,6 +8,7 @@ exports.portfolioQueries = {
     return ctx.models.Portfolio.fetchAll();
   },
 };
+
 exports.portfolioMutations = {
   createPortfolio: async (_, { input }, ctx) => {
     const createdPortfolio = await ctx.models.Portfolio.create(input);
@@ -27,6 +28,13 @@ exports.portfolioMutations = {
 };
 
 //! Provide "User" model to the resolvers (go to "graphql/index.js" and "User" model to the context)
+
+exports.authenticationQueries = {
+  user: (_, _a, ctx) => {
+    return ctx.models.User.fetchAuthUser(ctx);
+  },
+};
+
 exports.authenticationMutations = {
   signIn: (_, { input }, ctx) => {
     return ctx.models.User.signIn(input, ctx);

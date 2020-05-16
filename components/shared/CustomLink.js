@@ -4,8 +4,9 @@ import styled from 'styled-components';
 const StyledLink = styled.a`
   color: ${(p) => (p.isActive ? '#fff' : p.theme.staticColor2)};
   font-size: 2rem;
-  text-decoration: none;
-  text-transform: uppercase;
+  text-decoration: ${(p) =>
+    p.signOut ? `solid underline ${p.theme.staticColor2} 2px` : 'none'};
+  text-transform: ${(p) => (p.username ? 'capitalize' : 'uppercase')};
   padding: 0.5rem 1rem;
   margin: 0 1rem;
   position: relative;
@@ -50,9 +51,11 @@ const StyledLink = styled.a`
     right: -0.8rem;
   }
 `;
-const CustomLink = ({ href, isActive, children }) => (
+const CustomLink = ({ href, isActive, children, username, signOut }) => (
   <Link href={href} passHref>
-    <StyledLink isActive={isActive}>{children}</StyledLink>
+    <StyledLink isActive={isActive} username={username} signOut={signOut}>
+      {children}
+    </StyledLink>
   </Link>
 );
 

@@ -2,6 +2,7 @@ import LoginForm from '@/components/forms/LoginForm';
 import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import { useSignIn } from '@/apollo/actions';
+import Redirect from '@/components/shared/Redirect';
 
 //! Container
 const FormWrapper = styled.div`
@@ -18,8 +19,8 @@ const PageFunction = styled.h1`
 `;
 
 const Login = () => {
-  const [signIn, { data, error, loading }] = useSignIn();
-
+  const [signIn, { data, loading }] = useSignIn();
+  if (data && data.signIn) return <Redirect to='/' />;
   return (
     <FormWrapper>
       <PageFunction>SignIn</PageFunction>

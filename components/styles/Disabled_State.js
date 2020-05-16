@@ -7,8 +7,8 @@ const state_Change = ({ loading }) => {
         content: '';
         background-color: ${(p) =>
           p.theme.id === 'light'
-            ? 'rgba(0, 0, 0, 0.7)'
-            : 'rgba(255,255,255,0.7)'};
+            ? 'rgba(0, 0, 0, 0.6)'
+            : 'rgba(255,255,255,0.6)'};
         position: absolute;
         top: -1rem;
         left: -1rem;
@@ -33,7 +33,7 @@ const state_Change = ({ loading }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100;
+  height: ${(p) => (p.cover ? '100vh' : '100%')};
   position: relative;
   background-color: transparent;
   &:after {
