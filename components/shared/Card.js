@@ -152,7 +152,7 @@ const Card = styled.div`
     font-weight: bold;
     letter-spacing: 0.1rem;
     /* The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress.  */
-    writing-mode: vertical-lr;
+    writing-mode: vertical-rl;
     transition: color 0.2s ease;
   }
 
@@ -223,7 +223,7 @@ const CustomCard = ({
   <Card {...props}>
     <h3>{projectName}</h3>
     <Icon className='fas fa-arrow-right'></Icon>
-    <p>{techStack}</p>
+    <p>{techStack && techStack.map((t) => t.name + ', ')}</p>
     <ImageContainer projectImage={projectImage} />
     <ul>
       <li></li>

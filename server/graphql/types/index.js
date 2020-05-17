@@ -2,7 +2,6 @@
 
 const portfolioFields = `
   title: String,
-  techStack: String,
   repoAPI: String,
   repoClient: String,
   deployed: String,
@@ -11,13 +10,20 @@ const portfolioFields = `
 `;
 
 exports.portfolioTypes = `
+  type Tech {
+    name: String
+    description: String
+    theme: String
+  }
   type Portfolio {
       _id: ID,
+      techStack: [Tech],
      ${portfolioFields}
-    }
-    input PortfolioInput {
+  }
+  input PortfolioInput {
+     techStack: [String],
      ${portfolioFields}
-    }
+  }
 `;
 
 exports.authenticationTypes = `

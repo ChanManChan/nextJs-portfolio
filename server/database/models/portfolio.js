@@ -8,11 +8,7 @@ const portfolioSchema = new Schema(
       required: true,
       maxlength: 128,
     },
-    techStack: {
-      type: String,
-      required: true,
-      maxlength: 128,
-    },
+    techStack: [{ type: Schema.Types.ObjectId, ref: 'Tech' }],
     repoAPI: {
       type: String,
       required: true,
@@ -33,7 +29,7 @@ const portfolioSchema = new Schema(
       ref: 'User',
     },
   },
-  { timestamps: true }
+  { timestamps: true, collection: 'portfolios' }
 );
 
 module.exports = mongoose.model('Portfolio', portfolioSchema);

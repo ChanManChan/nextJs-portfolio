@@ -36,13 +36,13 @@ const Button = styled.a`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 5rem;
-    transform: translateX(-100%) rotate(45deg);
+    width: 130%;
+    height: 50%;
+    transform: translate(-100%, 50%) rotate(45deg);
     transition: transform 0.3s;
   }
   &:hover:before {
-    transform: translateX(100%) rotate(45deg);
+    transform: translate(100%, 50%) rotate(45deg);
   }
 `;
 export default Button;

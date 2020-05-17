@@ -27,7 +27,7 @@ const StyledPage = styled.div`
   color: ${(p) => p.theme.bodyFontColor};
 `;
 
-export default function Page({ children, component }) {
+export default function Page({ children, c_Name }) {
   const [theme, setTheme] = React.useState(LightTheme);
 
   const providerValue = React.useMemo(
@@ -40,8 +40,8 @@ export default function Page({ children, component }) {
     [theme, setTheme]
   );
 
-  const checkLanding = (children, component) => {
-    if (component.name === 'Home')
+  const checkLanding = (children, c_Name) => {
+    if (c_Name === 'Home')
       return (
         <>
           <Hero />
@@ -52,17 +52,13 @@ export default function Page({ children, component }) {
     else return <Inner>{children}</Inner>;
   };
 
-  const landing = React.useMemo(() => checkLanding(children, component), [
-    component,
-  ]);
-
   return (
     <ThemeProvider theme={providerValue}>
       <GlobalStyle />
       <StyledPage>
         <Meta />
         <Header />
-        {landing}
+        {checkLanding(children, c_Name)}
       </StyledPage>
     </ThemeProvider>
   );

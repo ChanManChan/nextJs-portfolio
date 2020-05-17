@@ -11,7 +11,7 @@ const MyApp = ({ Component, pageProps }) => {
   // PAGE I'M NAVIGATING TO:  [Function: Topics]
   // PAGE I'M NAVIGATING TO:  [Function: Portfolios]
   return (
-    <Page component={Component}>
+    <Page c_Name={Component.name}>
       <ToastContainer />
       <Component {...pageProps} />
     </Page>

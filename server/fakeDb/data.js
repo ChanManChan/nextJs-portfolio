@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const user1Id = mongoose.Types.ObjectId();
 const user2Id = mongoose.Types.ObjectId();
 
+const tech1Id = mongoose.Types.ObjectId();
+const tech2Id = mongoose.Types.ObjectId();
+const tech3Id = mongoose.Types.ObjectId();
+const tech4Id = mongoose.Types.ObjectId();
+
 //! INITIAL DATA IN DB
 const data = {
   users: [
@@ -31,7 +36,7 @@ const data = {
   portfolios: [
     {
       title: 'E-commerce',
-      techStack: 'MERN, Braintree, SendGrid',
+      techStack: [tech1Id, tech2Id, tech3Id],
       repoAPI: 'https://github.com/ChanManChan/E-commerce-API',
       repoClient: 'https://github.com/ChanManChan/E-commerce-Client',
       deployed: 'https://xyz.com',
@@ -42,7 +47,7 @@ const data = {
     },
     {
       title: 'Social Network',
-      techStack: 'MERN',
+      techStack: [tech1Id],
       repoAPI: 'https://github.com/ChanManChan/API-Social',
       repoClient: 'https://github.com/ChanManChan/Client-Social',
       deployed: 'https://xyz.com',
@@ -53,7 +58,7 @@ const data = {
     },
     {
       title: 'Authentication-Boilerplate',
-      techStack: 'MERN, Google oAUth, SendGrid',
+      techStack: [tech1Id, tech3Id, tech4Id],
       repoAPI:
         'https://github.com/ChanManChan/authentication-MERN-boilerplate-/tree/master/server',
       repoClient:
@@ -63,6 +68,32 @@ const data = {
       description:
         'Basic authentication boilerplate with facebook and google login with forgot and reset password functionality',
       user: user1Id,
+    },
+  ],
+  tech_util: [
+    {
+      _id: tech1Id,
+      name: 'MERN',
+      description: 'Tech Stack',
+      theme: '#DC514E',
+    },
+    {
+      _id: tech2Id,
+      name: 'Braintree',
+      description: 'Web payment system',
+      theme: '#2ecc71',
+    },
+    {
+      _id: tech3Id,
+      name: 'SendGrid',
+      description: 'Email API',
+      theme: '#f1c40f',
+    },
+    {
+      _id: tech4Id,
+      name: 'Google oAUth',
+      description: 'Authentication and Authorization',
+      theme: '#3498db',
     },
   ],
 };

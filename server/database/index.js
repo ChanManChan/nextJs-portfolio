@@ -4,6 +4,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const config = require('../config/dev');
 require('./models/portfolio');
 require('./models/user');
+require('./models/tech');
 
 exports.connectDB = () => {
   mongoose.connect(

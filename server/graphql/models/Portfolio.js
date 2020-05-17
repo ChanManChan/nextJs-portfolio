@@ -6,10 +6,13 @@ class Portfolio {
     this.Model = model;
   }
   fetchAll() {
-    return this.Model.find({});
+    return this.Model.find({}).populate('techStack', 'name description theme');
   }
   fetchById(id) {
-    return this.Model.findById(id);
+    return this.Model.findById(id).populate(
+      'techStack',
+      'name description theme'
+    );
   }
   create(data) {
     return this.Model.create(data);

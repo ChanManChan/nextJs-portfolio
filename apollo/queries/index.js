@@ -5,7 +5,11 @@ export const GET_PORTFOLIO = gql`
     portfolio(id: $id) {
       _id
       title
-      techStack
+      techStack {
+        name
+        description
+        theme
+      }
       repoAPI
       repoClient
       deployed
@@ -20,7 +24,11 @@ export const GET_PORTFOLIOS = gql`
     portfolios {
       _id
       title
-      techStack
+      techStack {
+        name
+        description
+        theme
+      }
       repoAPI
       repoClient
       deployed

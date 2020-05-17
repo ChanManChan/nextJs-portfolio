@@ -2,9 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_PORTFOLIO } from '@/apollo/queries';
-import Loading from '@/components/styles/Loading';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
+import Image from '@/components/shared/Image';
+import Link from '@/components/shared/ShimmerButton';
+import Badge from '@/components/styles/Badge';
+import Span from '@/components/styles/Glitch_Effect';
 
 //! 1st method:- Functional component without getInitialProps
 // const PortfolioDetail = () => {
@@ -34,8 +37,8 @@ import { getDataFromTree } from '@apollo/react-ssr';
 // }
 
 const Border = styled.div`
-  background: ${(p) => p.theme.gridColor};
-  color: ${(p) => p.theme.secondaryColor};
+  background: ${(p) => p.theme.bodyBackgroundColor};
+  color: ${(p) => p.theme.bodyFontColor};
   position: absolute;
   top: 0.2rem;
   right: 0.2rem;
@@ -72,12 +75,20 @@ const ProjectTitle = styled.div`
 `;
 const Stack = styled.div`
   grid-area: 3 / 1 / 6 / 3;
-  > ${Border} {
-    right: 0;
-  }
 `;
 const Description = styled.div`
   grid-area: 3 / 3 / 7 / 5;
+  > ${Border} {
+    left: 0;
+    background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(0, 0, 0, 0.9)),
+      repeating-linear-gradient(
+        0,
+        transparent,
+        transparent 2px,
+        black 3px,
+        black 3px
+      );
+  }
 `;
 const Deployed = styled.div`
   grid-area: 6 / 1 / 8 / 2;
@@ -89,8 +100,9 @@ const Deployed = styled.div`
 const Repository = styled.div`
   grid-area: 6 / 2 / 8 / 3;
   > ${Border} {
+    flex-direction: column;
+    justify-content: space-evenly;
     left: 0;
-    right: 0;
     top: 0;
   }
 `;
@@ -98,29 +110,30 @@ const Screenshot1 = styled.div`
   grid-area: 7/ 3 / 9 / 4;
   > ${Border} {
     bottom: 0;
-    right: 0;
     top: 0;
+    left: 0;
   }
 `;
 const Screenshot2 = styled.div`
   grid-area: 7 / 4 / 11 / 5;
   > ${Border} {
     top: 0;
+    left: 0;
   }
 `;
 const Screenshot3 = styled.div`
   grid-area: 8 / 1 / 11 / 3;
   > ${Border} {
-    right: 0;
     top: 0;
   }
 `;
 const Screenshot4 = styled.div`
   grid-area: 9 / 3 / 11 / 4;
   > ${Border} {
-    right: 0;
+    left: 0;
   }
 `;
+
 const Title = styled.div`
   grid-area: 3 / 2 / 5 / 4;
   display: flex;
@@ -136,8 +149,8 @@ const Title = styled.div`
     span {
       border-radius: 0.3rem;
       font-size: 2.3rem;
-      color: ${(p) => p.theme.secondaryColor};
-      background: ${(p) => p.theme.gridColor};
+      color: ${(p) => p.theme.bodyFontColor};
+      background: ${(p) => p.theme.bodyBackgroundColor};
       padding: 0.5rem 1rem;
       letter-spacing: 0.1rem;
     }
@@ -150,7 +163,9 @@ const PortfolioDetail = ({ query }) => {
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
   //! "useQuery" <- will be called immediately
   // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
-  const { data } = useQuery(GET_PORTFOLIO, { variables: { id: query.id } });
+  const { data } = useQuery(GET_PORTFOLIO, {
+    variables: { id: query.id },
+  });
   const { title, techStack, description, deployed, repoAPI, repoClient } =
     (data && data.portfolio) || {};
 
@@ -161,6 +176,15 @@ const PortfolioDetail = ({ query }) => {
 
   //! We dont need to handle "loading" since our data will be loaded server-side & we dont need to set our state also.
   // if (data && !portfolio) setPortfolio(data.portfolio);
+
+  /**
+ *   {techStack &&
+            techStack
+              .split(',')
+              .map((t, i) => (
+                <Badge key={i} title={t} subTitle='testing' bdgTheme='#f00' />
+              ))}
+ */
 
   return (
     <Grid>
@@ -174,34 +198,81 @@ const PortfolioDetail = ({ query }) => {
       </Title>
       <Stack className='border'>
         <Border>
-          <span>{techStack}</span>
+          {techStack &&
+            techStack.map((t, i) => (
+              <Badge
+                key={i}
+                title={t.name}
+                subTitle={t.description}
+                bdgTheme={t.theme}
+              />
+            ))}
         </Border>
       </Stack>
       <Description className='border'>
         <Border>
-          <span>{description}</span>
+          <Span>{description}</Span>
         </Border>
       </Description>
       <Deployed className='border'>
-        <Border>{deployed}</Border>
+        <Border>
+          <Link
+            large
+            themeColor='#757575'
+            href={deployed}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Deployed link
+          </Link>
+        </Border>
       </Deployed>
       <Repository className='border'>
         <Border>
-          <span>{repoAPI}</span>
-          <span>{repoClient}</span>
+          <Link
+            large
+            themeColor='#757575'
+            href={repoAPI}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            API
+          </Link>
+          <Link
+            large
+            themeColor='#757575'
+            href={repoClient}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Client
+          </Link>
         </Border>
       </Repository>
       <Screenshot1 className='border'>
-        <Border>Screenshot1</Border>
+        <Border>
+          <Image />
+        </Border>
       </Screenshot1>
       <Screenshot2 className='border'>
-        <Border>Screenshot2</Border>
+        <Border>
+          <Image />
+        </Border>
       </Screenshot2>
       <Screenshot3 className='border'>
-        <Border>Screenshot3</Border>
+        <Border>
+          <Image />
+        </Border>
       </Screenshot3>
       <Screenshot4 className='border'>
-        <Border>Screenshot4</Border>
+        <Border>
+          <Image
+            caption='Testing'
+            desc='lorem ipsum'
+            projectName={title}
+            img_Link='/bg.jpeg'
+          />
+        </Border>
       </Screenshot4>
     </Grid>
   );

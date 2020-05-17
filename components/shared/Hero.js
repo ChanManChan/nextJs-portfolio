@@ -27,7 +27,7 @@ const textBackground = keyframes`
   }
   to{
     /* bottom-right movement */
-    background-position:100% 100%
+    background-position:100% 100%;
   }
 `;
 

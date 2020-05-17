@@ -1,11 +1,11 @@
 //! With ApolloServer, we need to separate our Mutations from our Queries
 //! ApolloServer is calling these methods differently and the parameters are like "methodName: (root, { params })" <- with "root" we can access the root mutation.
 exports.portfolioQueries = {
-  portfolio: (_, { id }, ctx) => {
-    return ctx.models.Portfolio.fetchById(id);
-  },
   portfolios: (_, _a, ctx) => {
     return ctx.models.Portfolio.fetchAll();
+  },
+  portfolio: (_, { id }, ctx) => {
+    return ctx.models.Portfolio.fetchById(id);
   },
 };
 
