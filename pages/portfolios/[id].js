@@ -75,6 +75,9 @@ const ProjectTitle = styled.div`
 `;
 const Stack = styled.div`
   grid-area: 3 / 1 / 6 / 3;
+  > ${Border} {
+    justify-content: space-evenly;
+  }
 `;
 const Description = styled.div`
   grid-area: 3 / 3 / 7 / 5;

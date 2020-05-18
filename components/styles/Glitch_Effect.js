@@ -73,7 +73,7 @@ const shared = css`
 
 const Span = styled.span`
   position: relative;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 4rem;
   letter-spacing: 0.5rem;
   text-indent: 1rem;

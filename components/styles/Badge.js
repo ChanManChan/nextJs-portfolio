@@ -36,7 +36,6 @@ const Custom_Badge = styled.div`
   position: relative;
   width: 13.6rem;
   display: inline-block;
-  margin: 4rem;
   &:hover ${Subtitle}:after {
     word-spacing: 1.5rem;
   }

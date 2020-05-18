@@ -4,8 +4,9 @@ import Meta from './Meta';
 import Header from './Header';
 import GlobalStyle from '../styles/GlobalStyles';
 import styled, { ThemeProvider } from 'styled-components';
-import LightTheme from '../styles/themes/light';
-import DarkTheme from '../styles/themes/dark';
+import LightTheme from '@/components/styles/themes/light';
+import DarkTheme from '@/components/styles/themes/dark';
+import { ToastContainer } from 'react-toastify';
 
 const Inner = styled.main`
   max-width: 120rem;
@@ -39,22 +40,21 @@ export default function Page({ children, c_Name }) {
     }),
     [theme, setTheme]
   );
-
-  const checkLanding = (children, c_Name) => {
-    if (c_Name === 'Home')
+  const checkLanding = (r_Child, comp_Name) => {
+    if (comp_Name === 'Home')
       return (
         <>
           <Hero />
-          <Inner>{children}</Inner>
+          <Inner>{r_Child}</Inner>
           <Footer />
         </>
       );
-    else return <Inner>{children}</Inner>;
+    else return <Inner>{r_Child}</Inner>;
   };
-
   return (
     <ThemeProvider theme={providerValue}>
       <GlobalStyle />
+      <ToastContainer />
       <StyledPage>
         <Meta />
         <Header />

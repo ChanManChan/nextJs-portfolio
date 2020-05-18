@@ -1,5 +1,4 @@
-import Page from '../components/global/Page';
-import { ToastContainer } from 'react-toastify';
+import Page from '@/components/global/Page';
 import 'react-toastify/dist/ReactToastify.css';
 
 //! Entry point to all of my pages i'm navigating to (Responsible for rendering all of my pages)
@@ -10,11 +9,13 @@ const MyApp = ({ Component, pageProps }) => {
   // console.log("PAGE I'M NAVIGATING TO: ", Component);
   // PAGE I'M NAVIGATING TO:  [Function: Topics]
   // PAGE I'M NAVIGATING TO:  [Function: Portfolios]
+
   return (
-    <Page c_Name={Component.name}>
-      <ToastContainer />
-      <Component {...pageProps} />
-    </Page>
+    <>
+      <Page c_Name={Component.name}>
+        <Component {...pageProps} />
+      </Page>
+    </>
   );
 };
 

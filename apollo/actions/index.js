@@ -69,7 +69,6 @@ export const useSignIn = () =>
       });
     },
     onCompleted: (data) => {
-      console.log('DATA AFTER SIGNIN: ', data);
       if (data && data.signIn)
         toast.success('Welcome ' + data.signIn.username, {
           position: toast.POSITION.BOTTOM_LEFT,
