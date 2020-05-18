@@ -80,14 +80,6 @@ const Description = styled.div`
   grid-area: 3 / 3 / 7 / 5;
   > ${Border} {
     left: 0;
-    background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(0, 0, 0, 0.9)),
-      repeating-linear-gradient(
-        0,
-        transparent,
-        transparent 2px,
-        black 3px,
-        black 3px
-      );
   }
 `;
 const Deployed = styled.div`

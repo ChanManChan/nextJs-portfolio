@@ -27,7 +27,7 @@ const Subtitle = styled.p`
     display: block;
     font-size: 1rem;
     margin-top: 1.5rem;
-    transition: all 0.3s;
+    transition: word-spacing 0.3s;
     color: ${(p) => p.bdgTheme};
   }
 `;
