@@ -11,6 +11,7 @@ const portfolioFields = `
 
 exports.portfolioTypes = `
   type Tech {
+    _id: ID
     name: String
     description: String
     theme: String

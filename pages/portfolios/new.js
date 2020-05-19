@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import PortfolioForm from '@/components/forms/PortfolioForm';
+import { useFetchTech } from '@/apollo/actions';
+
 //! Container
 const FormWrapper = styled.div`
   width: 100%;
@@ -18,10 +20,12 @@ const PageFunction = styled.h1`
 `;
 
 const CreatePortfolio = () => {
+  const { data } = useFetchTech();
+  const stack = (data && data.techStack) || [];
   return (
     <FormWrapper>
       <PageFunction>Create New Portfolio</PageFunction>
-      <PortfolioForm />
+      <PortfolioForm f_Stack={stack} />
     </FormWrapper>
   );
 };

@@ -6,11 +6,15 @@ import {
   CREATE_PORTFOLIO,
   UPDATE_PORTFOLIO,
   DELETE_PORTFOLIO,
+  GET_TECH_STACK,
   SIGN_UP,
   SIGN_IN,
   SIGN_OUT,
 } from '@/apollo/queries';
 import { FETCH_USER } from '../queries';
+
+//! TECH_STACK------------------------------
+export const useFetchTech = () => useQuery(GET_TECH_STACK);
 
 //! PORTFOLIOS------------------------------
 export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);

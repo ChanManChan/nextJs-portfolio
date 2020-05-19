@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const {
   portfolioQueries,
   portfolioMutations,
-  authenticationMutations,
+  techQueries,
   authenticationQueries,
+  authenticationMutations,
 } = require('./resolvers');
 //! Types
 const { portfolioTypes, authenticationTypes } = require('./types');
@@ -14,6 +15,7 @@ const { buildAuthContext } = require('./context');
 //! GraphQl Models
 const Portfolio = require('./models/Portfolio');
 const User = require('./models/User');
+const Tech = require('./models/Tech');
 
 exports.createApolloServer = () => {
   //! Construct a schema using GRAPHQL schema language
@@ -26,6 +28,7 @@ exports.createApolloServer = () => {
     type Query {
       portfolio(id: ID): Portfolio
       portfolios: [Portfolio]
+      techStack: [Tech]
       user: User
     }
     type Mutation {
@@ -46,6 +49,7 @@ exports.createApolloServer = () => {
   const resolvers = {
     Query: {
       ...portfolioQueries,
+      ...techQueries,
       ...authenticationQueries,
     },
     Mutation: {
@@ -64,6 +68,7 @@ exports.createApolloServer = () => {
       models: {
         Portfolio: new Portfolio(mongoose.model('Portfolio')),
         User: new User(mongoose.model('User')),
+        Tech: new Tech(mongoose.model('Tech')),
       },
     }),
   });

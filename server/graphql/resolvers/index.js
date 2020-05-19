@@ -9,6 +9,12 @@ exports.portfolioQueries = {
   },
 };
 
+exports.techQueries = {
+  techStack: (_, _a, ctx) => {
+    return ctx.models.Tech.fetchAll();
+  },
+};
+
 exports.portfolioMutations = {
   createPortfolio: async (_, { input }, ctx) => {
     const createdPortfolio = await ctx.models.Portfolio.create(input);

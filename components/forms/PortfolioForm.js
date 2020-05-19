@@ -5,9 +5,9 @@ import Dropzone from '@/components/shared/Dropzone';
 import CustomInput from '@/components/shared/CustomInput';
 import { Field, Formik, Form } from 'formik';
 import { validationSchemaPortfolio } from '@/components/global/Validator';
-import MultiSelect from '@/components/shared/MultiSelectCheck';
+import AccordionMenu from '@/components/shared/AccordionMenu';
 
-const PortfolioForm = () => (
+const PortfolioForm = ({ f_Stack }) => (
   <Formik
     initialValues={{
       title: '',
@@ -26,49 +26,48 @@ const PortfolioForm = () => (
       resetForm();
     }}
   >
-    {({ isSubmitting, setFieldValue }) => (
+    {({ isSubmitting, setFieldValue, values }) => (
       <Disabled_State>
         <Form>
           <Field
             name='title'
             type='text'
-            loading={`${loading}`}
             placeholder='Enter Project Title'
             as={CustomInput}
           />
-          <Field name='techStack' as={MultiSelect} />
+          <AccordionMenu
+            name='techStack'
+            title='TechStack'
+            stack={f_Stack}
+            s_Formik_Arr={values.techStack}
+          />
           <Field
             name='repoAPI'
             type='text'
-            loading={`${loading}`}
             placeholder='Enter API Repo URL'
             as={CustomInput}
           />
           <Field
             name='repoClient'
             type='text'
-            loading={`${loading}`}
             placeholder='Enter Client Repo URL'
             as={CustomInput}
           />
           <Field
             name='deployed'
             type='text'
-            loading={`${loading}`}
             placeholder='Enter Deployed URL'
             as={CustomInput}
           />
           <Field
             name='theme'
             type='text'
-            loading={`${loading}`}
             placeholder='Enter Theme eg:-[#fff]'
             as={CustomInput}
           />
           <Field
             name='description'
             type='text'
-            loading={`${loading}`}
             placeholder='Describe your project'
             as={CustomInput}
           />

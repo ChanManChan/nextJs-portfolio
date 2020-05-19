@@ -19,6 +19,17 @@ export const GET_PORTFOLIO = gql`
   }
 `;
 
+export const GET_TECH_STACK = gql`
+  query TechStack {
+    techStack {
+      _id
+      name
+      description
+      theme
+    }
+  }
+`;
+
 export const GET_PORTFOLIOS = gql`
   query Portfolios {
     portfolios {
