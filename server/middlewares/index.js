@@ -1,6 +1,15 @@
 const config = require('../config/dev');
 const session = require('express-session');
 const passport = require('passport');
+const cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: config.CLOUDINARY_CLOUD_NAME,
+  upload_preset: config.CLOUDINARY_UPLOAD_PRESET,
+  api_key: config.CLOUDINARY_API_KEY,
+  api_secret: config.CLOUDINARY_API_SECRET,
+});
+
+exports.cloudinary = cloudinary;
 
 exports.init = (server, db) => {
   require('./passport').init(passport);

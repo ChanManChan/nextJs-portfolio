@@ -20,12 +20,12 @@ const PageFunction = styled.h1`
 `;
 
 const CreatePortfolio = () => {
-  const { data } = useFetchTech();
+  const { data, loading } = useFetchTech();
   const stack = (data && data.techStack) || [];
   return (
     <FormWrapper>
       <PageFunction>Create New Portfolio</PageFunction>
-      <PortfolioForm f_Stack={stack} />
+      <PortfolioForm f_Stack={stack} loading={loading} />
     </FormWrapper>
   );
 };

@@ -7,7 +7,7 @@ import { Field, Formik, Form } from 'formik';
 import { validationSchemaPortfolio } from '@/components/global/Validator';
 import AccordionMenu from '@/components/shared/AccordionMenu';
 
-const PortfolioForm = ({ f_Stack }) => (
+const PortfolioForm = ({ f_Stack, loading }) => (
   <Formik
     initialValues={{
       title: '',
@@ -17,6 +17,7 @@ const PortfolioForm = ({ f_Stack }) => (
       deployed: '',
       theme: '',
       description: '',
+      screenshots: [],
     }}
     validationSchema={validationSchemaPortfolio}
     onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -27,29 +28,39 @@ const PortfolioForm = ({ f_Stack }) => (
     }}
   >
     {({ isSubmitting, setFieldValue, values }) => (
-      <Disabled_State>
+      <Disabled_State loading={`${loading}`}>
         <Form>
-          <Field
-            name='title'
-            type='text'
-            placeholder='Enter Project Title'
-            as={CustomInput}
-          />
           <AccordionMenu
             name='techStack'
             title='TechStack'
             stack={f_Stack}
             s_Formik_Arr={values.techStack}
           />
+          <Dropzone
+            setFieldValue={setFieldValue}
+            fieldKey='screenshots'
+            maxSize={100000}
+            multi_Sel
+            loading={`${loading}`}
+          />
+          <Field
+            name='title'
+            type='text'
+            placeholder='Enter Project Title'
+            loading={`${loading}`}
+            as={CustomInput}
+          />
           <Field
             name='repoAPI'
             type='text'
+            loading={`${loading}`}
             placeholder='Enter API Repo URL'
             as={CustomInput}
           />
           <Field
             name='repoClient'
             type='text'
+            loading={`${loading}`}
             placeholder='Enter Client Repo URL'
             as={CustomInput}
           />
@@ -57,17 +68,20 @@ const PortfolioForm = ({ f_Stack }) => (
             name='deployed'
             type='text'
             placeholder='Enter Deployed URL'
+            loading={`${loading}`}
             as={CustomInput}
           />
           <Field
             name='theme'
             type='text'
+            loading={`${loading}`}
             placeholder='Enter Theme eg:-[#fff]'
             as={CustomInput}
           />
           <Field
             name='description'
             type='text'
+            loading={`${loading}`}
             placeholder='Describe your project'
             as={CustomInput}
           />
@@ -77,6 +91,7 @@ const PortfolioForm = ({ f_Stack }) => (
             buttonText='Create Portfolio'
           />
         </Form>
+        <Loading loading={`${loading}`} />
       </Disabled_State>
     )}
   </Formik>

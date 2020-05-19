@@ -30,6 +30,7 @@ const RegisterForm = ({ req_Parent, loading }) => (
             loading={`${loading}`}
             setFieldValue={setFieldValue}
             maxSize={100000}
+            fieldKey='avatar'
           />
           <Field
             name='username'

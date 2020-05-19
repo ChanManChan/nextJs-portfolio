@@ -7,7 +7,10 @@ const Dropzone = (props) => {
     accept: 'image/*',
     maxSize: props.maxSize,
     onDrop: (acceptedFiles) => {
-      props.setFieldValue('avatar', acceptedFiles[0]);
+      props.setFieldValue(
+        props.fieldKey,
+        props.multi_Sel ? acceptedFiles : acceptedFiles[0]
+      );
     },
     noClick: true,
     noKeyboard: true,

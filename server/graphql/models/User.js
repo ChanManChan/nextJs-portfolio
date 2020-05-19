@@ -1,17 +1,7 @@
-const config = require('../../config/dev');
-const cloudinary = require('cloudinary');
-cloudinary.config({
-  cloud_name: config.CLOUDINARY_CLOUD_NAME,
-  upload_preset: config.CLOUDINARY_UPLOAD_PRESET,
-  api_key: config.CLOUDINARY_API_KEY,
-  api_secret: config.CLOUDINARY_API_SECRET,
-});
-
 class User {
   constructor(model) {
     this.Model = model;
   }
-
   fetchAuthUser(ctx) {
     if (ctx.isAuthenticated()) return ctx.fetchUser();
     else return null;
@@ -32,17 +22,16 @@ class User {
     const c_Upload = async ({ createReadStream }) => {
       try {
         await new Promise((resolve, reject) => {
-          const streamLoad = cloudinary.v2.uploader.upload_stream(function (
-            error,
-            result
-          ) {
-            if (result) {
-              resultSecure_URL = result.secure_url;
-              resolve(resultSecure_URL);
-            } else {
-              reject(error);
+          const streamLoad = require('../../middlewares').cloudinary.v2.uploader.upload_stream(
+            function (error, result) {
+              if (result) {
+                resultSecure_URL = result.secure_url;
+                resolve(resultSecure_URL);
+              } else {
+                reject(error);
+              }
             }
-          });
+          );
           createReadStream().pipe(streamLoad);
         });
       } catch (err) {
