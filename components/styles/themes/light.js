@@ -2,6 +2,7 @@ const theme = {
   id: 'light',
   primaryColor: '#88ffff',
   secondaryColor: '#0d1e2e',
+  tertiaryColor: '#334454',
   staticColor1: '#eeeeee',
   staticColor2: '#757575',
   staticColor3: '#424242',

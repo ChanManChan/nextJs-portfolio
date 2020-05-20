@@ -7,6 +7,6 @@ const Secret = withAuth(() => {
       <h1>Testing secret component functionality</h1>
     </div>
   );
-}, 'guest');
+}, ['admin', 'instructor']);
 
 export default withApollo(Secret);

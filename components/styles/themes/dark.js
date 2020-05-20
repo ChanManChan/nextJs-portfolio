@@ -2,6 +2,7 @@ const theme = {
   id: 'dark',
   primaryColor: '#ed6d3a',
   secondaryColor: '#230b19',
+  tertiaryColor: '#49313F',
   staticColor1: '#eeeeee',
   staticColor2: '#757575',
   staticColor3: '#424242',

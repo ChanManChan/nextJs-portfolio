@@ -11,7 +11,7 @@ export default (WrappedComponent, role) => (props) => {
   if (!loading && (!user || error) && typeof window !== 'undefined')
     return <Redirect to='/login' />;
   if (user) {
-    if (role && user.role !== role) return <Redirect to='/' />;
+    if (role && !role.includes(user.role)) return <Redirect to='/' />;
     return <WrappedComponent {...props} />;
   }
   return (

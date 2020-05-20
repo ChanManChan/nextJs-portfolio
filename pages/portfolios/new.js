@@ -29,4 +29,4 @@ const CreatePortfolio = () => {
     </FormWrapper>
   );
 };
-export default withApollo(withAuth(CreatePortfolio, 'admin'));
+export default withApollo(withAuth(CreatePortfolio, ['admin','instructor']));

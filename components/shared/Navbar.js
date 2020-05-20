@@ -6,6 +6,7 @@ import CustomLink from './CustomLink';
 import Toggle from './Toggle';
 import withApollo from '@/hoc/withApollo';
 import { useLazyFetchUser } from '@/apollo/actions';
+import Dropdown from '@/components/shared/DropdownMenu';
 
 const NavWrapper = styled.div`
   grid-column: 3/-1;
@@ -31,19 +32,8 @@ const AppNavbar = () => {
   return (
     <NavWrapper>
       <Hamburger onClick={() => setMenuOpen((s) => !s)} />
-      <Menu open={menuOpen}>
-        <CustomLink href='/portfolios' isActive={pathname === '/portfolios'}>
-          Portfolios
-        </CustomLink>
-        <CustomLink
-          href='/forum/categories'
-          isActive={pathname === '/forum/categories'}
-        >
-          Forum
-        </CustomLink>
-        <CustomLink href='/cv' isActive={pathname === '/cv'}>
-          Cv
-        </CustomLink>
+      <Menu open={menuOpen} columns={4}>
+        <Dropdown pathName={pathname} />
         {error || !user ? (
           <>
             <CustomLink href='/login' isActive={pathname === '/login'}>

@@ -29,7 +29,7 @@ const userSchema = new Schema(
     },
     salt: String,
     role: {
-      enum: ['admin', 'guest'],
+      enum: ['admin', 'guest','instructor'],
       type: String,
       required: true,
       default: 'guest',

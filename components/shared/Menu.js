@@ -7,7 +7,7 @@ const Menu = styled.nav`
     /* DESKTOP */
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(${(p) => p.columns}, 1fr);
     align-items: center;
   }
 `;

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import AppNavbar from '../shared/Navbar';
+import AppNavbar1 from '../shared/Navbar';
+import AppNavbar2 from '../shared/Navbar2';
 import Logo from '../styles/Logo';
 
 Router.onRouteChangeStart = () => {
@@ -21,7 +22,7 @@ const StyledHeader = styled.header`
   z-index: 100;
   top: 0;
   display: grid;
-  grid-template-columns: 10% auto 40%;
+  grid-template-columns: 30% auto 20%;
   justify-items: center;
   align-items: center;
   height: 7rem;
@@ -33,12 +34,15 @@ const StyledHeader = styled.header`
 
 const Header = () => (
   <StyledHeader>
-    <Link href='/'>
-      <a>
-        <Logo />
-      </a>
-    </Link>
-    <AppNavbar />
+    <div>
+      <Link href='/'>
+        <a>
+          <Logo />
+        </a>
+      </Link>
+      <AppNavbar2 />
+    </div>
+    <AppNavbar1 />
   </StyledHeader>
 );
 
