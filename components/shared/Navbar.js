@@ -10,6 +10,8 @@ import Dropdown from '@/components/shared/DropdownMenu';
 
 const NavWrapper = styled.div`
   grid-column: 3/-1;
+  width: 100%;
+  position: relative;
 `;
 
 const AppNavbar = () => {
@@ -32,11 +34,14 @@ const AppNavbar = () => {
   return (
     <NavWrapper>
       <Hamburger onClick={() => setMenuOpen((s) => !s)} />
-      <Menu open={menuOpen} columns={4}>
-        <Dropdown pathName={pathname} />
+      <Menu open={menuOpen} auto>
         {error || !user ? (
           <>
-            <CustomLink href='/login' isActive={pathname === '/login'}>
+            <CustomLink
+              href='/login'
+              isActive={pathname === '/login'}
+              justify='end'
+            >
               Sign In
             </CustomLink>
             <CustomLink href='/register' isActive={pathname === '/register'}>
@@ -45,6 +50,7 @@ const AppNavbar = () => {
           </>
         ) : (
           <>
+            <Dropdown pathName={pathname} user={user} />
             <CustomLink href='/' isActive={pathname === '/'} username>
               {user.username}
             </CustomLink>
@@ -57,8 +63,8 @@ const AppNavbar = () => {
             </CustomLink>
           </>
         )}
-        <Toggle isActive={id === 'dark'} onToggle={toggleTheme} />
       </Menu>
+      <Toggle isActive={id === 'dark'} onToggle={toggleTheme} />
     </NavWrapper>
   );
 };

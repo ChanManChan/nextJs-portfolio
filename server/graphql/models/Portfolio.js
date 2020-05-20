@@ -42,9 +42,8 @@ class Portfolio {
         }
       };
       await cloudinaryUpload({ createReadStream });
-      return resultUrl;
+      return resultSecure_URL;
     };
-    // return this.Model.create(port_data);
     const { resolve, reject } = await promisesAll.all(
       port_data.screenshots.map(processUpload)
     );
@@ -52,8 +51,7 @@ class Portfolio {
       reject.forEach(({ name, message }) => {
         console.log(`${name}: ${message}`);
       });
-    console.log('CHECKING DATA IN RESOLVE:', resolve);
-    return null;
+    return await this.Model.create({ ...port_data, screenshots: resolve });
   }
   findAndUpdate(id, data) {
     return this.Model.findOneAndUpdate({ _id: id }, data, { new: true });

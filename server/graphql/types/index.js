@@ -1,12 +1,12 @@
 //! Whenever your are defining mutation, the parameter values should be of Input type
 
 const portfolioFields = `
-  title: String,
-  repoAPI: String,
-  repoClient: String,
-  deployed: String,
-  theme: String,
-  description: String,
+  title: String
+  repoAPI: String
+  repoClient: String
+  deployed: String
+  theme: String
+  description: String
 `;
 
 exports.portfolioTypes = `
@@ -19,10 +19,12 @@ exports.portfolioTypes = `
   type Portfolio {
       _id: ID,
       techStack: [Tech],
+      screenshots: [String]
      ${portfolioFields}
   }
   input PortfolioInput {
      techStack: [String],
+     screenshots: [Upload!]!
      ${portfolioFields}
   }
 `;

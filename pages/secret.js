@@ -1,12 +1,15 @@
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
+import withParent from '@/hoc/withParent';
 
-const Secret = withAuth(() => {
+const Secret = () => {
   return (
     <div>
       <h1>Testing secret component functionality</h1>
     </div>
   );
-}, ['admin', 'instructor']);
+};
 
-export default withApollo(Secret);
+export default withApollo(
+  withAuth(withParent(Secret), ['admin', 'instructor'])
+);

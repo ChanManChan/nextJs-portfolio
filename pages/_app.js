@@ -1,5 +1,6 @@
-import Page from '@/components/global/Page';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Page from '@/components/global/Page';
 
 //! Entry point to all of my pages i'm navigating to (Responsible for rendering all of my pages)
 //! "Component" <- actual page i'm are navigating to
@@ -12,7 +13,8 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <>
-      <Page c_Name={Component.name}>
+      <ToastContainer />
+      <Page>
         <Component {...pageProps} />
       </Page>
     </>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import AppNavbar1 from '../shared/Navbar';
@@ -22,7 +21,7 @@ const StyledHeader = styled.header`
   z-index: 100;
   top: 0;
   display: grid;
-  grid-template-columns: 30% auto 20%;
+  grid-template-columns: 30% auto 30%;
   justify-items: center;
   align-items: center;
   height: 7rem;
@@ -32,16 +31,17 @@ const StyledHeader = styled.header`
   border-bottom: 0.5rem solid ${(p) => p.theme.primaryColor};
 `;
 
+const SubGrid = styled.div`
+  grid-column: 1/2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+`;
 const Header = () => (
   <StyledHeader>
-    <div>
-      <Link href='/'>
-        <a>
-          <Logo />
-        </a>
-      </Link>
+    <SubGrid>
+      <Logo />
       <AppNavbar2 />
-    </div>
+    </SubGrid>
     <AppNavbar1 />
   </StyledHeader>
 );

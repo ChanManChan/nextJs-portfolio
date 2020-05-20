@@ -28,6 +28,10 @@ const portfolioSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+    screenshots: {
+      type: [String],
+      required: true,
+    },
   },
   { timestamps: true, collection: 'portfolios' }
 );

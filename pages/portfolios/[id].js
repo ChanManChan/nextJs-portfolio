@@ -8,6 +8,8 @@ import Image from '@/components/shared/Image';
 import Link from '@/components/shared/ShimmerButton';
 import Badge from '@/components/styles/Badge';
 import Span from '@/components/styles/Glitch_Effect';
+import withParent from '@/hoc/withParent';
+import { useRouter } from 'next/router';
 
 //! 1st method:- Functional component without getInitialProps
 // const PortfolioDetail = () => {
@@ -153,13 +155,14 @@ const Title = styled.div`
 `;
 
 //! 3rd method:- getInitialProps on a functional component
-const PortfolioDetail = ({ query }) => {
+const PortfolioDetail = () => {
+  const { id } = useRouter().query;
   // const [portfolio, setPortfolio] = React.useState(null);
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
   //! "useQuery" <- will be called immediately
   // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
   const { data } = useQuery(GET_PORTFOLIO, {
-    variables: { id: query.id },
+    variables: { id },
   });
   const { title, techStack, description, deployed, repoAPI, repoClient } =
     (data && data.portfolio) || {};
@@ -171,15 +174,6 @@ const PortfolioDetail = ({ query }) => {
 
   //! We dont need to handle "loading" since our data will be loaded server-side & we dont need to set our state also.
   // if (data && !portfolio) setPortfolio(data.portfolio);
-
-  /**
- *   {techStack &&
-            techStack
-              .split(',')
-              .map((t, i) => (
-                <Badge key={i} title={t} subTitle='testing' bdgTheme='#f00' />
-              ))}
- */
 
   return (
     <Grid>
@@ -273,10 +267,10 @@ const PortfolioDetail = ({ query }) => {
   );
 };
 
-PortfolioDetail.getInitialProps = async ({ query }) => {
-  return { query };
-};
+// PortfolioDetail.getInitialProps = async ({ query }) => {
+//   return { query };
+// };
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 
-export default withApollo(PortfolioDetail, { getDataFromTree });
+export default withApollo(withParent(PortfolioDetail), { getDataFromTree });

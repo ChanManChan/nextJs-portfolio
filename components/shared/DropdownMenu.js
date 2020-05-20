@@ -20,13 +20,12 @@ const OrderedList = styled.ol`
   display: none;
   position: absolute;
   visibility: hidden;
-  top: 4.9rem;
+  top: 4.8rem;
   left: 0;
   opacity: 0;
   flex-direction: column;
   list-style: none;
   margin-top: 1rem;
-  width: 100%;
 `;
 
 const Popup = styled.span`
@@ -53,13 +52,15 @@ const Popup = styled.span`
   }
 `;
 
-const DropdownMenu = () => (
+const DropdownMenu = ({ user }) => (
   <Popup aria-haspopup='true'>
     <Anchor href='/'>Manage</Anchor>
     <OrderedList>
-      <MenuItem>
-        <Anchor href='/'>Widget1</Anchor>
-      </MenuItem>
+      {user && (user.role === 'admin' || user.role === 'instructor') && (
+        <MenuItem>
+          <Anchor href='/portfolios/new'>Create Portfolio</Anchor>
+        </MenuItem>
+      )}
       <MenuItem>
         <Anchor href='/'>Widget2</Anchor>
       </MenuItem>

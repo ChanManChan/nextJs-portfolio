@@ -1,9 +1,11 @@
-// import LoginForm from '@/components/forms/LoginForm';
 import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import PortfolioForm from '@/components/forms/PortfolioForm';
 import { useFetchTech } from '@/apollo/actions';
+import { useCreatePortfolio } from '@/apollo/actions';
+import { useRouter } from 'next/router';
+import withParent from '@/hoc/withParent';
 
 //! Container
 const FormWrapper = styled.div`
@@ -21,12 +23,27 @@ const PageFunction = styled.h1`
 
 const CreatePortfolio = () => {
   const { data, loading } = useFetchTech();
+  const [createPortfolio, { loading: up_load }] = useCreatePortfolio();
   const stack = (data && data.techStack) || [];
+  const router = useRouter();
+
+  const res_serverOnCreate = async (port_data) => {
+    await createPortfolio({ variables: port_data });
+    router.push('/portfolios');
+  };
+
   return (
     <FormWrapper>
       <PageFunction>Create New Portfolio</PageFunction>
-      <PortfolioForm f_Stack={stack} loading={loading} />
+      <PortfolioForm
+        f_Stack={stack}
+        loading={loading || up_load}
+        parent_req={res_serverOnCreate}
+      />
     </FormWrapper>
   );
 };
-export default withApollo(withAuth(CreatePortfolio, ['admin','instructor']));
+
+export default withApollo(
+  withAuth(withParent(CreatePortfolio), ['admin', 'instructor'])
+);

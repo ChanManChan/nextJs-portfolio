@@ -13,6 +13,20 @@ import {
 } from '@/apollo/queries';
 import { FETCH_USER } from '../queries';
 
+const shared_operations = {
+  onFail: (error) => {
+    if (error.graphQLErrors && error.graphQLErrors[0].message)
+      toast.error(error.graphQLErrors[0].message, {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+  },
+  onSuccess: (msg) => {
+    toast.success(msg, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
+  },
+};
+
 //! TECH_STACK------------------------------
 export const useFetchTech = () => useQuery(GET_TECH_STACK);
 
@@ -30,6 +44,9 @@ export const useCreatePortfolio = () =>
         data: { portfolios: [...portfolios, createPortfolio] },
       });
     },
+    onError: (error) => shared_operations.onFail(error),
+    onCompleted: () =>
+      shared_operations.onSuccess('Portfolio created successfully'),
   });
 
 //! No additional changes are required for "updatePortfolio", so we dont need to update the cache, because the cache is updated automatically  for us and it will also update the view for us automatically so the view is re-rendered.
@@ -51,17 +68,9 @@ export const useDeletePortfolio = () =>
 //! AUTHENTICATION ----------------------------------
 export const useSignUp = () =>
   useMutation(SIGN_UP, {
-    onCompleted() {
-      toast.success('Successfully registered user', {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
-    },
-    onError: (error) => {
-      if (error.graphQLErrors && error.graphQLErrors[0].message)
-        toast.error(error.graphQLErrors[0].message, {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
-    },
+    onError: (error) => shared_operations.onFail(error),
+    onCompleted: () =>
+      shared_operations.onSuccess('User registered successfully'),
   });
 
 export const useSignIn = () =>
@@ -72,17 +81,10 @@ export const useSignIn = () =>
         data: { user: signedInUser },
       });
     },
+    onError: (error) => shared_operations.onFail(error),
     onCompleted: (data) => {
       if (data && data.signIn)
-        toast.success('Welcome ' + data.signIn.username, {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
-    },
-    onError: (error) => {
-      if (error.graphQLErrors && error.graphQLErrors[0].message)
-        toast.error(error.graphQLErrors[0].message, {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
+        shared_operations.onSuccess('Welcome ' + data.signIn.username);
     },
   });
 

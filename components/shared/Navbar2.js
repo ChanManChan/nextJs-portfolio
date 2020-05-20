@@ -12,10 +12,11 @@ const Navbar2 = () => {
       <Anchor
         href='/forum/categories'
         isActive={pathname === '/forum/categories'}
+        justify='start'
       >
         Forum
       </Anchor>
-      <Anchor href='/cv' isActive={pathname === '/cv'}>
+      <Anchor href='/cv' isActive={pathname === '/cv'} justify='start'>
         Cv
       </Anchor>
     </Menu>

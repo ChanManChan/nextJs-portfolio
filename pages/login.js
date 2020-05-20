@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import { useSignIn } from '@/apollo/actions';
 import Redirect from '@/components/shared/Redirect';
+import withParent from '@/hoc/withParent';
 
 //! Container
 const FormWrapper = styled.div`
@@ -31,4 +32,4 @@ const Login = () => {
     </FormWrapper>
   );
 };
-export default withApollo(Login);
+export default withApollo(withParent(Login));

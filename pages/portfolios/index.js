@@ -1,14 +1,9 @@
 import Card from '@/components/shared/Card';
 import styled from 'styled-components';
-import Button from '@/components/shared/ShimmerButton';
-import {
-  useGetPortfolios,
-  useCreatePortfolio,
-  useUpdatePortfolio,
-  useDeletePortfolio,
-} from '@/apollo/actions';
+import { useGetPortfolios } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
+import withParent from '@/hoc/withParent';
 
 //! Pretend we're making some asynchronous calls
 // const apiCall = () => {
@@ -33,11 +28,6 @@ const Portfolios = () => {
 
   const { data } = useGetPortfolios();
   const portfolios = (data && data.portfolios) || [];
-
-  const [createPortfolio] = useCreatePortfolio();
-  const [updatePortfolio] = useUpdatePortfolio();
-  const [deletePortfolio] = useDeletePortfolio();
-
   //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards.
   // React.useEffect(() => {
   //   getPortfolios();
@@ -75,33 +65,32 @@ const Portfolios = () => {
   // }
   // };
 
+  //! Todo:- later Redirect for updation and deletion
+  //UPDATE:-updatePortfolio({ variables: { id: p._id } })
+  //DELETE:-if (
+  // window.confirm(
+  // `Permanently Delete Portfolio with ID: ${p._id}?`
+  // )
+  // )
+  // return deletePortfolio({ variables: { id: p._id } });
+
   return (
-    <>
-      <Button onClick={createPortfolio}>create portfolio</Button>
-      <Container>
-        {portfolios.map((p, i) => {
-          return (
-            <Card
-              key={i}
-              id={p._id}
-              projectName={p.title}
-              techStack={p.techStack}
-              projectImage="url('/bg.jpeg')"
-              buttonBg={p.theme}
-              update={() => updatePortfolio({ variables: { id: p._id } })}
-              remove={() => {
-                if (
-                  window.confirm(
-                    `Permanently Delete Portfolio with ID: ${p._id}?`
-                  )
-                )
-                  return deletePortfolio({ variables: { id: p._id } });
-              }}
-            />
-          );
-        })}
-      </Container>
-    </>
+    <Container>
+      {portfolios.map((p, i) => {
+        return (
+          <Card
+            key={i}
+            id={p._id}
+            projectName={p.title}
+            techStack={p.techStack}
+            projectImage="url('/bg.jpeg')"
+            buttonBg={p.theme}
+            update={() => {}}
+            remove={() => {}}
+          />
+        );
+      })}
+    </Container>
   );
 };
 
@@ -116,4 +105,4 @@ const Portfolios = () => {
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 
-export default withApollo(Portfolios, { getDataFromTree });
+export default withApollo(withParent(Portfolios), { getDataFromTree });

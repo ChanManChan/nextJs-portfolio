@@ -50,26 +50,30 @@ export const GET_PORTFOLIOS = gql`
 `;
 
 export const CREATE_PORTFOLIO = gql`
-  mutation CreatePortfolio {
+  mutation CreatePortfolio(
+    $title: String
+    $techStack: [String]
+    $repoAPI: String
+    $repoClient: String
+    $deployed: String
+    $theme: String
+    $description: String
+    $screenshots: [Upload!]!
+  ) {
     createPortfolio(
       input: {
-        title: "Testing Mutation"
-        techStack: "CRUD"
-        repoAPI: "https://testing.com"
-        repoClient: "https://testingClient.com"
-        deployed: "https://xyz.com"
-        theme: "#f00"
-        description: "CRUD Mutation on Portfolios"
+        title: $title
+        techStack: $techStack
+        repoAPI: $repoAPI
+        repoClient: $repoClient
+        deployed: $deployed
+        theme: $theme
+        description: $description
+        screenshots: $screenshots
       }
     ) {
       _id
       title
-      techStack
-      repoAPI
-      repoClient
-      deployed
-      description
-      theme
     }
   }
 `;

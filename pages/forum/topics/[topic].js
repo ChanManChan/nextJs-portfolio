@@ -1,3 +1,5 @@
+import withParent from '@/hoc/withParent';
+
 const Posts = () => {
   return (
     <>
@@ -159,4 +161,4 @@ const Posts = () => {
     </>
   );
 };
-export default Posts;
+export default withParent(Posts);

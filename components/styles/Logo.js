@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import Link from 'next/link';
 
 /**A rectangular <<shape>()> of the form rect(<top>, <right>, <bottom>, <left>) or rect(<top> <right> <bottom> <left>) (which is a more backwards-compatible syntax). The <top> and <bottom> values specify offsets from the inside top border edge of the box, while <right> and <left> specify offsets from the inside left border edge of the box — that is, the extent of the padding box. */
 
@@ -27,10 +28,12 @@ const clipRect = keyframes`
   75% {clip: rect(0px, 55px, 55px, 53px); }
 `;
 
-const Logo = styled.div`
+const Logo = styled.a`
   grid-column: 1/2;
+  margin-right: 2rem;
   width: 5rem;
   height: 5rem;
+  text-decoration: none;
   position: relative;
   z-index: 1;
   color: #69ca62;
@@ -59,4 +62,9 @@ const Logo = styled.div`
   }
 `;
 
-export default Logo;
+const HeaderLogo = () => (
+  <Link href='/' passHref>
+    <Logo />
+  </Link>
+);
+export default HeaderLogo;

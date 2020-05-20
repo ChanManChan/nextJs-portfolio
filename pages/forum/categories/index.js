@@ -1,3 +1,5 @@
+import withParent from '@/hoc/withParent';
+
 const ForumCategories = () => {
   return (
     <>
@@ -60,4 +62,4 @@ const ForumCategories = () => {
     </>
   );
 };
-export default ForumCategories;
+export default withParent(ForumCategories);

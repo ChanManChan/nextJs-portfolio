@@ -3,6 +3,7 @@ import Loading from '@/components/styles/Loading';
 import Disabled_State from '@/components/styles/Disabled_State';
 import { useSignOut } from '@/apollo/actions';
 import { useRouter } from 'next/router';
+import withParent from '@/hoc/withParent';
 
 //! Apollo Reference will be received here as props because of "withApollo" HOC
 const Logout = ({ apollo }) => {
@@ -21,4 +22,4 @@ const Logout = ({ apollo }) => {
   );
 };
 
-export default withApollo(Logout);
+export default withApollo(withParent(Logout));
