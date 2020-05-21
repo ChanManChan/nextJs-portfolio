@@ -84,13 +84,14 @@ const Group = styled.div`
   }
 `;
 
-const CustomCheckbox = ({ handleChecked, s_Id, s_Name }) => (
+const CustomCheckbox = ({ handleChecked, s_Id, s_Name, init_check }) => (
   <Group>
     <Checkbox
       id={s_Id}
       type='checkbox'
       onChange={handleChecked}
       name={s_Name}
+      defaultChecked={init_check}
     />
     <Label htmlFor={s_Id}>{s_Name}</Label>
   </Group>

@@ -3,15 +3,17 @@ import { toast } from 'react-toastify';
 
 import {
   GET_PORTFOLIOS,
+  GET_PORTFOLIO,
   CREATE_PORTFOLIO,
   UPDATE_PORTFOLIO,
   DELETE_PORTFOLIO,
+  FETCH_USER,
+  GET_USER_PORTFOLIOS,
   GET_TECH_STACK,
   SIGN_UP,
   SIGN_IN,
   SIGN_OUT,
 } from '@/apollo/queries';
-import { FETCH_USER } from '../queries';
 
 const shared_operations = {
   onFail: (error) => {
@@ -32,6 +34,10 @@ export const useFetchTech = () => useQuery(GET_TECH_STACK);
 
 //! PORTFOLIOS------------------------------
 export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
+
+export const useGetUserPortfolios = () => useQuery(GET_USER_PORTFOLIOS);
+
+export const useGetPortfolio = (options) => useQuery(GET_PORTFOLIO, options);
 
 export const useCreatePortfolio = () =>
   useMutation(CREATE_PORTFOLIO, {
@@ -55,11 +61,15 @@ export const useUpdatePortfolio = () => useMutation(UPDATE_PORTFOLIO);
 export const useDeletePortfolio = () =>
   useMutation(DELETE_PORTFOLIO, {
     update(cache, { data: { deletePortfolio } }) {
-      const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
+      const { userPortfolios } = cache.readQuery({
+        query: GET_USER_PORTFOLIOS,
+      });
       cache.writeQuery({
-        query: GET_PORTFOLIOS,
+        query: GET_USER_PORTFOLIOS,
         data: {
-          portfolios: portfolios.filter((p) => p._id !== deletePortfolio),
+          userPortfolios: userPortfolios.filter(
+            (p) => p._id !== deletePortfolio
+          ),
         },
       });
     },

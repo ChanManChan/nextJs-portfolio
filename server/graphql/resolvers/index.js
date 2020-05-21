@@ -7,6 +7,9 @@ exports.portfolioQueries = {
   portfolio: (_, { id }, ctx) => {
     return ctx.models.Portfolio.fetchById(id);
   },
+  userPortfolios: (_, _a, ctx) => {
+    return ctx.models.Portfolio.fetchAllByUser();
+  },
 };
 
 exports.techQueries = {

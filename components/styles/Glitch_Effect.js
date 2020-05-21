@@ -59,7 +59,7 @@ const glitch_anim1 = keyframes`
 `;
 
 const glitch_anim2 = keyframes`
-${glitch_anim2_CreateCSS()}
+  ${glitch_anim2_CreateCSS()}
 `;
 
 const shared = css`

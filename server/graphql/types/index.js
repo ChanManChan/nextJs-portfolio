@@ -23,7 +23,7 @@ exports.portfolioTypes = `
      ${portfolioFields}
   }
   input PortfolioInput {
-     techStack: [String],
+     techStack: [ID],
      screenshots: [Upload!]!
      ${portfolioFields}
   }

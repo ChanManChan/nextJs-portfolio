@@ -18,7 +18,7 @@ const Inner = styled.main`
   }
 `;
 
-const checkLanding = (R_Child, comp_Name, childProps) => {
+const CheckLanding = (R_Child, comp_Name, childProps) => {
   if (comp_Name === 'Home')
     return (
       <>
@@ -41,6 +41,5 @@ const checkLanding = (R_Child, comp_Name, childProps) => {
     );
 };
 
-export default (ChildComponent, r_name) => (props) => {
-  return checkLanding(ChildComponent, r_name, props);
-};
+export default (ChildComponent, r_name) => (props) =>
+  CheckLanding(ChildComponent, r_name, props);

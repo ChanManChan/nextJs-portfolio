@@ -7,16 +7,29 @@ import { Field, Formik, Form } from 'formik';
 import { validationSchemaPortfolio } from '@/components/global/Validator';
 import AccordionMenu from '@/components/shared/AccordionMenu';
 
-const PortfolioForm = ({ f_Stack, loading, parent_req }) => (
+const PortfolioForm = ({
+  f_Stack,
+  loading,
+  parent_req,
+  f_port: {
+    title,
+    techStack,
+    repoAPI,
+    repoClient,
+    deployed,
+    theme,
+    description,
+  } = {},
+}) => (
   <Formik
     initialValues={{
-      title: '',
-      techStack: [],
-      repoAPI: '',
-      repoClient: '',
-      deployed: '',
-      theme: '',
-      description: '',
+      title: title || '',
+      techStack: (techStack && techStack.map((t) => t._id)) || [],
+      repoAPI: repoAPI || '',
+      repoClient: repoClient || '',
+      deployed: deployed || '',
+      theme: theme || '',
+      description: description || '',
       screenshots: [],
     }}
     validationSchema={validationSchemaPortfolio}

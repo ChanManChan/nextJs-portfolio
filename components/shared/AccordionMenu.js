@@ -102,6 +102,8 @@ const ListItems = styled.li`
 `;
 
 const AccordionMenu = ({ title, name, stack, s_Formik_Arr }) => {
+  // const [checked,setChecked]=React.useState()
+
   const accordion = (e) => {
     e.stopPropagation();
     if (e.target.parentElement.classList.contains('active')) {
@@ -129,6 +131,7 @@ const AccordionMenu = ({ title, name, stack, s_Formik_Arr }) => {
                     }}
                     s_Id={s._id}
                     s_Name={s.name}
+                    init_check={s_Formik_Arr.includes(s._id)}
                   />
                 </ListItems>
               ))

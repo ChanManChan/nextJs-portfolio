@@ -216,8 +216,8 @@ const CustomCard = ({
   projectImage,
   buttonBg,
   id,
-  update,
   remove,
+  as,
   ...props
 }) => (
   <Card {...props}>
@@ -256,10 +256,10 @@ const CustomCard = ({
       <Icon className='fas fa-database' />
       <Icon className='fab fa-github' />
     </div>
-    <Anchor onClick={update} className='actionIcons editIcon'>
+    <Anchor link as={as} className='actionIcons editIcon'>
       <Icon className='fas fa-wrench' />
     </Anchor>
-    <Anchor onClick={remove} className='actionIcons deleteIcon'>
+    <Anchor action={remove} className='actionIcons deleteIcon'>
       <Icon className='fas fa-trash-alt' />
     </Anchor>
     <Link href='/portfolios/[id]' as={`/portfolios/${id}`} passHref>

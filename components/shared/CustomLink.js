@@ -68,8 +68,9 @@ const CustomLink = ({
   username,
   signOut,
   justify,
+  as,
 }) => (
-  <Link href={href} passHref>
+  <Link href={href} as={as} passHref>
     <StyledLink
       isActive={isActive}
       username={username}

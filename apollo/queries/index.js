@@ -6,6 +6,7 @@ export const GET_PORTFOLIO = gql`
       _id
       title
       techStack {
+        _id
         name
         description
         theme
@@ -37,13 +38,20 @@ export const GET_PORTFOLIOS = gql`
       title
       techStack {
         name
-        description
-        theme
       }
-      repoAPI
-      repoClient
-      deployed
-      description
+      theme
+    }
+  }
+`;
+
+export const GET_USER_PORTFOLIOS = gql`
+  query UserPortfolios {
+    userPortfolios {
+      _id
+      title
+      techStack {
+        name
+      }
       theme
     }
   }
@@ -52,7 +60,7 @@ export const GET_PORTFOLIOS = gql`
 export const CREATE_PORTFOLIO = gql`
   mutation CreatePortfolio(
     $title: String
-    $techStack: [String]
+    $techStack: [ID]
     $repoAPI: String
     $repoClient: String
     $deployed: String

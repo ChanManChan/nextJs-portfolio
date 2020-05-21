@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_PORTFOLIO } from '@/apollo/queries';
+import { useGetPortfolio } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import Image from '@/components/shared/Image';
@@ -161,9 +159,7 @@ const PortfolioDetail = () => {
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
   //! "useQuery" <- will be called immediately
   // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
-  const { data } = useQuery(GET_PORTFOLIO, {
-    variables: { id },
-  });
+  const { data } = useGetPortfolio({ variables: { id } });
   const { title, techStack, description, deployed, repoAPI, repoClient } =
     (data && data.portfolio) || {};
 
@@ -266,10 +262,6 @@ const PortfolioDetail = () => {
     </Grid>
   );
 };
-
-// PortfolioDetail.getInitialProps = async ({ query }) => {
-//   return { query };
-// };
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 

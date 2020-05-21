@@ -29,6 +29,7 @@ exports.createApolloServer = () => {
       portfolio(id: ID): Portfolio
       portfolios: [Portfolio]
       techStack: [Tech]
+      userPortfolios: [Portfolio]
       user: User
     }
     type Mutation {
@@ -66,7 +67,7 @@ exports.createApolloServer = () => {
     context: ({ req }) => ({
       ...buildAuthContext(req),
       models: {
-        Portfolio: new Portfolio(mongoose.model('Portfolio')),
+        Portfolio: new Portfolio(mongoose.model('Portfolio'), req.user),
         User: new User(mongoose.model('User')),
         Tech: new Tech(mongoose.model('Tech')),
       },

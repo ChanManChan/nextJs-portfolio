@@ -2,7 +2,6 @@ import withApollo from 'next-with-apollo';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-// import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { createUploadLink } from 'apollo-upload-client';
@@ -12,7 +11,7 @@ import { createUploadLink } from 'apollo-upload-client';
 //! "withApollo" is a Higher Order Component which takes our page and it will render our page wrapped with ApolloProvider so that we can use queries and mutations in our page and also it will be executed server side.
 
 export default withApollo(
-  ({ initialState }) => {
+  ({ initialState, headers }) => {
     return new ApolloClient({
       link: ApolloLink.from([
         onError(({ graphQLErrors, networkError }) => {
@@ -24,7 +23,11 @@ export default withApollo(
             );
           if (networkError) console.log(`[Network error]: ${networkError}`);
         }),
-        new createUploadLink({ uri: 'http://localhost:3000/graphql' }),
+        new createUploadLink({
+          uri: 'http://localhost:3000/graphql',
+          credentials: 'include',
+          headers,
+        }),
       ]),
       cache: new InMemoryCache().restore(initialState || {}),
     });

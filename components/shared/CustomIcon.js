@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -29,4 +30,18 @@ const Anchor = styled.a`
   }
 `;
 
-export default Anchor;
+const checkLink = (link, as, children, action, props) =>
+  link ? (
+    <Link href='/portfolios/[id]/edit' as={as} passHref>
+      <Anchor {...props}>{children}</Anchor>
+    </Link>
+  ) : (
+    <Anchor onClick={action} {...props}>
+      {children}
+    </Anchor>
+  );
+
+const CustomIcon = ({ link, as, children, action, ...props }) =>
+  checkLink(link, as, children, action, props);
+
+export default CustomIcon;

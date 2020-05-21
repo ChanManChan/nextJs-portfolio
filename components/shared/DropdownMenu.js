@@ -57,16 +57,20 @@ const DropdownMenu = ({ user }) => (
     <Anchor href='/'>Manage</Anchor>
     <OrderedList>
       {user && (user.role === 'admin' || user.role === 'instructor') && (
-        <MenuItem>
-          <Anchor href='/portfolios/new'>Create Portfolio</Anchor>
-        </MenuItem>
+        <>
+          <MenuItem>
+            <Anchor href='/portfolios/new'>Create Portfolio</Anchor>
+          </MenuItem>
+          <MenuItem>
+            <Anchor
+              href='/instructor/[id]/dashboard'
+              as={`/instructor/${user._id}/dashboard`}
+            >
+              Dashboard
+            </Anchor>
+          </MenuItem>
+        </>
       )}
-      <MenuItem>
-        <Anchor href='/'>Widget2</Anchor>
-      </MenuItem>
-      <MenuItem>
-        <Anchor href='/'>Widget3</Anchor>
-      </MenuItem>
     </OrderedList>
   </Popup>
 );

@@ -67,12 +67,6 @@ const Portfolios = () => {
 
   //! Todo:- later Redirect for updation and deletion
   //UPDATE:-updatePortfolio({ variables: { id: p._id } })
-  //DELETE:-if (
-  // window.confirm(
-  // `Permanently Delete Portfolio with ID: ${p._id}?`
-  // )
-  // )
-  // return deletePortfolio({ variables: { id: p._id } });
 
   return (
     <Container>

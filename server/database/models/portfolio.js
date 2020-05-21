@@ -24,10 +24,7 @@ const portfolioSchema = new Schema(
       required: true,
       minlength: 10,
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     screenshots: {
       type: [String],
       required: true,
