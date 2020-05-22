@@ -39,6 +39,8 @@ const CreatePortfolio = () => {
         f_Stack={stack}
         loading={loading || up_load}
         parent_req={res_serverOnCreate}
+        btn_txt='Create Portfolio'
+        ld_msg='Creating portfolio...'
       />
     </FormWrapper>
   );

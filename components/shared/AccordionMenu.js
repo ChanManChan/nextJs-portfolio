@@ -102,7 +102,11 @@ const ListItems = styled.li`
 `;
 
 const AccordionMenu = ({ title, name, stack, s_Formik_Arr }) => {
-  // const [checked,setChecked]=React.useState()
+  const [checkedArr, setCheckedArr] = React.useState([]);
+
+  React.useEffect(() => {
+    setCheckedArr(s_Formik_Arr);
+  }, [s_Formik_Arr]);
 
   const accordion = (e) => {
     e.stopPropagation();
@@ -111,6 +115,13 @@ const AccordionMenu = ({ title, name, stack, s_Formik_Arr }) => {
     } else {
       e.target.parentElement.classList.add('active');
     }
+  };
+
+  const handleToggle = (t_id) => (e) => {
+    let mutated_Arr = [...checkedArr];
+    if (e.target.checked) mutated_Arr.push(t_id);
+    else mutated_Arr.splice(mutated_Arr.indexOf(t_id), 1);
+    setCheckedArr(mutated_Arr);
   };
 
   return (
@@ -126,12 +137,13 @@ const AccordionMenu = ({ title, name, stack, s_Formik_Arr }) => {
                 <ListItems key={i}>
                   <Checkbox
                     handleChecked={(e) => {
+                      handleToggle(s._id);
                       if (e.target.checked) arrayHelpers.push(s._id);
                       else arrayHelpers.remove(s_Formik_Arr.indexOf(s._id));
                     }}
                     s_Id={s._id}
                     s_Name={s.name}
-                    init_check={s_Formik_Arr.includes(s._id)}
+                    init_check={checkedArr.includes(s._id)}
                   />
                 </ListItems>
               ))

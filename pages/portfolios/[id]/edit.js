@@ -5,7 +5,7 @@ import PortfolioForm from '@/components/forms/PortfolioForm';
 import { useFetchTech } from '@/apollo/actions';
 import { useRouter } from 'next/router';
 import withParent from '@/hoc/withParent';
-import { useGetPortfolio } from '@/apollo/actions';
+import { useGetPortfolio, useUpdatePortfolio } from '@/apollo/actions';
 
 const FormWrapper = styled.div`
   width: 100%;
@@ -23,13 +23,9 @@ const EditPortfolio = () => {
   const { data: port_data, loading: port_load } = useGetPortfolio({
     variables: { id },
   });
-
+  const [updatePortfolio, { loading: up_loading }] = useUpdatePortfolio();
   const stack = (data && data.techStack) || [];
   const portfolio = (port_data && port_data.portfolio) || [];
-
-  const res_serverOnCreate = (port_data) => {
-    console.log('Data from Portfolio Update: ', port_data);
-  };
 
   return (
     <FormWrapper>
@@ -37,8 +33,12 @@ const EditPortfolio = () => {
       <PortfolioForm
         f_Stack={stack}
         f_port={portfolio}
-        loading={loading || port_load}
-        parent_req={res_serverOnCreate}
+        loading={loading || port_load || up_loading}
+        parent_req={(up_data) =>
+          updatePortfolio({ variables: { id, ...up_data } })
+        }
+        btn_txt='Update Portfolio'
+        ld_msg='Updating fields...'
       />
     </FormWrapper>
   );

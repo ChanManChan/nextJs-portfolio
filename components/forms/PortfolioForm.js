@@ -11,6 +11,8 @@ const PortfolioForm = ({
   f_Stack,
   loading,
   parent_req,
+  btn_txt,
+  ld_msg,
   f_port: {
     title,
     techStack,
@@ -22,6 +24,7 @@ const PortfolioForm = ({
   } = {},
 }) => (
   <Formik
+    enableReinitialize={true}
     initialValues={{
       title: title || '',
       techStack: (techStack && techStack.map((t) => t._id)) || [],
@@ -101,10 +104,10 @@ const PortfolioForm = ({
           <CustomButton
             type='submit'
             disabled={isSubmitting}
-            buttonText='Create Portfolio'
+            buttonText={btn_txt}
           />
         </Form>
-        <Loading loading={`${loading}`} />
+        <Loading msg={ld_msg} loading={`${loading}`} />
       </Disabled_State>
     )}
   </Formik>

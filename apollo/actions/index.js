@@ -53,10 +53,19 @@ export const useCreatePortfolio = () =>
     onError: (error) => shared_operations.onFail(error),
     onCompleted: () =>
       shared_operations.onSuccess('Portfolio created successfully'),
+    context: {
+      hasUpload: true,
+    },
   });
 
 //! No additional changes are required for "updatePortfolio", so we dont need to update the cache, because the cache is updated automatically  for us and it will also update the view for us automatically so the view is re-rendered.
-export const useUpdatePortfolio = () => useMutation(UPDATE_PORTFOLIO);
+export const useUpdatePortfolio = () =>
+  useMutation(UPDATE_PORTFOLIO, {
+    onError: (error) => shared_operations.onFail(error),
+    onCompleted: () =>
+      shared_operations.onSuccess('Portfolio updated successfully'),
+    context: { hasUpload: true },
+  });
 
 export const useDeletePortfolio = () =>
   useMutation(DELETE_PORTFOLIO, {
@@ -81,6 +90,7 @@ export const useSignUp = () =>
     onError: (error) => shared_operations.onFail(error),
     onCompleted: () =>
       shared_operations.onSuccess('User registered successfully'),
+    context: { hasUpload: true },
   });
 
 export const useSignIn = () =>

@@ -17,31 +17,10 @@ class User {
   }
 
   async signUp(reg_Data) {
-    const { createReadStream } = await reg_Data.avatar;
-    let resultSecure_URL = '';
-    const c_Upload = async ({ createReadStream }) => {
-      try {
-        await new Promise((resolve, reject) => {
-          const streamLoad = require('../../middlewares').cloudinary.v2.uploader.upload_stream(
-            function (error, result) {
-              if (result) {
-                resultSecure_URL = result.secure_url;
-                resolve(resultSecure_URL);
-              } else {
-                reject(error);
-              }
-            }
-          );
-          createReadStream().pipe(streamLoad);
-        });
-      } catch (err) {
-        throw new Error(
-          `Failed to upload profile picture, Err: ${err.message}`
-        );
-      }
-    };
     try {
-      await c_Upload({ createReadStream });
+      const resultSecure_URL = await require('../../middlewares/cloudinary').upload_cloudinary(
+        reg_Data.avatar
+      );
       const mutated_Data = {
         email: reg_Data.email,
         username: reg_Data.username,

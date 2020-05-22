@@ -87,16 +87,31 @@ export const CREATE_PORTFOLIO = gql`
 `;
 
 export const UPDATE_PORTFOLIO = gql`
-  mutation UpdatePortfolio($id: ID) {
-    updatePortfolio(id: $id, input: { title: "Testing Mutation [UPDATED]" }) {
+  mutation UpdatePortfolio(
+    $id: ID
+    $title: String
+    $techStack: [ID]
+    $repoAPI: String
+    $repoClient: String
+    $deployed: String
+    $theme: String
+    $description: String
+    $screenshots: [Upload!]!
+  ) {
+    updatePortfolio(
+      id: $id
+      input: {
+        title: $title
+        techStack: $techStack
+        repoAPI: $repoAPI
+        repoClient: $repoClient
+        deployed: $deployed
+        theme: $theme
+        description: $description
+        screenshots: $screenshots
+      }
+    ) {
       _id
-      title
-      techStack
-      repoAPI
-      repoClient
-      deployed
-      description
-      theme
     }
   }
 `;

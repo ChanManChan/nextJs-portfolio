@@ -91,7 +91,7 @@ const CustomCheckbox = ({ handleChecked, s_Id, s_Name, init_check }) => (
       type='checkbox'
       onChange={handleChecked}
       name={s_Name}
-      defaultChecked={init_check}
+      checked={init_check}
     />
     <Label htmlFor={s_Id}>{s_Name}</Label>
   </Group>

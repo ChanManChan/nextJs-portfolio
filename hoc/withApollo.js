@@ -5,10 +5,23 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { createUploadLink } from 'apollo-upload-client';
+import { BatchHttpLink } from 'apollo-link-batch-http';
 
 //! PROVIDE "APOLLOPROVIDER" ONLY TO THE COMPONENTS OR TO THE PAGES WHICH NEEDS TO WORK WITH QUERIES AND MUTATIONS.
 
 //! "withApollo" is a Higher Order Component which takes our page and it will render our page wrapped with ApolloProvider so that we can use queries and mutations in our page and also it will be executed server side.
+
+const OPTS = {
+  uri: 'http://localhost:3000/graphql',
+  credentials: 'include',
+};
+
+const httpLink = (head) =>
+  ApolloLink.split(
+    (operation) => operation.getContext().hasUpload,
+    createUploadLink({ ...OPTS, headers: head }),
+    new BatchHttpLink({ ...OPTS, headers: head })
+  );
 
 export default withApollo(
   ({ initialState, headers }) => {
@@ -23,11 +36,7 @@ export default withApollo(
             );
           if (networkError) console.log(`[Network error]: ${networkError}`);
         }),
-        new createUploadLink({
-          uri: 'http://localhost:3000/graphql',
-          credentials: 'include',
-          headers,
-        }),
+        httpLink(headers),
       ]),
       cache: new InMemoryCache().restore(initialState || {}),
     });
