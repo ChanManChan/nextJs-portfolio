@@ -9,7 +9,6 @@ const TableWrapper = styled.div`
       display: block;
       text-align: right;
       font-size: 11px;
-      color: white;
       padding: 0 0 10px;
     }
   }
@@ -17,14 +16,15 @@ const TableWrapper = styled.div`
 const Head_cell = styled.th`
   text-align: center;
   padding: 8px;
-  color: #ffffff;
+  color: #fff;
   background: #4fc3a1;
   &:nth-child(odd) {
-    color: #ffffff;
+    color: #fff;
     background: #324960;
   }
 `;
 const Body_cell = styled.td`
+  color: #000;
   text-align: center;
   padding: 8px;
   border-right: 1px solid #cfd8dc;
@@ -106,7 +106,7 @@ const Table = styled.table`
   }
 `;
 
-const R_Table = ({ children }) => (
+const R_Table = () => (
   <TableWrapper>
     <Table>
       <thead>
@@ -116,7 +116,28 @@ const R_Table = ({ children }) => (
           <Head_cell>Author</Head_cell>
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>
+        <tr>
+          <Body_cell>Content 1</Body_cell>
+          <Body_cell>Content 1</Body_cell>
+          <Body_cell>Content 1</Body_cell>
+        </tr>
+        <tr>
+          <Body_cell>Content 2</Body_cell>
+          <Body_cell>Content 2</Body_cell>
+          <Body_cell>Content 2</Body_cell>
+        </tr>
+        <tr>
+          <Body_cell>Content 3</Body_cell>
+          <Body_cell>Content 3</Body_cell>
+          <Body_cell>Content 3</Body_cell>
+        </tr>
+        <tr>
+          <Body_cell>Content 4</Body_cell>
+          <Body_cell>Content 4</Body_cell>
+          <Body_cell>Content 4</Body_cell>
+        </tr>
+      </tbody>
     </Table>
   </TableWrapper>
 );
