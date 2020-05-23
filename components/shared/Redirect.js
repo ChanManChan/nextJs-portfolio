@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const Redirect = (props) => {
+const Redirect = ({ to, query }) => {
   const router = useRouter();
   useEffect(() => {
-    router.push({ pathname: props.to });
+    router.push({ pathname: to, query });
   }, []);
   return null;
 };

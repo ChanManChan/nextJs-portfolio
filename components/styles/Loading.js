@@ -315,7 +315,8 @@ const state_Msg = ({ msg }) => {
         position: absolute;
         top: 500%;
         left: 0;
-        transform:translateX(-50%);
+        white-space: nowrap;
+        transform: translateX(-50%);
         z-index: 11;
         color: ${(p) => (p.theme.id === 'light' ? '#fff' : '#000')};
         font-family: 'Open Sans', sans-serif;

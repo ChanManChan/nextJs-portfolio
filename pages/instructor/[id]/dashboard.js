@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import withParent from '@/hoc/withParent';
-import { useRouter } from 'next/router';
 import Card from '@/components/shared/Card';
-import Button from '@/components/shared/ShimmerButton';
 import { useGetUserPortfolios, useDeletePortfolio } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -23,7 +21,6 @@ const InstructorDashboard = () => {
   const { data } = useGetUserPortfolios();
   const [deletePortfolio] = useDeletePortfolio();
   const userPortfolios = (data && data.userPortfolios) || [];
-  const router = useRouter();
 
   return (
     <>
@@ -54,7 +51,12 @@ const InstructorDashboard = () => {
 };
 
 //! My HOC "withAuth" is trying to get the user using "useGetUser({fetchPolicy: 'network-only'})" but in this case for Dashboard, we're rendering this page on the server (because of "getDataFromTree") therefore we are also executing useGetUser on the server, but when we're sending from the server our cookie is not present. Cookie is present when we're sending request from the browser. So we need to explicitly inform "ApolloClient" about our credentials (to include the cookie in this request).
+
+//! "ssr: true" <- Redirect on the server.
+
 export default withApollo(
-  withAuth(withParent(InstructorDashboard), ['admin', 'instructor']),
+  withAuth(withParent(InstructorDashboard), ['admin', 'instructor'], {
+    ssr: true,
+  }),
   { getDataFromTree }
 );

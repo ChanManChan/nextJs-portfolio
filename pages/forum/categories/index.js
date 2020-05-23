@@ -1,65 +1,41 @@
 import withParent from '@/hoc/withParent';
+import CategoryCard from '@/components/shared/CategoryCard';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  padding: 3rem 1.5rem 2.4rem;
+`;
+
+const PageFunction = styled.h1`
+  margin: 0 0 10rem;
+  font-size: 3rem;
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
 
 const ForumCategories = () => {
   return (
-    <>
-      <section className='section-title'>
-        <div className='px-2'>
-          <div className='pt-5 pb-4'>
-            <h1>Categories</h1>
-          </div>
-        </div>
-      </section>
-      <section className='fj-category-list'>
-        <div className='row'>
-          <div className='col-md-4'>
-            <div className='fj-category-container'>
-              <a className='fj-category subtle-shadow no-border' href='#'>
-                {
-                  // <div className="category-icon">
-                  //   <img src="images/pen.png" />
-                  // </div>
-                }
-                <div className='category-information'>
-                  <div className='heading gray-90'>General Discussion</div>
-                  <div className='description'>Just general question</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div className='col-md-4'>
-            <div className='fj-category-container'>
-              <a className='fj-category subtle-shadow no-border' href='#'>
-                {
-                  // <div className="category-icon">
-                  //   <img src="images/pen.png" />
-                  // </div>
-                }
-                <div className='category-information'>
-                  <div className='heading gray-90'>Other Discussion</div>
-                  <div className='description'>Just general question</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div className='col-md-4'>
-            <div className='fj-category-container'>
-              <a className='fj-category subtle-shadow no-border' href='#'>
-                {
-                  // <div className="category-icon">
-                  //   <img src="images/pen.png" />
-                  // </div>
-                }
-                <div className='category-information'>
-                  <div className='heading gray-90'>Some Discussion</div>
-                  <div className='description'>Just general question</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    <Container>
+      <PageFunction>Categories</PageFunction>
+      <FlexWrapper>
+        <CategoryCard
+          title='General Discussion'
+          subtitle='Open any topic you want'
+        />
+        <CategoryCard
+          title='Job Requests'
+          subtitle='Post here job opportunities'
+        />
+        <CategoryCard
+          title='Developer Jokes'
+          subtitle='Just funny developing stuff'
+        />
+      </FlexWrapper>
+    </Container>
   );
 };
 export default withParent(ForumCategories);

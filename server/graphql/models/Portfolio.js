@@ -71,7 +71,16 @@ class Portfolio {
     }
   }
   findAndDelete(id) {
-    return this.Model.findOneAndRemove({ _id: id });
+    if (!this.user || !this.write_rights.includes(this.user.role))
+      throw new Error('Not Authorized');
+    else {
+      require('../../middlewares/cloudinary').destroy_cloud(
+        this.Model,
+        id,
+        true
+      );
+      return this.Model.findOneAndRemove({ _id: id });
+    }
   }
 }
 module.exports = Portfolio;

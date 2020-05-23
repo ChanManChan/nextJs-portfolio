@@ -9,7 +9,7 @@ import withParent from '@/hoc/withParent';
 const FormWrapper = styled.div`
   width: 100%;
   /* padding: top | right & left | bottom */
-  padding: 6.4rem 1.5rem 2.4rem;
+  padding: 3rem 1.5rem 2.4rem;
 `;
 
 //! Page title

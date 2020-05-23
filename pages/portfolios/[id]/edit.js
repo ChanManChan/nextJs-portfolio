@@ -9,7 +9,7 @@ import { useGetPortfolio, useUpdatePortfolio } from '@/apollo/actions';
 
 const FormWrapper = styled.div`
   width: 100%;
-  padding: 6.4rem 1.5rem 2.4rem;
+  padding: 3rem 1.5rem 2.4rem;
 `;
 
 const PageFunction = styled.h1`
