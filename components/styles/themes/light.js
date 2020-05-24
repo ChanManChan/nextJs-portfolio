@@ -11,8 +11,6 @@ const theme = {
   bodyFontColor: '#000',
   bg_gradient:
     'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 20%, rgba(0,212,255,1) 94%)',
-  bg_gradient180deg:
-    'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 20%, rgba(0,212,255,1) 94%)',
   error_gradient:
     'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(213, 0, 0, 1) 20%, rgba(239, 154, 154, 1) 94%)',
   error_text: '#ef9a9a',
