@@ -20,8 +20,7 @@ const PageFunction = styled.h1`
 const InstructorDashboard = () => {
   const { data } = useGetUserProjects();
   const [deleteProject] = useDeleteProject();
-  const userProjects = (data && data.userProject) || [];
-
+  const userProjects = (data && data.userProjects) || [];
   return (
     <>
       <PageFunction>Instructor Projects</PageFunction>
