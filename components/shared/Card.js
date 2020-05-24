@@ -262,7 +262,7 @@ const CustomCard = ({
     <Anchor action={remove} className='actionIcons deleteIcon'>
       <Icon className='fas fa-trash-alt' />
     </Anchor>
-    <Link href='/portfolios/[id]' as={`/portfolios/${id}`} passHref>
+    <Link href='/projects/[id]' as={`/projects/${id}`} passHref>
       <Button buttonBg={buttonBg} />
     </Link>
   </Card>

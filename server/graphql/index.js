@@ -2,18 +2,18 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const mongoose = require('mongoose');
 //! Resolvers
 const {
-  portfolioQueries,
-  portfolioMutations,
+  projectQueries,
+  projectMutations,
   techQueries,
   authenticationQueries,
   authenticationMutations,
 } = require('./resolvers');
 //! Types
-const { portfolioTypes, authenticationTypes } = require('./types');
+const { projectTypes, authenticationTypes } = require('./types');
 //! Authentication
 const { buildAuthContext } = require('./context');
 //! GraphQl Models
-const Portfolio = require('./models/Portfolio');
+const Project = require('./models/Project');
 const User = require('./models/User');
 const Tech = require('./models/Tech');
 
@@ -23,19 +23,20 @@ exports.createApolloServer = () => {
   //? In ApolloServer, we don't call it "schema" but "typeDefs", and we dont use "buildSchema" function but we use "gql"
 
   const typeDefs = gql`
-    ${portfolioTypes}
+    ${projectTypes}
     ${authenticationTypes}
     type Query {
-      portfolio(id: ID): Portfolio
-      portfolios: [Portfolio]
+      project(id: ID): Project
+      projects: [Project]
       techStack: [Tech]
-      userPortfolios: [Portfolio]
+      userProjects: [Project]
       user: User
     }
+
     type Mutation {
-      createPortfolio(input: PortfolioInput): Portfolio
-      updatePortfolio(id: ID, input: PortfolioInput): Portfolio
-      deletePortfolio(id: ID): ID
+      createProject(input: ProjectInput): Project
+      updateProject(id: ID, input: ProjectInput): Project
+      deleteProject(id: ID): ID
 
       signUp(input: SignUpInput): String
       signIn(input: SignInInput): User
@@ -49,12 +50,12 @@ exports.createApolloServer = () => {
 
   const resolvers = {
     Query: {
-      ...portfolioQueries,
+      ...projectQueries,
       ...techQueries,
       ...authenticationQueries,
     },
     Mutation: {
-      ...portfolioMutations,
+      ...projectMutations,
       ...authenticationMutations,
     },
   };
@@ -67,7 +68,7 @@ exports.createApolloServer = () => {
     context: ({ req }) => ({
       ...buildAuthContext(req),
       models: {
-        Portfolio: new Portfolio(mongoose.model('Portfolio'), req.user),
+        Project: new Project(mongoose.model('Project'), req.user),
         User: new User(mongoose.model('User')),
         Tech: new Tech(mongoose.model('Tech')),
       },

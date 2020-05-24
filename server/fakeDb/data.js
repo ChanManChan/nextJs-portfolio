@@ -8,6 +8,10 @@ const tech2Id = mongoose.Types.ObjectId();
 const tech3Id = mongoose.Types.ObjectId();
 const tech4Id = mongoose.Types.ObjectId();
 
+const detail1Id = mongoose.Types.ObjectId();
+const detail2Id = mongoose.Types.ObjectId();
+const detail3Id = mongoose.Types.ObjectId();
+
 //! INITIAL DATA IN DB
 const data = {
   users: [
@@ -33,7 +37,7 @@ const data = {
       password: 'Ac4$blackflag',
     },
   ],
-  portfolios: [
+  projects: [
     {
       title: 'E-commerce',
       techStack: [tech1Id, tech2Id, tech3Id],
@@ -94,6 +98,86 @@ const data = {
       name: 'Google oAUth',
       description: 'Authentication and Authorization',
       theme: '#3498db',
+    },
+  ],
+  particularsCategories: [
+    {
+      _id: detail1Id,
+      title: 'Courses & Certificates',
+      subTitle: 'Certificates I have Accumulated over the years',
+      slug: 'accumulated-certificates',
+    },
+    {
+      _id: detail2Id,
+      title: 'Work Experiences',
+      subTitle: 'Past work Experiences',
+      slug: 'work-experience',
+    },
+    {
+      _id: detail3Id,
+      title: 'Academic History',
+      subTitle: 'Details about my Educational qualifications',
+      slug: 'academic-history',
+    },
+  ],
+  courses: [
+    {
+      title:
+        'Modern React 16.8+ Including Hooks, Context API, Full Stack MERN ',
+      slug: 'modern-react-context-mern',
+      content: [
+        'React Fundamentals (Components, props, state, etc)',
+        'React Hooks (useState, useEffect, useContext, useReducer, useRef)',
+        'Context API & App Level State',
+        'MERN - MongoDB, Express React, Node',
+        'Build a Custom API With JWT Authentication',
+        'Redux - Reducers, Actions, etc',
+        'Basic Animation',
+      ],
+      particularsCategory: detail1Id,
+      user: user1Id,
+    },
+    {
+      title: 'Social network with Node.js, Express, React, Redux & MongoDB',
+      slug: 'social-nw-mern',
+      content: [
+        'Building an extensive backend API with Node.js & Express',
+        'Protecting routes/endpoints with JWT (JSON Web Tokens)',
+        'Extensive API testing with Postman',
+        'Integrating React with backend in an elegant way, creating a great workflow',
+        'Building frontend to work with the API',
+        'Using Redux for app state management',
+        'Creating reducers and actions for our resources',
+        'Creating many container components that integrate with Redux',
+        'Testing with the Redux Chrome extension',
+      ],
+      particularsCategory: detail1Id,
+      user: user1Id,
+    },
+    {
+      title: 'Real world backend for a bootcamp directory app',
+      slug: 'bootcamp-dir-app-node',
+      content: [
+        'HTTP Essentials',
+        'Postman Client',
+        'RESTful APIs',
+        'Express Framework',
+        'Routing & Controller Methods',
+        'MongoDB Atlas & Compass',
+        'Mongoose ODM',
+        'Advanced Query (Pagination, filter, etc)',
+        'Models & Relationships',
+        'Middleware (Express & Mongoose)',
+        'MongoDB Geospatial Index / GeoJSON',
+        'Geocoding',
+        'User Roles & Permissions',
+        'Photo Upload',
+        'Emailing Password Reset Tokens',
+        'Security: NoSQL Injection, XSS, etc',
+        'Deployment With PM2, NGINX, SSL',
+      ],
+      particularsCategory: detail1Id,
+      user: user1Id,
     },
   ],
 };

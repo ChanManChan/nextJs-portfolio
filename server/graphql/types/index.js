@@ -1,6 +1,6 @@
 //! Whenever your are defining mutation, the parameter values should be of Input type
 
-const portfolioFields = `
+const projectFields = `
   title: String
   repoAPI: String
   repoClient: String
@@ -9,23 +9,23 @@ const portfolioFields = `
   description: String
 `;
 
-exports.portfolioTypes = `
+exports.projectTypes = `
   type Tech {
     _id: ID
     name: String
     description: String
     theme: String
   }
-  type Portfolio {
+  type Project {
       _id: ID,
       techStack: [Tech],
       screenshots: [String]
-     ${portfolioFields}
+     ${projectFields}
   }
-  input PortfolioInput {
+  input ProjectInput {
      techStack: [ID],
      screenshots: [Upload!]!
-     ${portfolioFields}
+     ${projectFields}
   }
 `;
 

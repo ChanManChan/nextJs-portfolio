@@ -6,15 +6,15 @@ const Navbar2 = () => {
   const { pathname } = useRouter();
   return (
     <Menu columns={3}>
-      <Anchor href='/portfolios' isActive={pathname === '/portfolios'}>
-        Portfolios
+      <Anchor href='/projects' isActive={pathname === '/projects'}>
+        Projects
       </Anchor>
       <Anchor
-        href='/forum/categories'
-        isActive={pathname === '/forum/categories'}
+        href='/particulars/categories'
+        isActive={pathname === '/particulars/categories'}
         justify='start'
       >
-        Forum
+        Particulars
       </Anchor>
       <Anchor href='/cv' isActive={pathname === '/cv'} justify='start'>
         Cv

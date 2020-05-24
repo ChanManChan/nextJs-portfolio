@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useGetPortfolio } from '@/apollo/actions';
+import { useGetProject } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import Image from '@/components/shared/Image';
@@ -153,15 +153,15 @@ const Title = styled.div`
 `;
 
 //! 3rd method:- getInitialProps on a functional component
-const PortfolioDetail = () => {
+const ProjectDetail = () => {
   const { id } = useRouter().query;
   // const [portfolio, setPortfolio] = React.useState(null);
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
   //! "useQuery" <- will be called immediately
   // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
-  const { data } = useGetPortfolio({ variables: { id } });
+  const { data } = useGetProject({ variables: { id } });
   const { title, techStack, description, deployed, repoAPI, repoClient } =
-    (data && data.portfolio) || {};
+    (data && data.project) || {};
 
   //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
   // React.useEffect(() => {
@@ -265,4 +265,4 @@ const PortfolioDetail = () => {
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 
-export default withApollo(withParent(PortfolioDetail), { getDataFromTree });
+export default withApollo(withParent(ProjectDetail), { getDataFromTree });

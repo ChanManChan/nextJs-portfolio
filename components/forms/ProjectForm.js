@@ -4,10 +4,10 @@ import CustomButton from '@/components/shared/CustomButton';
 import Dropzone from '@/components/shared/Dropzone';
 import CustomInput from '@/components/shared/CustomInput';
 import { Field, Formik, Form } from 'formik';
-import { validationSchemaPortfolio } from '@/components/global/Validator';
+import { validationSchemaProject } from '@/components/global/Validator';
 import AccordionMenu from '@/components/shared/AccordionMenu';
 
-const PortfolioForm = ({
+const ProjectForm = ({
   f_Stack,
   loading,
   parent_req,
@@ -35,7 +35,7 @@ const PortfolioForm = ({
       description: description || '',
       screenshots: [],
     }}
-    validationSchema={validationSchemaPortfolio}
+    validationSchema={validationSchemaProject}
     onSubmit={(data, { setSubmitting, resetForm }) => {
       setSubmitting(true);
       parent_req(data);
@@ -113,4 +113,4 @@ const PortfolioForm = ({
   </Formik>
 );
 
-export default PortfolioForm;
+export default ProjectForm;

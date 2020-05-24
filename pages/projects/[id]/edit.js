@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
-import PortfolioForm from '@/components/forms/PortfolioForm';
+import ProjectForm from '@/components/forms/ProjectForm';
 import { useFetchTech } from '@/apollo/actions';
 import { useRouter } from 'next/router';
 import withParent from '@/hoc/withParent';
-import { useGetPortfolio, useUpdatePortfolio } from '@/apollo/actions';
+import { useGetProject, useUpdateProject } from '@/apollo/actions';
 
 const FormWrapper = styled.div`
   width: 100%;
@@ -17,27 +17,27 @@ const PageFunction = styled.h1`
   font-size: 3rem;
 `;
 
-const EditPortfolio = () => {
+const EditProject = () => {
   const { id } = useRouter().query;
   const { data, loading } = useFetchTech();
-  const { data: port_data, loading: port_load } = useGetPortfolio({
+  const { data: port_data, loading: port_load } = useGetProject({
     variables: { id },
   });
-  const [updatePortfolio, { loading: up_loading }] = useUpdatePortfolio();
+  const [updateProject, { loading: up_loading }] = useUpdateProject();
   const stack = (data && data.techStack) || [];
-  const portfolio = (port_data && port_data.portfolio) || [];
+  const project = (port_data && port_data.project) || [];
 
   return (
     <FormWrapper>
-      <PageFunction>Edit Portfolio</PageFunction>
-      <PortfolioForm
+      <PageFunction>Edit Project</PageFunction>
+      <ProjectForm
         f_Stack={stack}
-        f_port={portfolio}
+        f_port={project}
         loading={loading || port_load || up_loading}
         parent_req={(up_data) =>
-          updatePortfolio({ variables: { id, ...up_data } })
+          updateProject({ variables: { id, ...up_data } })
         }
-        btn_txt='Update Portfolio'
+        btn_txt='Update Project'
         ld_msg='Updating fields...'
       />
     </FormWrapper>
@@ -45,5 +45,5 @@ const EditPortfolio = () => {
 };
 
 export default withApollo(
-  withAuth(withParent(EditPortfolio), ['admin', 'instructor'])
+  withAuth(withParent(EditProject), ['admin', 'instructor'])
 );

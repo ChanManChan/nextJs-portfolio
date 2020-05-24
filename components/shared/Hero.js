@@ -56,7 +56,7 @@ const Hero = () => (
     <TitleInfo>
       <h1> Hey, I'm Nanda Gopal. Experienced full stack developer</h1>
       <h3> Check out my portfolio</h3>
-      <Link href='/portfolios' passHref>
+      <Link href='/projects' passHref>
         <TitleButton size='large' themeColor='#fff'>
           see my work
         </TitleButton>

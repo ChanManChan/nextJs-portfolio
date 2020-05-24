@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Bg_right, Bg_top, Bg_inner, Bg } from './Cuboid';
+import { Bg_right, Bg_top, Bg_inner, Bg } from '../styles/Cuboid';
 
 const Text = styled.div`
   /* "z-index" <- So that the button text comes up top */

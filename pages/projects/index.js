@@ -1,6 +1,6 @@
 import Card from '@/components/shared/Card';
 import styled from 'styled-components';
-import { useGetPortfolios } from '@/apollo/actions';
+import { useGetProjects } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withParent from '@/hoc/withParent';
@@ -21,13 +21,13 @@ const Container = styled.div`
   grid-row-gap: 3rem;
 `;
 
-const Portfolios = () => {
+const Projects = () => {
   // debugger;
   //! we dont need state because we are fetching data from server now onwards and rendering the HTML with the fetched data from server-side and sending it to the client.
   // const [portfolios, setPortfolios] = React.useState([]);
 
-  const { data } = useGetPortfolios();
-  const portfolios = (data && data.portfolios) || [];
+  const { data } = useGetProjects();
+  const projects = (data && data.projects) || [];
   //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards.
   // React.useEffect(() => {
   //   getPortfolios();
@@ -70,7 +70,7 @@ const Portfolios = () => {
 
   return (
     <Container>
-      {portfolios.map((p, i) => {
+      {projects.map((p, i) => {
         return (
           <Card
             key={i}
@@ -99,4 +99,4 @@ const Portfolios = () => {
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 
-export default withApollo(withParent(Portfolios), { getDataFromTree });
+export default withApollo(withParent(Projects), { getDataFromTree });

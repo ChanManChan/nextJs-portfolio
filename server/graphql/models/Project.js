@@ -1,10 +1,10 @@
 const promisesAll = require('promises-all');
 
 //! Pass Model from outside so that we can make this component reusable
-class Portfolio {
+class Project {
   //! Receive here an actual mongoose model not a graphql model
   constructor(model, user) {
-    //! Eg:- this.Model === Portfolio
+    //! Eg:- this.Model === Project
     this.Model = model;
     this.user = user;
     this.write_rights = ['admin', 'instructor'];
@@ -83,4 +83,4 @@ class Portfolio {
     }
   }
 }
-module.exports = Portfolio;
+module.exports = Project;

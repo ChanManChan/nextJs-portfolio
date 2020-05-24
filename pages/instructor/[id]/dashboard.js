@@ -3,7 +3,7 @@ import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import withParent from '@/hoc/withParent';
 import Card from '@/components/shared/Card';
-import { useGetUserPortfolios, useDeletePortfolio } from '@/apollo/actions';
+import { useGetUserProjects, useDeleteProject } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
 
 const Container = styled.div`
@@ -18,15 +18,15 @@ const PageFunction = styled.h1`
 `;
 
 const InstructorDashboard = () => {
-  const { data } = useGetUserPortfolios();
-  const [deletePortfolio] = useDeletePortfolio();
-  const userPortfolios = (data && data.userPortfolios) || [];
+  const { data } = useGetUserProjects();
+  const [deleteProject] = useDeleteProject();
+  const userProjects = (data && data.userProject) || [];
 
   return (
     <>
-      <PageFunction>Instructor Portfolio</PageFunction>
+      <PageFunction>Instructor Projects</PageFunction>
       <Container>
-        {userPortfolios.map((p, i) => (
+        {userProjects.map((p, i) => (
           <Card
             key={i}
             id={p._id}
@@ -34,14 +34,12 @@ const InstructorDashboard = () => {
             techStack={p.techStack}
             projectImage="url('/bg.jpeg')"
             buttonBg={p.theme}
-            as={`/portfolios/${p._id}/edit`}
+            as={`/projects/${p._id}/edit`}
             remove={() => {
               if (
-                window.confirm(
-                  `Permanently Delete Portfolio with ID: ${p._id}?`
-                )
+                window.confirm(`Permanently Delete Project with ID: ${p._id}?`)
               )
-                return deletePortfolio({ variables: { id: p._id } });
+                return deleteProject({ variables: { id: p._id } });
             }}
           />
         ))}

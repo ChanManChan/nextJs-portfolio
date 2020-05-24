@@ -59,7 +59,7 @@ const DropdownMenu = ({ user }) => (
       {user && (user.role === 'admin' || user.role === 'instructor') && (
         <>
           <MenuItem>
-            <Anchor href='/portfolios/new'>Create Portfolio</Anchor>
+            <Anchor href='/projects/new'>Add Project</Anchor>
           </MenuItem>
           <MenuItem>
             <Anchor

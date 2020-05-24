@@ -28,7 +28,7 @@ const validationSchemaRegister = yup.object({
   avatar: yup.mixed().required('Add a profile image'),
 });
 
-const validationSchemaPortfolio = yup.object({
+const validationSchemaProject = yup.object({
   title: yup.string().required('Please enter the title of your project'),
   techStack: yup
     .array()
@@ -44,5 +44,5 @@ const validationSchemaPortfolio = yup.object({
 module.exports = {
   validationSchemaSignIn,
   validationSchemaRegister,
-  validationSchemaPortfolio,
+  validationSchemaProject,
 };

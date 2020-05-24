@@ -32,7 +32,7 @@ const Anchor = styled.a`
 
 const checkLink = (link, as, children, action, props) =>
   link ? (
-    <Link href='/portfolios/[id]/edit' as={as} passHref>
+    <Link href='/projects/[id]/edit' as={as} passHref>
       <Anchor {...props}>{children}</Anchor>
     </Link>
   ) : (

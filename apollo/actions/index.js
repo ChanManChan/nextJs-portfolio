@@ -2,13 +2,13 @@ import { useQuery, useMutation, useLazyQuery } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 
 import {
-  GET_PORTFOLIOS,
-  GET_PORTFOLIO,
-  CREATE_PORTFOLIO,
-  UPDATE_PORTFOLIO,
-  DELETE_PORTFOLIO,
+  GET_PROJECTS,
+  GET_PROJECT,
+  CREATE_PROJECT,
+  UPDATE_PROJECT,
+  DELETE_PROJECT,
   FETCH_USER,
-  GET_USER_PORTFOLIOS,
+  GET_USER_PROJECTS,
   GET_TECH_STACK,
   SIGN_UP,
   SIGN_IN,
@@ -32,53 +32,51 @@ const shared_operations = {
 //! TECH_STACK------------------------------
 export const useFetchTech = () => useQuery(GET_TECH_STACK);
 
-//! PORTFOLIOS------------------------------
-export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
+//! PROJECTS------------------------------
+export const useGetProjects = () => useQuery(GET_PROJECTS);
 
-export const useGetUserPortfolios = () => useQuery(GET_USER_PORTFOLIOS);
+export const useGetUserProjects = () => useQuery(GET_USER_PROJECTS);
 
-export const useGetPortfolio = (options) => useQuery(GET_PORTFOLIO, options);
+export const useGetProject = (options) => useQuery(GET_PROJECT, options);
 
-export const useCreatePortfolio = () =>
-  useMutation(CREATE_PORTFOLIO, {
-    update(cache, { data: { createPortfolio } }) {
-      //! Get old portfolios from cache
-      const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
-      //! Update the cache with the recently created portfolio
+export const useCreateProject = () =>
+  useMutation(CREATE_PROJECT, {
+    update(cache, { data: { createProject } }) {
+      //! Get old projects from cache
+      const { projects } = cache.readQuery({ query: GET_PROJECTS });
+      //! Update the cache with the recently created projects
       cache.writeQuery({
-        query: GET_PORTFOLIOS,
-        data: { portfolios: [...portfolios, createPortfolio] },
+        query: GET_PROJECTS,
+        data: { projects: [...projects, createProject] },
       });
     },
     onError: (error) => shared_operations.onFail(error),
     onCompleted: () =>
-      shared_operations.onSuccess('Portfolio created successfully'),
+      shared_operations.onSuccess('Project created successfully'),
     context: {
       hasUpload: true,
     },
   });
 
 //! No additional changes are required for "updatePortfolio", so we dont need to update the cache, because the cache is updated automatically  for us and it will also update the view for us automatically so the view is re-rendered.
-export const useUpdatePortfolio = () =>
-  useMutation(UPDATE_PORTFOLIO, {
+export const useUpdateProject = () =>
+  useMutation(UPDATE_PROJECT, {
     onError: (error) => shared_operations.onFail(error),
     onCompleted: () =>
-      shared_operations.onSuccess('Portfolio updated successfully'),
+      shared_operations.onSuccess('Project updated successfully'),
     context: { hasUpload: true },
   });
 
-export const useDeletePortfolio = () =>
-  useMutation(DELETE_PORTFOLIO, {
-    update(cache, { data: { deletePortfolio } }) {
-      const { userPortfolios } = cache.readQuery({
-        query: GET_USER_PORTFOLIOS,
+export const useDeleteProject = () =>
+  useMutation(DELETE_PROJECT, {
+    update(cache, { data: { deleteProject } }) {
+      const { userProjects } = cache.readQuery({
+        query: GET_USER_PROJECTS,
       });
       cache.writeQuery({
-        query: GET_USER_PORTFOLIOS,
+        query: GET_USER_PROJECTS,
         data: {
-          userPortfolios: userPortfolios.filter(
-            (p) => p._id !== deletePortfolio
-          ),
+          userProjects: userProjects.filter((p) => p._id !== deleteProject),
         },
       });
     },

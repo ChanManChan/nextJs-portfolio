@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const GET_PORTFOLIO = gql`
-  query Portfolio($id: ID) {
-    portfolio(id: $id) {
+export const GET_PROJECT = gql`
+  query Project($id: ID) {
+    project(id: $id) {
       _id
       title
       techStack {
@@ -31,9 +31,9 @@ export const GET_TECH_STACK = gql`
   }
 `;
 
-export const GET_PORTFOLIOS = gql`
-  query Portfolios {
-    portfolios {
+export const GET_PROJECTS = gql`
+  query Projects {
+    projects {
       _id
       title
       techStack {
@@ -44,9 +44,9 @@ export const GET_PORTFOLIOS = gql`
   }
 `;
 
-export const GET_USER_PORTFOLIOS = gql`
-  query UserPortfolios {
-    userPortfolios {
+export const GET_USER_PROJECTS = gql`
+  query UserProjects {
+    userProjects {
       _id
       title
       techStack {
@@ -57,8 +57,8 @@ export const GET_USER_PORTFOLIOS = gql`
   }
 `;
 
-export const CREATE_PORTFOLIO = gql`
-  mutation CreatePortfolio(
+export const CREATE_PROJECT = gql`
+  mutation CreateProject(
     $title: String
     $techStack: [ID]
     $repoAPI: String
@@ -68,7 +68,7 @@ export const CREATE_PORTFOLIO = gql`
     $description: String
     $screenshots: [Upload!]!
   ) {
-    createPortfolio(
+    createProject(
       input: {
         title: $title
         techStack: $techStack
@@ -86,8 +86,8 @@ export const CREATE_PORTFOLIO = gql`
   }
 `;
 
-export const UPDATE_PORTFOLIO = gql`
-  mutation UpdatePortfolio(
+export const UPDATE_PROJECT = gql`
+  mutation UpdateProject(
     $id: ID
     $title: String
     $techStack: [ID]
@@ -98,7 +98,7 @@ export const UPDATE_PORTFOLIO = gql`
     $description: String
     $screenshots: [Upload!]!
   ) {
-    updatePortfolio(
+    updateProject(
       id: $id
       input: {
         title: $title
@@ -116,9 +116,9 @@ export const UPDATE_PORTFOLIO = gql`
   }
 `;
 
-export const DELETE_PORTFOLIO = gql`
-  mutation DeletePortfolio($id: ID) {
-    deletePortfolio(id: $id)
+export const DELETE_PROJECT = gql`
+  mutation DeleteProject($id: ID) {
+    deleteProject(id: $id)
   }
 `;
 

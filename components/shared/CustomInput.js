@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Bg_right, Bg_top, Bg_inner, Bg } from './Cuboid';
+import { Bg_right, Bg_top, Bg_inner, Bg } from '../styles/Cuboid';
 import { useField } from 'formik';
 
 const Input = styled.input.attrs((props) => ({

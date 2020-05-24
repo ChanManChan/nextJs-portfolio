@@ -17,7 +17,7 @@ const FlexWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ForumCategories = () => {
+const ParticularsCategories = () => {
   return (
     <Container>
       <PageFunction>Categories</PageFunction>
@@ -38,4 +38,4 @@ const ForumCategories = () => {
     </Container>
   );
 };
-export default withParent(ForumCategories);
+export default withParent(ParticularsCategories);

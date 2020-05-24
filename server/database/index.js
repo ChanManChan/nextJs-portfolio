@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const config = require('../config/dev');
-require('./models/portfolio');
+require('./models/project');
 require('./models/user');
+require('./models/particularsCategory');
+require('./models/course');
 require('./models/tech');
 
 exports.connectDB = () => {
