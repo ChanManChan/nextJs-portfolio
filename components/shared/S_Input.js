@@ -46,57 +46,40 @@ const Form = styled.form`
     &:before {
       width: 0%;
       height: 0%;
-      transform: translatex(0px) translatey(0px);
+      transform: translateX(0) translateY(0);
     }
-  }
-`;
-
-const Field = styled.div`
-  display: flex;
-  flex-flow: column-reverse;
-  margin: 1rem 3rem;
-`;
-
-const Input = styled.input`
-  padding: 1.45rem 2rem;
-  border: 0.4rem solid #fff;
-  margin: 0 1.5rem;
-  background-color: transparent !important;
-  appearance: none;
-  color: #fff;
-  transition: all 0.3s ease;
-  touch-action: manipulation;
-  /*important to override chrome's yellow background and black text autofill */
-  &:-webkit-autofill {
-    background-color: transparent !important;
-    -webkit-box-shadow: 0 0 0px 1000px #0ea8ec inset;
-    box-shadow: 0 0 0px 1000px #0ea8ec inset;
-    -webkit-text-fill-color: white !important;
-  }
-  &::placeholder {
-    color: #fff;
-  }
-  &:focus {
-    font-weight: bold;
-    outline: 0;
-    border: 0.6rem solid ${(p) => p.theme.primaryColor};
-  }
-  &::-webkit-input-placeholder {
-    opacity: 1;
-    transition: inherit;
-  }
-  &:focus::-webkit-input-placeholder {
-    opacity: 0;
   }
 `;
 
 //The touch-action CSS property sets how an element's region can be manipulated by a touchscreen user (for example, by zooming features built into the browser).
 //"touch-action: manipulation" <- Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom.
 
-const Label = styled.label`
+/*important to override chrome's yellow background and black text autofill */
+/* &:-webkit-autofill {
+    background-color: transparent !important;
+    box-shadow: 0 0 0 100rem #0ea8ec inset;
+    -webkit-box-shadow: 0 0 0 100rem #0ea8ec inset;
+    -webkit-text-fill-color: #fff !important;
+  } */
+
+const Input = styled.input`
+  height: 5rem;
+  font-size: 3rem;
+  padding: 0.65rem 1.2rem;
+  border: 0.4rem solid #fff;
+  margin: 1rem 3rem;
+  background-color: transparent !important;
+  appearance: none;
+  color: #fff;
   transition: all 0.3s ease;
   touch-action: manipulation;
-  opacity: 0;
+  &::placeholder {
+    color: #fff;
+  }
+  &:focus {
+    outline: 0;
+    border: 0.6rem solid ${(p) => p.theme.primaryColor};
+  }
 `;
 
 const Button = styled.button`
@@ -123,14 +106,8 @@ const Button = styled.button`
 const FooterInput = () => (
   <Footer className='slide-footer'>
     <Form>
-      <Field>
-        <Input placeholder='Topic title' />
-        <Label />
-      </Field>
-      <Field>
-        <Input placeholder='Details...' />
-        <Label />
-      </Field>
+      <Input placeholder='Topic title' />
+      <Input placeholder='Details...' />
       <Button type='submit'>Reply</Button>
       <Button type='button'>Cancel</Button>
     </Form>

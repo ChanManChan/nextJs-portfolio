@@ -4,10 +4,10 @@ const handleEvent = (children) => (e) => {
   const footer = document.querySelector('.slide-footer');
   if (footer.classList.contains('active')) {
     footer.classList.remove('active');
-    e.target.innerText = children;
+    e.target.innerHTML = children;
   } else {
     footer.classList.add('active');
-    e.target.innerText = 'Close X';
+    e.target.innerHTML = 'Close <i class="fas fa-window-close" />';
   }
 };
 

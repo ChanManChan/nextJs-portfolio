@@ -202,7 +202,7 @@ const PortfolioDetail = () => {
       <Deployed className='border'>
         <Border>
           <Link
-            large
+            size='large'
             themeColor='#757575'
             href={deployed}
             target='_blank'
@@ -215,7 +215,7 @@ const PortfolioDetail = () => {
       <Repository className='border'>
         <Border>
           <Link
-            large
+            size='large'
             themeColor='#757575'
             href={repoAPI}
             target='_blank'
@@ -224,7 +224,7 @@ const PortfolioDetail = () => {
             API
           </Link>
           <Link
-            large
+            size='large'
             themeColor='#757575'
             href={repoClient}
             target='_blank'
