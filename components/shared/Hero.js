@@ -10,6 +10,19 @@ const HeroContainer = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 2fr;
   position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    /*
+    * background: [ background-position | / |  background-size | background-repeat |  background-image ]
+    * background: 50% 90% / 10% no-repeat url("../../media/examples/firefox-logo.svg") */
+    background: center / cover no-repeat url('/dewey_greeting.png');
+    width: 20rem;
+    height: 20rem;
+    z-index: 1;
+  }
   &:after {
     content: '';
     background-color: rgba(0, 0, 0, 0.7);

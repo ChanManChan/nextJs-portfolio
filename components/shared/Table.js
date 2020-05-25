@@ -16,21 +16,27 @@ const TableWrapper = styled.div`
 `;
 
 const Head_cell = styled.th`
-  color: #fff;
+  color: #000;
   text-align: center;
-  padding: 0.8rem;
-  background: #4fc3a1;
+  padding: 1.5rem 0.5rem;
+  font-size: 2rem;
+  border: 0.3rem solid ${(p) => p.theme.primaryColor};
+  background: ${(p) => p.theme.primaryColor};
   &:nth-child(odd) {
     color: #fff;
-    background: #324960;
+    background: ${(p) => p.theme.tertiaryColor};
+    border: 0.3rem solid ${(p) => p.theme.primaryColor};
   }
 `;
 
 const Body_cell = styled.td`
   color: #000;
   text-align: center;
-  padding: 0.8rem;
-  border-right: 1px solid #cfd8dc;
+  padding: 1.5rem 0.5rem;
+  font-size: 2rem;
+  &:not(:last-child) {
+    border-right: 0.3rem solid ${(p) => p.theme.staticColor1};
+  }
 `;
 
 //! The border-collapse CSS property sets whether cells inside a <table> have shared or separate borders.
@@ -41,8 +47,7 @@ const Body_cell = styled.td`
 
 const Table = styled.table`
   border-radius: 0.2rem;
-  font-size: 1.2rem;
-  border: none;
+  border: 0.3rem solid ${(p) => p.theme.primaryColor};
   border-collapse: collapse;
   width: 100%;
   white-space: nowrap;
@@ -65,10 +70,6 @@ const Table = styled.table`
       ${Head_cell} {
         display: block;
         text-align: left;
-        border-bottom: 1px solid #f7f7f9;
-        &:last-child {
-          border-bottom: none;
-        }
       }
     }
     & > tbody {
