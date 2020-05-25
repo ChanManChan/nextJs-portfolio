@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
-const Card = styled.div`
+const Card = styled.a`
   flex: 0 1 calc(33.33% - 3rem);
   display: flex;
+  text-decoration: none;
   flex-flow: column wrap;
   color: #555bff;
   min-height: 9rem;
@@ -12,7 +14,6 @@ const Card = styled.div`
   box-shadow: 1rem -1rem 0 -0.3rem #fff, 1rem -1rem #1fc11b,
     2rem -2rem 0 -0.3rem #fff, 2rem -2rem #ff5555;
   transition: box-shadow 1s, top 1s, left 1s;
-  cursor: pointer;
   &:hover {
     box-shadow: 0 0 0 -0.3rem #fff, 0 0 #1fc11b, 0 0 0 -0.3rem #fff, 0 0 #ff5555;
   }
@@ -29,11 +30,13 @@ const Subtitle = styled.p`
   font-size: 1.4rem;
 `;
 
-const CategoryCard = ({ title, subtitle }) => (
-  <Card>
-    <Title>{title}</Title>
-    <Subtitle>{subtitle}</Subtitle>
-  </Card>
+const CategoryCard = ({ title, subtitle, href, as }) => (
+  <Link href={href} as={as} passHref>
+    <Card>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+    </Card>
+  </Link>
 );
 
 export default CategoryCard;

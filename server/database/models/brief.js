@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const courseSchema = new Schema(
+const briefSchema = new Schema(
   {
     title: String,
     slug: { type: String, unique: true, index: true },
@@ -11,8 +11,9 @@ const courseSchema = new Schema(
       ref: 'ParticularsCategory',
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
+    certificate_img: String,
   },
-  { timestamps: true, collection: 'courses' }
+  { timestamps: true, collection: 'briefs' }
 );
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = mongoose.model('Brief', briefSchema);

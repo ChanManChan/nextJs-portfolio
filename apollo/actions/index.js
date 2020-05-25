@@ -13,6 +13,8 @@ import {
   SIGN_UP,
   SIGN_IN,
   SIGN_OUT,
+  FETCH_PARTICULARS_CATEGORIES,
+  BRIEFS_BY_CATEGORY,
 } from '@/apollo/queries';
 
 const shared_operations = {
@@ -82,7 +84,7 @@ export const useDeleteProject = () =>
     },
   });
 
-//! AUTHENTICATION ----------------------------------
+//! AUTHENTICATION ------------------------------
 export const useSignUp = () =>
   useMutation(SIGN_UP, {
     onError: (error) => shared_operations.onFail(error),
@@ -112,3 +114,10 @@ export const useLazyFetchUser = () => useLazyQuery(FETCH_USER);
 export const useFetchUser = () => useQuery(FETCH_USER);
 
 export const useSignOut = () => useMutation(SIGN_OUT);
+
+//! PARTICULARS------------------------------
+export const useFetchParticularsCategories = () =>
+  useQuery(FETCH_PARTICULARS_CATEGORIES);
+
+export const useFetchBriefsByCategory = (options) =>
+  useQuery(BRIEFS_BY_CATEGORY, options);

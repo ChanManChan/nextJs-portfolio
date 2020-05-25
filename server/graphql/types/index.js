@@ -53,3 +53,35 @@ exports.authenticationTypes = `
     password: String!
   }
 `;
+
+exports.particularsTypes = `
+  type ParticularsCategory {
+    _id: ID
+    title: String
+    subTitle: String
+    slug: String
+  }
+
+  type Affiliated {
+    avatar: String
+    username: String
+    name: String
+  }
+
+  type Brief {
+    _id: ID
+    title: String
+    slug: String
+    content: [String]
+    particularsCategory: ParticularsCategory
+    user: Affiliated
+    createdAt: String
+  }
+
+  input BriefInput {
+    title: String
+    content: [String]
+    particularsCategory: ID
+    certificate_img: Upload
+  }
+`;

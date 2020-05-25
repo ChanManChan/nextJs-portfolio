@@ -5,7 +5,7 @@ const config = require('../config/dev');
 require('./models/project');
 require('./models/user');
 require('./models/particularsCategory');
-require('./models/course');
+require('./models/brief');
 require('./models/tech');
 
 exports.connectDB = () => {

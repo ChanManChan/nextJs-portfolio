@@ -168,3 +168,36 @@ export const SIGN_OUT = gql`
     signOut
   }
 `;
+
+//! PARTICULARS
+
+export const FETCH_PARTICULARS_CATEGORIES = gql`
+  query ParticularsCategories {
+    particularsCategories {
+      _id
+      title
+      subTitle
+      slug
+    }
+  }
+`;
+
+export const BRIEFS_BY_CATEGORY = gql`
+  query BriefsByCategory($slug: String) {
+    briefsByCategory(c_slug: $slug) {
+      _id
+      title
+      slug
+      content
+      user {
+        username
+        avatar
+      }
+      particularsCategory {
+        _id
+        title
+        slug
+      }
+    }
+  }
+`;

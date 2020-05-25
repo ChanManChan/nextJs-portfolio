@@ -7,15 +7,23 @@ const {
   techQueries,
   authenticationQueries,
   authenticationMutations,
+  particularsQueries,
+  particularsMutations,
 } = require('./resolvers');
 //! Types
-const { projectTypes, authenticationTypes } = require('./types');
+const {
+  projectTypes,
+  authenticationTypes,
+  particularsTypes,
+} = require('./types');
 //! Authentication
 const { buildAuthContext } = require('./context');
 //! GraphQl Models
 const Project = require('./models/Project');
 const User = require('./models/User');
 const Tech = require('./models/Tech');
+const ParticularsCategory = require('./models/ParticularsCategory');
+const Brief = require('./models/Brief');
 
 exports.createApolloServer = () => {
   //! Construct a schema using GRAPHQL schema language
@@ -25,18 +33,27 @@ exports.createApolloServer = () => {
   const typeDefs = gql`
     ${projectTypes}
     ${authenticationTypes}
+    ${particularsTypes}
+
     type Query {
       project(id: ID): Project
       projects: [Project]
-      techStack: [Tech]
       userProjects: [Project]
+
+      techStack: [Tech]
+
       user: User
+
+      particularsCategories: [ParticularsCategory]
+      briefsByCategory(c_slug: String): [Brief]
     }
 
     type Mutation {
       createProject(input: ProjectInput): Project
       updateProject(id: ID, input: ProjectInput): Project
       deleteProject(id: ID): ID
+
+      createBrief(input: BriefInput): Brief
 
       signUp(input: SignUpInput): String
       signIn(input: SignInInput): User
@@ -53,10 +70,12 @@ exports.createApolloServer = () => {
       ...projectQueries,
       ...techQueries,
       ...authenticationQueries,
+      ...particularsQueries,
     },
     Mutation: {
       ...projectMutations,
       ...authenticationMutations,
+      ...particularsMutations,
     },
   };
 
@@ -71,6 +90,10 @@ exports.createApolloServer = () => {
         Project: new Project(mongoose.model('Project'), req.user),
         User: new User(mongoose.model('User')),
         Tech: new Tech(mongoose.model('Tech')),
+        ParticularsCategory: new ParticularsCategory(
+          mongoose.model('ParticularsCategory')
+        ),
+        Brief: new Brief(mongoose.model('Brief'), req.user),
       },
     }),
   });

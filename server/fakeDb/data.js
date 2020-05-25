@@ -120,7 +120,7 @@ const data = {
       slug: 'academic-history',
     },
   ],
-  courses: [
+  briefs: [
     {
       title:
         'Modern React 16.8+ Including Hooks, Context API, Full Stack MERN ',

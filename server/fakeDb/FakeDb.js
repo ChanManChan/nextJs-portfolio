@@ -3,13 +3,13 @@ const {
   users,
   tech_util,
   particularsCategories,
-  courses,
+  briefs,
 } = require('./data');
 const Project = require('../database/models/project');
 const User = require('../database/models/user');
 const Tech = require('../database/models/tech');
 const ParticularsCategory = require('../database/models/particularsCategory');
-const Course = require('../database/models/course');
+const Brief = require('../database/models/brief');
 
 class FakeDb {
   async clean() {
@@ -17,14 +17,14 @@ class FakeDb {
     await Project.deleteMany({});
     await Tech.deleteMany({});
     await ParticularsCategory.deleteMany({});
-    await Course.deleteMany({});
+    await Brief.deleteMany({});
   }
   async exportData() {
     await User.create(users);
     await Project.create(projects);
     await Tech.create(tech_util);
     await ParticularsCategory.create(particularsCategories);
-    await Course.create(courses);
+    await Brief.create(briefs);
   }
   async populate() {
     await this.clean();

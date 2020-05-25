@@ -51,3 +51,22 @@ exports.authenticationMutations = {
     return ctx.models.User.signOut(ctx);
   },
 };
+
+exports.particularsQueries = {
+  particularsCategories: (_, _a, ctx) => {
+    return ctx.models.ParticularsCategory.fetchAll();
+  },
+  briefsByCategory: async (_, { c_slug }, ctx) => {
+    const particularsCategory = await ctx.models.ParticularsCategory.fetchBySlug(
+      c_slug
+    );
+    if (!particularsCategory) throw new Error('Category could not be found');
+    else return ctx.models.Brief.fetchAllByCategory(particularsCategory._id);
+  },
+};
+
+exports.particularsMutations = {
+  createBrief: async (_, { input }, ctx) => {
+    return await ctx.models.Brief.create(input);
+  },
+};

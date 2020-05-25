@@ -18,14 +18,13 @@ class User {
 
   async signUp(reg_Data) {
     try {
-      const resultSecure_URL = await require('../../middlewares/cloudinary').upload_cloudinary(
-        reg_Data.avatar
-      );
       const mutated_Data = {
         email: reg_Data.email,
         username: reg_Data.username,
         password: reg_Data.password,
-        avatar: resultSecure_URL,
+        avatar: await require('../../middlewares/cloudinary').upload_cloudinary(
+          reg_Data.avatar
+        ),
       };
       return await this.Model.create(mutated_Data);
     } catch (e) {

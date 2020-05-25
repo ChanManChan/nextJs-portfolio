@@ -41,7 +41,11 @@
     "react-dom": "16.13.1",
     "react-dropzone": "^11.0.1",
     "react-toastify": "^6.0.4",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
+    "slugify": "^1.4.0",
     "styled-components": "^5.1.0",
+    "unique-slug": "^2.0.2",
     "yup": "^0.28.5"
   },
   "devDependencies": {
