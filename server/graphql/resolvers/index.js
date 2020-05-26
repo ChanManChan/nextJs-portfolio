@@ -67,6 +67,23 @@ exports.particularsQueries = {
 
 exports.particularsMutations = {
   createBrief: async (_, { input }, ctx) => {
+    input.particularsCategory = (
+      await ctx.models.ParticularsCategory.fetchBySlug(
+        input.particularsCategory
+      )
+    )._id;
     return await ctx.models.Brief.create(input);
+  },
+};
+
+exports.topicQueries = {
+  topics: (_, _a, ctx) => {
+    return ctx.models.Topic.fetchAll();
+  },
+};
+
+exports.topicMutations = {
+  createTopic: async (_, { input }, ctx) => {
+    return await ctx.models.Topic.create(input);
   },
 };

@@ -7,6 +7,7 @@ require('./models/user');
 require('./models/particularsCategory');
 require('./models/brief');
 require('./models/tech');
+require('./models/topic');
 
 exports.connectDB = () => {
   mongoose.connect(

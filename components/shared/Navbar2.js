@@ -5,7 +5,7 @@ import Menu from './Menu';
 const Navbar2 = () => {
   const { pathname } = useRouter();
   return (
-    <Menu columns={3}>
+    <Menu columns={4}>
       <Anchor href='/projects' isActive={pathname === '/projects'}>
         Projects
       </Anchor>
@@ -15,6 +15,13 @@ const Navbar2 = () => {
         justify='start'
       >
         Particulars
+      </Anchor>
+      <Anchor
+        href='/connect'
+        isActive={pathname === '/connect'}
+        justify='start'
+      >
+        Connect
       </Anchor>
       <Anchor href='/cv' isActive={pathname === '/cv'} justify='start'>
         Cv

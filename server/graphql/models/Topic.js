@@ -1,29 +1,23 @@
 const slugify = require('slugify');
 const uniqueSlug = require('unique-slug');
 
-class Brief {
+class Topic {
   constructor(model, user) {
     this.Model = model;
     this.user = user;
   }
-  fetchAllByCategory(c_ID) {
-    return this.Model.find({ particularsCategory: c_ID })
-      .populate('user')
-      .populate('particularsCategory');
+  fetchAll() {
+    return this.Model.find({}).populate('user');
   }
   async _create(data) {
-    return this.Model.findById((await this.Model.create(data))._id)
-      .populate('user')
-      .populate('particularsCategory');
+    return this.Model.findById((await this.Model.create(data))._id).populate(
+      'user'
+    );
   }
   async create(t_data) {
     if (!this.user) throw new Error('Not Authorized');
     else {
       t_data.user = this.user;
-      t_data.certificate_img = await require('../../middlewares/cloudinary').upload_cloudinary(
-        t_data.certificate_img
-      );
-      t_data.content = t_data.content.split(', ');
       t_data.slug = slugify(t_data.title, {
         replacement: '-',
         remove: undefined,
@@ -43,4 +37,4 @@ class Brief {
   }
 }
 
-module.exports = Brief;
+module.exports = Topic;

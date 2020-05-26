@@ -180,6 +180,29 @@ const data = {
       user: user1Id,
     },
   ],
+  topics: [
+    {
+      title: 'Ways to Contact Me',
+      slug: 'contact-me',
+      content:
+        "You can either contact me through my email address, which is nandagopalgllallu@gmail.com [or] through the inbuilt communication facility of this application. Just SignUp and chain your queries in this thread, I'll be constantly monitoring it.",
+      user: user1Id,
+    },
+    {
+      title: 'Social presence',
+      slug: 'social-presence',
+      content:
+        "I've a minimal social presence overall. But for the purposes of expanding my reach, I've created Facebook and Linkedin accounts.",
+      user: user1Id,
+    },
+    {
+      title: 'Location history',
+      slug: 'location-history',
+      content:
+        "I've travelled across India for various reasons (Academic and otherwise). My last IT job was located in Kolkata, West Bengal. I'm currently residing in Trichy, Tamil Nadu.",
+      user: user1Id,
+    },
+  ],
 };
 
 module.exports = data;

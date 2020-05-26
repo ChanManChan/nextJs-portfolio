@@ -9,12 +9,15 @@ const {
   authenticationMutations,
   particularsQueries,
   particularsMutations,
+  topicQueries,
+  topicMutations,
 } = require('./resolvers');
 //! Types
 const {
   projectTypes,
   authenticationTypes,
   particularsTypes,
+  topicTypes,
 } = require('./types');
 //! Authentication
 const { buildAuthContext } = require('./context');
@@ -24,6 +27,7 @@ const User = require('./models/User');
 const Tech = require('./models/Tech');
 const ParticularsCategory = require('./models/ParticularsCategory');
 const Brief = require('./models/Brief');
+const Topic = require('./models/Topic');
 
 exports.createApolloServer = () => {
   //! Construct a schema using GRAPHQL schema language
@@ -34,6 +38,7 @@ exports.createApolloServer = () => {
     ${projectTypes}
     ${authenticationTypes}
     ${particularsTypes}
+    ${topicTypes}
 
     type Query {
       project(id: ID): Project
@@ -46,6 +51,8 @@ exports.createApolloServer = () => {
 
       particularsCategories: [ParticularsCategory]
       briefsByCategory(c_slug: String): [Brief]
+
+      topics: [Topic]
     }
 
     type Mutation {
@@ -58,6 +65,8 @@ exports.createApolloServer = () => {
       signUp(input: SignUpInput): String
       signIn(input: SignInInput): User
       signOut: Boolean
+
+      createTopic(input: TopicInput): Topic
     }
   `;
 
@@ -71,11 +80,13 @@ exports.createApolloServer = () => {
       ...techQueries,
       ...authenticationQueries,
       ...particularsQueries,
+      ...topicQueries,
     },
     Mutation: {
       ...projectMutations,
       ...authenticationMutations,
       ...particularsMutations,
+      ...topicMutations,
     },
   };
 
@@ -94,6 +105,7 @@ exports.createApolloServer = () => {
           mongoose.model('ParticularsCategory')
         ),
         Brief: new Brief(mongoose.model('Brief'), req.user),
+        Topic: new Topic(mongoose.model('Topic'), req.user),
       },
     }),
   });

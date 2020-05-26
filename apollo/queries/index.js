@@ -82,6 +82,10 @@ export const CREATE_PROJECT = gql`
     ) {
       _id
       title
+      techStack {
+        name
+      }
+      theme
     }
   }
 `;
@@ -197,6 +201,66 @@ export const BRIEFS_BY_CATEGORY = gql`
         _id
         title
         slug
+      }
+    }
+  }
+`;
+
+export const CREATE_BRIEF = gql`
+  mutation CreateBrief(
+    $title: String
+    $content: String
+    $particularsCategory: String
+    $certificate_img: Upload!
+  ) {
+    createBrief(
+      input: {
+        title: $title
+        content: $content
+        particularsCategory: $particularsCategory
+        certificate_img: $certificate_img
+      }
+    ) {
+      _id
+      title
+      slug
+      content
+      user {
+        username
+        avatar
+      }
+      particularsCategory {
+        _id
+        title
+        slug
+      }
+    }
+  }
+`;
+
+export const CREATE_TOPIC = gql`
+  mutation CreateTopic($title: String!, $content: String!) {
+    createTopic(input: { title: $title, content: $content }) {
+      _id
+      title
+      content
+      user {
+        username
+        avatar
+      }
+    }
+  }
+`;
+
+export const FETCH_TOPICS = gql`
+  query Topics {
+    topics {
+      _id
+      title
+      content
+      user {
+        username
+        avatar
       }
     }
   }

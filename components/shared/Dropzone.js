@@ -26,7 +26,12 @@ const Dropzone = (props) => {
   return (
     <div {...getRootProps({ className: 'dropzone' })}>
       <input {...getInputProps()} />
-      <Button type='button' loading={props.loading} onClick={open}>
+      <Button
+        className='dropzone--btn'
+        type='button'
+        loading={props.loading}
+        onClick={open}
+      >
         Open File Dialog
       </Button>
     </div>

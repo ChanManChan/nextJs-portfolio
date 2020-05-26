@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
   z-index: 100;
   top: 0;
   display: grid;
-  grid-template-columns: 30% auto 30%;
+  grid-template-columns: 35% auto 30%;
   justify-items: center;
   align-items: center;
   height: 7rem;

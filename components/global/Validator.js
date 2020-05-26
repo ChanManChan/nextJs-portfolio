@@ -41,8 +41,27 @@ const validationSchemaProject = yup.object({
   description: yup.string().required('Describe your project'),
 });
 
+const validationSchemaBrief = yup.object({
+  title: yup.string().required('Brief title cannot be null'),
+  content: yup
+    .string()
+    .required('Mention the concepts covered in CSV format')
+    .matches(
+      /^([A-Za-z1-9][A-Za-z0-9]*,[ ])*[A-Za-z1-9][A-Za-z0-9]*$/,
+      'Must be in CSV format'
+    ),
+  certificate_img: yup.mixed().required('Provide a certificate'),
+});
+
+const validationSchemaTopic = yup.object({
+  title: yup.string().required('Topic title is necessary'),
+  content: yup.string().required('Elaborate please'),
+});
+
 module.exports = {
   validationSchemaSignIn,
   validationSchemaRegister,
   validationSchemaProject,
+  validationSchemaBrief,
+  validationSchemaTopic,
 };

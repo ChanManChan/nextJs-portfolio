@@ -15,6 +15,9 @@ import {
   SIGN_OUT,
   FETCH_PARTICULARS_CATEGORIES,
   BRIEFS_BY_CATEGORY,
+  CREATE_BRIEF,
+  FETCH_TOPICS,
+  CREATE_TOPIC,
 } from '@/apollo/queries';
 
 const shared_operations = {
@@ -44,13 +47,15 @@ export const useGetProject = (options) => useQuery(GET_PROJECT, options);
 export const useCreateProject = () =>
   useMutation(CREATE_PROJECT, {
     update(cache, { data: { createProject } }) {
-      //! Get old projects from cache
-      const { projects } = cache.readQuery({ query: GET_PROJECTS });
-      //! Update the cache with the recently created projects
-      cache.writeQuery({
-        query: GET_PROJECTS,
-        data: { projects: [...projects, createProject] },
-      });
+      try {
+        //! Get old projects from cache
+        const { projects } = cache.readQuery({ query: GET_PROJECTS });
+        //! Update the cache with the recently created projects
+        cache.writeQuery({
+          query: GET_PROJECTS,
+          data: { projects: [...projects, createProject] },
+        });
+      } catch (e) {}
     },
     onError: (error) => shared_operations.onFail(error),
     onCompleted: () =>
@@ -121,3 +126,41 @@ export const useFetchParticularsCategories = () =>
 
 export const useFetchBriefsByCategory = (options) =>
   useQuery(BRIEFS_BY_CATEGORY, options);
+
+export const useCreateBrief = () =>
+  useMutation(CREATE_BRIEF, {
+    update(cache, { data: { createBrief } }) {
+      try {
+        const { briefsByCategory } = cache.readQuery({
+          query: BRIEFS_BY_CATEGORY,
+          variables: { slug: createBrief.particularsCategory.slug },
+        });
+        cache.writeQuery({
+          query: BRIEFS_BY_CATEGORY,
+          data: { briefsByCategory: [...briefsByCategory, createBrief] },
+          variables: { slug: createBrief.particularsCategory.slug },
+        });
+      } catch (e) {}
+    },
+    context: {
+      hasUpload: true,
+    },
+  });
+
+//! TOPICS------------------------------
+export const useFetchAllTopics = () => useQuery(FETCH_TOPICS);
+
+export const useCreateTopic = () =>
+  useMutation(CREATE_TOPIC, {
+    update(cache, { data: { createTopic } }) {
+      try {
+        const { topics } = cache.readQuery({ query: FETCH_TOPICS });
+        cache.writeQuery({
+          query: FETCH_TOPICS,
+          data: { topics: [...topics, createTopic] },
+        });
+      } catch (e) {
+        debugger;
+      }
+    },
+  });

@@ -1,5 +1,9 @@
 import withParent from '@/hoc/withParent';
-import { useFetchBriefsByCategory } from '@/apollo/actions';
+import {
+  useFetchBriefsByCategory,
+  useFetchUser,
+  useCreateBrief,
+} from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { useRouter } from 'next/router';
@@ -7,9 +11,12 @@ import styled from 'styled-components';
 import Table from '@/components/shared/Table';
 import V_Menu from '@/components/shared/V_Menu';
 import Button from '@/components/shared/ShimmerButton';
+import FooterInput from '@/components/forms/S_Input';
+import B_Button from '@/components/shared/F_Button';
+import { toast } from 'react-toastify';
 
 const PageFunction = styled.h1`
-  margin: 0 0 10rem;
+  margin: 0 0 5rem;
   font-size: 3rem;
 `;
 const Body_cell = styled.td.attrs({ className: 'body--cell' })`
@@ -35,18 +42,63 @@ const FSL_Container = styled.div`
   width: 100%;
 `;
 
-const Topics = () => {
+const useInitialData = () => {
   const router = useRouter();
+  const slug = router.query.slug;
   const { data } = useFetchBriefsByCategory({
-    variables: { slug: router.query.slug },
+    variables: { slug },
   });
-
+  const { data: u_data } = useFetchUser();
   const s_Briefs = (data && data.briefsByCategory) || [];
+  const user = (u_data && u_data.user) || null;
   const title =
     (s_Briefs.length > 0 && s_Briefs[1].particularsCategory.title) || '';
+
+  return {
+    title,
+    user,
+    s_Briefs,
+    slug,
+  };
+};
+
+const handleCreateBrief = (slug, createBrief) => async (b_data, resetForm) => {
+  b_data.particularsCategory = slug;
+  await createBrief({ variables: b_data });
+  toast.success('Brief created successfully', {
+    position: toast.POSITION.BOTTOM_LEFT,
+  });
+  const footer = document.querySelector('.slide-footer');
+  if (footer.classList.contains('active')) {
+    footer.classList.remove('active');
+    document.querySelector('.post--btn').innerText = 'Add a Brief';
+  }
+  resetForm();
+};
+
+const Briefs = () => {
+  const { s_Briefs, title, user, slug } = useInitialData();
+  const [createBrief, { loading }] = useCreateBrief();
+
   return (
     <>
       <PageFunction>{title}</PageFunction>
+      {user ? (
+        <>
+          <B_Button size='medium' themeColor='#444'>
+            Add a Brief
+          </B_Button>
+          <FooterInput
+            plc_Title='Enter brief title'
+            plc_Content='Enter concepts covered in CSV fashion'
+            parent_fn={handleCreateBrief(slug, createBrief)}
+            loading={loading}
+            brief
+          />
+        </>
+      ) : (
+        <i>Log in to create a brief</i>
+      )}
       <Table col_1='Course' col_2='Concepts' col_3='Certificate'>
         {s_Briefs.map((b, i) => (
           <tr key={i}>
@@ -73,4 +125,4 @@ const Topics = () => {
   );
 };
 
-export default withApollo(withParent(Topics), { getDataFromTree });
+export default withApollo(withParent(Briefs), { getDataFromTree });

@@ -80,8 +80,23 @@ exports.particularsTypes = `
 
   input BriefInput {
     title: String
-    content: [String]
-    particularsCategory: ID
-    certificate_img: Upload
+    content: String
+    particularsCategory: String
+    certificate_img: Upload!
+  }
+`;
+
+exports.topicTypes = `
+  type Topic {
+    _id: ID
+    title: String
+    content: String
+    user: Affiliated
+    slug: String
+  }
+
+  input TopicInput {
+    title: String!
+    content: String!
   }
 `;
