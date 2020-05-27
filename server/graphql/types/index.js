@@ -93,10 +93,22 @@ exports.topicTypes = `
     content: String
     user: Affiliated
     slug: String
+    createdAt: String
   }
 
   input TopicInput {
     title: String!
     content: String!
+  }
+
+  type Post {
+    _id: ID
+    content: String
+    slug: String
+    fullSlug: String
+    topic: Topic
+    user: Affiliated
+    parent: Post
+    createdAt: String
   }
 `;

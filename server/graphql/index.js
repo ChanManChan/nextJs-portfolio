@@ -28,6 +28,7 @@ const Tech = require('./models/Tech');
 const ParticularsCategory = require('./models/ParticularsCategory');
 const Brief = require('./models/Brief');
 const Topic = require('./models/Topic');
+const Post = require('./models/Post');
 
 exports.createApolloServer = () => {
   //! Construct a schema using GRAPHQL schema language
@@ -53,6 +54,9 @@ exports.createApolloServer = () => {
       briefsByCategory(c_slug: String): [Brief]
 
       topics: [Topic]
+      topicBySlug(t_slug: String): Topic
+
+      postsByTopic(t_slug: String): [Post]
     }
 
     type Mutation {
@@ -106,6 +110,7 @@ exports.createApolloServer = () => {
         ),
         Brief: new Brief(mongoose.model('Brief'), req.user),
         Topic: new Topic(mongoose.model('Topic'), req.user),
+        Post: new Post(mongoose.model('Post'), req.user),
       },
     }),
   });

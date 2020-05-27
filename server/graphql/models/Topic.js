@@ -9,6 +9,9 @@ class Topic {
   fetchAll() {
     return this.Model.find({}).populate('user');
   }
+  fetchBySlug(slug) {
+    return this.Model.findOne({ slug }).populate('user');
+  }
   async _create(data) {
     return this.Model.findById((await this.Model.create(data))._id).populate(
       'user'

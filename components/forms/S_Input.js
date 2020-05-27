@@ -6,6 +6,7 @@ import Disabled_State from '@/components/styles/Disabled_State';
 import {
   validationSchemaBrief,
   validationSchemaTopic,
+  validationSchemaPost,
 } from '@/components/global/Validator';
 
 const Footer = styled.footer`
@@ -134,12 +135,16 @@ const Button = styled.button`
   }
 `;
 
-const switchInit = (brief) =>
+const switchInit = (brief, post) =>
   brief
     ? {
         title: '',
         content: '',
         certificate_img: null,
+      }
+    : post
+    ? {
+        content: '',
       }
     : {
         title: '',
@@ -152,11 +157,18 @@ const FooterInput = ({
   parent_fn,
   loading,
   brief = false,
+  post = false,
 }) => (
   <Footer className='slide-footer'>
     <Formik
-      initialValues={switchInit(brief)}
-      validationSchema={brief ? validationSchemaBrief : validationSchemaTopic}
+      initialValues={switchInit(brief, post)}
+      validationSchema={
+        brief
+          ? validationSchemaBrief
+          : post
+          ? validationSchemaPost
+          : validationSchemaTopic
+      }
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         parent_fn(data, resetForm);
@@ -175,13 +187,15 @@ const FooterInput = ({
                   fieldKey='certificate_img'
                 />
               )}
-              <Field
-                type='text'
-                name='title'
-                loading={`${loading}`}
-                placeholder={plc_Title}
-                as={Vul_Input}
-              />
+              {!post && (
+                <Field
+                  type='text'
+                  name='title'
+                  loading={`${loading}`}
+                  placeholder={plc_Title}
+                  as={Vul_Input}
+                />
+              )}
               <Field
                 type='text'
                 name='content'
@@ -199,8 +213,11 @@ const FooterInput = ({
                   if (footer.classList.contains('active')) {
                     footer.classList.remove('active');
                     document.querySelector('.post--btn').innerText = `Add a ${
-                      brief ? 'Brief' : 'Topic'
+                      brief ? 'Brief' : post ? 'Post' : 'Topic'
                     }`;
+                    const nl_list = document.querySelectorAll('.nlead--btn');
+                    for (let i = 0; i < nl_list.length; i++)
+                      nl_list[i].innerText = 'Reply';
                   }
                 }}
               >
@@ -209,7 +226,7 @@ const FooterInput = ({
             </Container>
           </Form>
           <Loading
-            msg={`Creating new ${brief ? 'brief' : 'topic'}...`}
+            msg={`Creating new ${brief ? 'brief' : post ? 'post' : 'topic'}...`}
             loading={`${loading}`}
           />
         </Disabled_State>

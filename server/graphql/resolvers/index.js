@@ -80,6 +80,14 @@ exports.topicQueries = {
   topics: (_, _a, ctx) => {
     return ctx.models.Topic.fetchAll();
   },
+  topicBySlug: (_, { t_slug }, ctx) => {
+    return ctx.models.Topic.fetchBySlug(t_slug);
+  },
+  postsByTopic: async (_, { t_slug }, ctx) => {
+    return ctx.models.Post.fetchAllByTopic(
+      (await ctx.models.Topic.fetchBySlug(t_slug))._id
+    );
+  },
 };
 
 exports.topicMutations = {

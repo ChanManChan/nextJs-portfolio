@@ -18,6 +18,8 @@ import {
   CREATE_BRIEF,
   FETCH_TOPICS,
   CREATE_TOPIC,
+  TOPIC_BY_SLUG,
+  POSTS_BY_TOPIC,
 } from '@/apollo/queries';
 
 const shared_operations = {
@@ -164,3 +166,9 @@ export const useCreateTopic = () =>
       }
     },
   });
+
+export const useFetchTopicBySlug = (options) =>
+  useQuery(TOPIC_BY_SLUG, options);
+
+export const useFetchPostsByTopic = (options) =>
+  useQuery(POSTS_BY_TOPIC, options);

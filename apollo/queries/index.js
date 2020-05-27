@@ -1,5 +1,14 @@
 import gql from 'graphql-tag';
 
+const p_server_Res = `
+  _id
+  title
+  techStack {
+    name
+  }
+  theme
+`;
+
 export const GET_PROJECT = gql`
   query Project($id: ID) {
     project(id: $id) {
@@ -34,12 +43,7 @@ export const GET_TECH_STACK = gql`
 export const GET_PROJECTS = gql`
   query Projects {
     projects {
-      _id
-      title
-      techStack {
-        name
-      }
-      theme
+     ${p_server_Res}
     }
   }
 `;
@@ -47,12 +51,7 @@ export const GET_PROJECTS = gql`
 export const GET_USER_PROJECTS = gql`
   query UserProjects {
     userProjects {
-      _id
-      title
-      techStack {
-        name
-      }
-      theme
+      ${p_server_Res}
     }
   }
 `;
@@ -80,12 +79,7 @@ export const CREATE_PROJECT = gql`
         screenshots: $screenshots
       }
     ) {
-      _id
-      title
-      techStack {
-        name
-      }
-      theme
+      ${p_server_Res}
     }
   }
 `;
@@ -145,13 +139,17 @@ export const SIGN_UP = gql`
   }
 `;
 
+const a_server_Res = `
+    _id
+    username
+    role
+    avatar
+`;
+
 export const SIGN_IN = gql`
   mutation SignIn($email: String!, $password: String!) {
     signIn(input: { email: $email, password: $password }) {
-      _id
-      username
-      role
-      avatar
+        ${a_server_Res}
     }
   }
 `;
@@ -159,10 +157,7 @@ export const SIGN_IN = gql`
 export const FETCH_USER = gql`
   query User {
     user {
-      _id
-      username
-      role
-      avatar
+      ${a_server_Res}
     }
   }
 `;
@@ -186,22 +181,26 @@ export const FETCH_PARTICULARS_CATEGORIES = gql`
   }
 `;
 
-export const BRIEFS_BY_CATEGORY = gql`
-  query BriefsByCategory($slug: String) {
-    briefsByCategory(c_slug: $slug) {
+const b_server_Res = `
+    _id
+    title
+    slug
+    content
+    user {
+      username
+      avatar
+    }
+    particularsCategory {
       _id
       title
       slug
-      content
-      user {
-        username
-        avatar
-      }
-      particularsCategory {
-        _id
-        title
-        slug
-      }
+    }
+`;
+
+export const BRIEFS_BY_CATEGORY = gql`
+  query BriefsByCategory($slug: String) {
+    briefsByCategory(c_slug: $slug) {
+      ${b_server_Res}
     }
   }
 `;
@@ -221,33 +220,27 @@ export const CREATE_BRIEF = gql`
         certificate_img: $certificate_img
       }
     ) {
-      _id
-      title
-      slug
-      content
-      user {
-        username
-        avatar
-      }
-      particularsCategory {
-        _id
-        title
-        slug
-      }
+      ${b_server_Res}
     }
   }
+`;
+
+const t_server_Res = `
+  _id
+  title
+  content
+  slug
+  user {
+    username
+    avatar
+  }
+  createdAt
 `;
 
 export const CREATE_TOPIC = gql`
   mutation CreateTopic($title: String!, $content: String!) {
     createTopic(input: { title: $title, content: $content }) {
-      _id
-      title
-      content
-      user {
-        username
-        avatar
-      }
+      ${t_server_Res}
     }
   }
 `;
@@ -255,13 +248,41 @@ export const CREATE_TOPIC = gql`
 export const FETCH_TOPICS = gql`
   query Topics {
     topics {
-      _id
-      title
-      content
-      user {
-        username
-        avatar
-      }
+      ${t_server_Res}
+    }
+  }
+`;
+
+export const TOPIC_BY_SLUG = gql`
+  query TopicBySlug($slug: String) {
+    topicBySlug(t_slug: $slug) {
+      ${t_server_Res}
+    }
+  }
+`;
+
+const pst_server_Res = `
+  _id
+  content
+  slug
+  createdAt
+  user {
+    username
+    avatar
+  }
+  parent {
+    content
+    user {
+      username
+      avatar
+    }
+  }
+`;
+
+export const POSTS_BY_TOPIC = gql`
+  query PostsByTopic($slug: String) {
+    postsByTopic(t_slug: $slug) {
+      ${pst_server_Res}
     }
   }
 `;

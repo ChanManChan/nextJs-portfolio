@@ -11,6 +11,7 @@ import Table from '@/components/shared/Table';
 import FooterInput from '@/components/forms/S_Input';
 import B_Button from '@/components/shared/F_Button';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const PageFunction = styled.h1`
   margin: 0 0 5rem;
@@ -42,6 +43,7 @@ const Body_cell = styled.td.attrs({ className: 'body--cell' })`
 `;
 
 const useInitialData = () => {
+  const router = useRouter();
   const { data } = useFetchAllTopics();
   const { data: u_data } = useFetchUser();
   const topics = (data && data.topics) || [];
@@ -49,6 +51,7 @@ const useInitialData = () => {
   return {
     user,
     topics,
+    router,
   };
 };
 
@@ -74,8 +77,11 @@ const TR = styled.tr`
 `;
 
 const Topics = () => {
-  const { topics, user } = useInitialData();
+  const { topics, user, router } = useInitialData();
   const [createTopic, { loading }] = useCreateTopic();
+
+  const redirectToTopic = (slug) =>
+    router.push('/connect/topics/[slug]', `/connect/topics/${slug}`);
 
   return (
     <>
@@ -97,7 +103,7 @@ const Topics = () => {
       )}
       <Table col_1='Topic' col_2='Content' col_3='Author'>
         {topics.map((t, i) => (
-          <TR key={i} onClick={() => alert('Testing row click')}>
+          <TR key={i} onClick={() => redirectToTopic(t.slug)}>
             <Body_cell topic>{t.title}</Body_cell>
             <Body_cell>{t.content}</Body_cell>
             <Body_cell>{t.user.username}</Body_cell>

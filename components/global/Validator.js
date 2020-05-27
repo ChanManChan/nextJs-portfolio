@@ -58,10 +58,15 @@ const validationSchemaTopic = yup.object({
   content: yup.string().required('Elaborate please'),
 });
 
+const validationSchemaPost = yup.object({
+  content: yup.string().required('Post cannot be null'),
+});
+
 module.exports = {
   validationSchemaSignIn,
   validationSchemaRegister,
   validationSchemaProject,
   validationSchemaBrief,
   validationSchemaTopic,
+  validationSchemaPost,
 };
