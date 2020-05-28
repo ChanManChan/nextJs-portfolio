@@ -16,6 +16,7 @@ const formerly_active_and_keepAlive = ({
     for (let i = 0; i < nl_list.length; i++)
       if (nl_list[i] != e.target) nl_list[i].innerText = 'Reply';
     if (e.target != lead_btn) lead_btn.innerText = 'Add a Post';
+    else s_state();
   } else {
     e.target.innerText = children;
     footer.classList.remove('active');

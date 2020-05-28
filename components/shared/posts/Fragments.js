@@ -1,6 +1,6 @@
-import { fromNow } from '@/utils/functions';
-import F_Button from '../F_Button';
 import styled from 'styled-components';
+import { fromNow } from '@/utils/functions';
+import F_Button from '../buttons/F_Button';
 import { Summary, Data, Details, img_detail } from './styles';
 
 const Second_lvl = styled.div`
@@ -23,7 +23,14 @@ const Second_lvl = styled.div`
 `;
 
 //! ORIGINAL POST
-export const Lead = ({ username, createdAt, avatar, content, auth }) => (
+export const Lead = ({
+  username,
+  createdAt,
+  avatar,
+  content,
+  auth,
+  setReplyTo,
+}) => (
   <Details className='lead' open>
     <Summary>
       {username}
@@ -34,7 +41,12 @@ export const Lead = ({ username, createdAt, avatar, content, auth }) => (
       <p>{content}</p>
     </Data>
     {auth ? (
-      <F_Button ext_class='reply--btn' size='small' autoTheme>
+      <F_Button
+        ext_class='reply--btn'
+        size='small'
+        autoTheme
+        s_state={() => setReplyTo({})}
+      >
         Add a Post
       </F_Button>
     ) : (

@@ -1,5 +1,5 @@
 import { useDropzone } from 'react-dropzone';
-import Button from './UploadFileButton';
+import Button from './buttons/UploadFileButton';
 import { toast } from 'react-toastify';
 
 const Dropzone = (props) => {

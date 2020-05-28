@@ -1,7 +1,7 @@
 import CustomInput from '@/components/shared/CustomInput';
 import { Field, Formik, Form } from 'formik';
 import { validationSchemaSignIn } from '@/components/global/Validator';
-import CustomButton from '@/components/shared/CustomButton';
+import CustomButton from '@/components/shared/buttons/CustomButton';
 import Disabled_State from '@/components/styles/Disabled_State';
 import Loading from '@/components/styles/Loading';
 

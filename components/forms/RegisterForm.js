@@ -2,7 +2,7 @@ import { Field, Formik, Form } from 'formik';
 import CustomInput from '@/components/shared/CustomInput';
 import Dropzone from '@/components/shared/Dropzone';
 import { validationSchemaRegister } from '@/components/global/Validator';
-import CustomButton from '@/components/shared/CustomButton';
+import CustomButton from '@/components/shared/buttons/CustomButton';
 import Loading from '@/components/styles/Loading';
 import Disabled_State from '@/components/styles/Disabled_State';
 

@@ -1,6 +1,6 @@
+import styled, { ThemeProvider } from 'styled-components';
 import Meta from './Meta';
 import GlobalStyle from '../styles/GlobalStyles';
-import styled, { ThemeProvider } from 'styled-components';
 import LightTheme from '@/components/styles/themes/light';
 import DarkTheme from '@/components/styles/themes/dark';
 

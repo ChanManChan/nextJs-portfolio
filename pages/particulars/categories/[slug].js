@@ -9,10 +9,10 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Table from '@/components/shared/Table';
-import V_Menu from '@/components/shared/V_Menu';
-import Button from '@/components/shared/ShimmerButton';
+import V_Menu from '@/components/shared/menus/V_Menu';
+import Button from '@/components/shared/buttons/ShimmerButton';
 import FooterInput from '@/components/forms/S_Input';
-import B_Button from '@/components/shared/F_Button';
+import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
 
 const PageFunction = styled.h1`

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
-import ProjectForm from '@/components/forms/ProjectForm';
-import { useFetchTech } from '@/apollo/actions';
-import { useRouter } from 'next/router';
 import withParent from '@/hoc/withParent';
-import { useGetProject, useUpdateProject } from '@/apollo/actions';
+import ProjectForm from '@/components/forms/ProjectForm';
+import {
+  useFetchTech,
+  useGetProject,
+  useUpdateProject,
+} from '@/apollo/actions';
+import { useRouter } from 'next/router';
 
 const FormWrapper = styled.div`
   width: 100%;

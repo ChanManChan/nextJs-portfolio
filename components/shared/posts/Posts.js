@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import S_Input from '../forms/S_Input';
-import Disabled_State from '../styles/Disabled_State';
-import Loading from '../styles/Loading';
+import S_Input from '@/components/forms/S_Input';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 import { toast } from 'react-toastify';
 import { removeFooter } from '@/utils/functions';
-import { Lead, Siblings } from './posts/index';
+import { Lead, Siblings } from './Fragments';
 
 const Section = styled.section`
   width: 97%;
@@ -28,7 +28,6 @@ const handleAddComment = (cr_post, replyTo, topicID, scroll2Btm) => async (
   scroll2Btm();
 };
 
-//! MAIN COMPONENT
 const Posts = ({
   topic: {
     _id = '',
@@ -57,6 +56,7 @@ const Posts = ({
           avatar={avatar}
           content={content}
           auth={auth}
+          setReplyTo={setReplyTo}
         />
         {posts.map((p, i) => (
           <Siblings key={i} i={i} p={p} auth={auth} setReplyTo={setReplyTo} />
@@ -67,7 +67,7 @@ const Posts = ({
             plc_Content='Add a Post'
             parent_fn={handleAddComment(cr_post, replyTo, _id, scroll2Btm)}
             loading={create_load}
-            reploTo={
+            replyTo={
               (replyTo.user && replyTo.user.username) ||
               title + '--[ Original Post ]'
             }

@@ -1,4 +1,4 @@
-import Anchor from './CustomLink';
+import Anchor from '../buttons/CustomLink';
 import { useRouter } from 'next/router';
 import Menu from './Menu';
 

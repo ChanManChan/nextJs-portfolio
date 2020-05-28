@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import AppNavbar1 from '../shared/Navbar';
-import AppNavbar2 from '../shared/Navbar2';
+import AppNavbar1 from '../shared/menus/Navbar';
+import AppNavbar2 from '../shared/menus/Navbar2';
 import Logo from '../styles/Logo';
 
 Router.onRouteChangeStart = () => {

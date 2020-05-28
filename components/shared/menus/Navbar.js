@@ -1,12 +1,12 @@
 import styled, { ThemeContext } from 'styled-components';
 import { useRouter } from 'next/router';
-import Hamburger from './MobileMenuIcon';
+import Hamburger from '@/components/styles/MobileMenuIcon';
 import Menu from './Menu';
-import CustomLink from './CustomLink';
-import Toggle from './Toggle';
+import CustomLink from '../buttons/CustomLink';
+import Toggle from '../buttons/Toggle';
 import withApollo from '@/hoc/withApollo';
 import { useLazyFetchUser } from '@/apollo/actions';
-import Dropdown from '@/components/shared/DropdownMenu';
+import Dropdown from './DropdownMenu';
 
 const NavWrapper = styled.div`
   grid-column: 3/-1;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import Anchor from './CustomIcon';
+import Anchor from './buttons/CustomIcon';
 
 //! Initial tech icons and right arrow styles
 const Icon = styled.i`

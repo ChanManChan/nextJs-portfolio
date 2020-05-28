@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Anchor from '@/components/shared/CustomLink';
+import Anchor from '@/components/shared/buttons/CustomLink';
 
 const MenuItem = styled.li`
   position: relative;

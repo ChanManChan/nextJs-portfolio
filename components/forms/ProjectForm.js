@@ -1,11 +1,11 @@
 import Loading from '@/components/styles/Loading';
 import Disabled_State from '@/components/styles/Disabled_State';
-import CustomButton from '@/components/shared/CustomButton';
+import CustomButton from '@/components/shared/buttons/CustomButton';
 import Dropzone from '@/components/shared/Dropzone';
 import CustomInput from '@/components/shared/CustomInput';
 import { Field, Formik, Form } from 'formik';
 import { validationSchemaProject } from '@/components/global/Validator';
-import AccordionMenu from '@/components/shared/AccordionMenu';
+import AccordionMenu from '@/components/shared/menus/AccordionMenu';
 
 const ProjectForm = ({
   f_Stack,

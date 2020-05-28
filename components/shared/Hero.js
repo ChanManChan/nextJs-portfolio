@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import Title from '../styles/Title';
-import TitleButton from './ShimmerButton';
+import TitleButton from './buttons/ShimmerButton';
 import Link from 'next/link';
 
 const HeroContainer = styled.div`

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import Checkbox from './CustomCheckbox';
-import { FieldArray } from 'formik';
+import styled, { css } from './node_modules/styled-components';
+import Checkbox from '../CustomCheckbox';
+import { FieldArray } from './node_modules/formik';
 
 const Menu = styled.div`
   max-width: 40rem;

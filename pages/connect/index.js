@@ -9,7 +9,7 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import styled from 'styled-components';
 import Table from '@/components/shared/Table';
 import FooterInput from '@/components/forms/S_Input';
-import B_Button from '@/components/shared/F_Button';
+import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { removeFooter } from '@/utils/functions';

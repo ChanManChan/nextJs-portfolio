@@ -8,7 +8,7 @@ import {
 } from '@/apollo/actions';
 import { useRouter } from 'next/router';
 import { getDataFromTree } from '@apollo/react-ssr';
-import Thread from '@/components/shared/Posts';
+import Thread from '@/components/shared/posts/Posts';
 
 const useInitialData = () => {
   const router = useRouter();

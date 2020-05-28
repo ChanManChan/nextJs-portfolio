@@ -44,6 +44,7 @@ const Login = () => {
     });
 
   if (data && data.signIn) return <Redirect to='/' />;
+
   return (
     <FormWrapper>
       <PageFunction>SignIn</PageFunction>
