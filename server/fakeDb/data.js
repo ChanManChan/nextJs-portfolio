@@ -14,8 +14,13 @@ const detail2Id = mongoose.Types.ObjectId();
 const detail3Id = mongoose.Types.ObjectId();
 
 const topic1Id = mongoose.Types.ObjectId();
+const topic1CreatedAt = moment().subtract(8, 'days');
+
 const topic2Id = mongoose.Types.ObjectId();
+const topic2CreatedAt = moment().subtract(8, 'days');
+
 const topic3Id = mongoose.Types.ObjectId();
+const topic3CreatedAt = moment().subtract(8, 'days');
 
 const post1Id = mongoose.Types.ObjectId();
 const post1CreatedAt = moment().subtract(7, 'days');
@@ -205,6 +210,7 @@ const data = {
       content:
         "You can either contact me through my email address, which is nandagopalgllallu@gmail.com [or] through the inbuilt communication facility of this application. Just SignUp and chain your queries in this thread, I'll be constantly monitoring it.",
       user: user1Id,
+      createdAt: topic1CreatedAt,
     },
     {
       _id: topic2Id,
@@ -213,6 +219,7 @@ const data = {
       content:
         "I've a minimal social presence overall. But for the purposes of expanding my reach, I've created Facebook and Linkedin accounts.",
       user: user1Id,
+      createdAt: topic2CreatedAt,
     },
     {
       _id: topic3Id,
@@ -221,6 +228,7 @@ const data = {
       content:
         "I've travelled across India for various reasons (Academic and otherwise). My last IT job was located in Kolkata, West Bengal. I'm currently residing in Trichy, Tamil Nadu.",
       user: user1Id,
+      createdAt: topic3CreatedAt,
     },
   ],
   posts: [

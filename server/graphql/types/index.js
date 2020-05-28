@@ -111,4 +111,10 @@ exports.topicTypes = `
     parent: Post
     createdAt: String
   }
+
+  input PostInput {
+    content: String
+    parent: ID
+    topic: ID
+  }
 `;

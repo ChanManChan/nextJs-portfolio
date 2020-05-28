@@ -4,19 +4,22 @@ const sizeStyles = ({ size }) => {
   if (size === 'large')
     return css`
       padding: 2rem 4rem;
-      border: 0.3rem solid ${(p) => p.themeColor};
+      border: 0.3rem solid
+        ${(p) => (p.autoTheme ? p.theme.bodyFontColor : p.themeColor)};
       font-size: 2rem;
     `;
   else if (size === 'medium')
     return css`
       padding: 1.5rem 2.5rem;
-      border: 0.25rem solid ${(p) => p.themeColor};
+      border: 0.25rem solid
+        ${(p) => (p.autoTheme ? p.theme.bodyFontColor : p.themeColor)};
       font-size: 1.5rem;
     `;
   else
     return css`
       padding: 1rem 2rem;
-      border: 0.15rem solid ${(p) => p.themeColor};
+      border: 0.15rem solid
+        ${(p) => (p.autoTheme ? p.theme.bodyFontColor : p.themeColor)};
       font-size: 1rem;
     `;
 };
@@ -25,7 +28,7 @@ const Button = styled.a`
   display: inline-block;
   text-transform: capitalize;
   text-decoration: none;
-  color: ${(p) => p.themeColor};
+  color: ${(p) => (p.autoTheme ? p.theme.bodyFontColor : p.themeColor)};
   font-family: inherit;
   ${sizeStyles}
   transition: background-color 0.3s, color 0.3s;

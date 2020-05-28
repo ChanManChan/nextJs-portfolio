@@ -4,6 +4,7 @@ import {
   useFetchTopicBySlug,
   useFetchPostsByTopic,
   useFetchUser,
+  useCreatePost,
 } from '@/apollo/actions';
 import { useRouter } from 'next/router';
 import { getDataFromTree } from '@apollo/react-ssr';
@@ -36,28 +37,24 @@ const useInitialData = () => {
 
 const Posts = () => {
   const {
-    topic: {
-      title = '',
-      user: { username = '', avatar = '' } = {},
-      content = '',
-      createdAt = '',
-    },
+    topic = {},
     posts,
     user,
     loading: { t_loading = false, p_loading = false, u_loading = false } = {},
   } = useInitialData();
 
+  const [createPost, { loading: cr_loading }] = useCreatePost();
+
   return (
     <>
-      <h1>{title}</h1>
+      <h1>{topic.title}</h1>
       <Thread
-        author={username}
-        a_avatar={avatar}
-        op={content}
-        cr_at={createdAt}
+        topic={topic}
         posts={posts}
         auth={user}
         loading={t_loading || p_loading || u_loading}
+        cr_post={createPost}
+        create_load={cr_loading}
       />
     </>
   );

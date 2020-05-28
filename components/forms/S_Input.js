@@ -8,6 +8,7 @@ import {
   validationSchemaTopic,
   validationSchemaPost,
 } from '@/components/global/Validator';
+import { removeFooter } from '@/utils/functions';
 
 const Footer = styled.footer`
   padding: 2rem 0;
@@ -151,6 +152,19 @@ const switchInit = (brief, post) =>
         content: '',
       };
 
+const Reply_to = styled.div`
+  margin: 1rem 3rem;
+  padding: 0.65rem 1.2rem;
+  p {
+    color: ${(p) => p.theme.staticColor1};
+    font-weight: bold;
+    span {
+      margin-left: 1rem;
+      color: ${(p) => p.theme.quaternaryColor};
+    }
+  }
+`;
+
 const FooterInput = ({
   plc_Title,
   plc_Content,
@@ -158,6 +172,8 @@ const FooterInput = ({
   loading,
   brief = false,
   post = false,
+  reploTo,
+  s_state,
 }) => (
   <Footer className='slide-footer'>
     <Formik
@@ -172,6 +188,7 @@ const FooterInput = ({
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         parent_fn(data, resetForm);
+        post && removeFooter('.post--btn', 'Add a Post');
         setSubmitting(false);
       }}
     >
@@ -187,7 +204,7 @@ const FooterInput = ({
                   fieldKey='certificate_img'
                 />
               )}
-              {!post && (
+              {!post ? (
                 <Field
                   type='text'
                   name='title'
@@ -195,6 +212,12 @@ const FooterInput = ({
                   placeholder={plc_Title}
                   as={Vul_Input}
                 />
+              ) : (
+                <Reply_to>
+                  <p>
+                    Reply To: <span>{reploTo}</span>
+                  </p>
+                </Reply_to>
               )}
               <Field
                 type='text'
@@ -209,16 +232,12 @@ const FooterInput = ({
               <Button
                 type='button'
                 onClick={() => {
-                  const footer = document.querySelector('.slide-footer');
-                  if (footer.classList.contains('active')) {
-                    footer.classList.remove('active');
-                    document.querySelector('.post--btn').innerText = `Add a ${
-                      brief ? 'Brief' : post ? 'Post' : 'Topic'
-                    }`;
-                    const nl_list = document.querySelectorAll('.nlead--btn');
-                    for (let i = 0; i < nl_list.length; i++)
-                      nl_list[i].innerText = 'Reply';
-                  }
+                  removeFooter(
+                    '.post--btn',
+                    `Add a ${brief ? 'Brief' : post ? 'Post' : 'Topic'}`
+                  );
+                  removeFooter('.nlead--btn', 'Reply');
+                  s_state && s_state({});
                 }}
               >
                 Cancel

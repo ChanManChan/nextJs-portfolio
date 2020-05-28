@@ -20,6 +20,7 @@ import {
   CREATE_TOPIC,
   TOPIC_BY_SLUG,
   POSTS_BY_TOPIC,
+  CREATE_POST,
 } from '@/apollo/queries';
 
 const shared_operations = {
@@ -142,7 +143,9 @@ export const useCreateBrief = () =>
           data: { briefsByCategory: [...briefsByCategory, createBrief] },
           variables: { slug: createBrief.particularsCategory.slug },
         });
-      } catch (e) {}
+      } catch (e) {
+        debugger;
+      }
     },
     context: {
       hasUpload: true,
@@ -172,3 +175,22 @@ export const useFetchTopicBySlug = (options) =>
 
 export const useFetchPostsByTopic = (options) =>
   useQuery(POSTS_BY_TOPIC, options);
+
+export const useCreatePost = () =>
+  useMutation(CREATE_POST, {
+    update(cache, { data: { createPost } }) {
+      try {
+        const { postsByTopic } = cache.readQuery({
+          query: POSTS_BY_TOPIC,
+          variables: { slug: createPost.topic.slug },
+        });
+        cache.writeQuery({
+          query: POSTS_BY_TOPIC,
+          data: { postsByTopic: [...postsByTopic, createPost] },
+          variables: { slug: createPost.topic.slug },
+        });
+      } catch (e) {
+        debugger;
+      }
+    },
+  });

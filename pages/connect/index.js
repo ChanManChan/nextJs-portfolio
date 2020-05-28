@@ -12,6 +12,7 @@ import FooterInput from '@/components/forms/S_Input';
 import B_Button from '@/components/shared/F_Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { removeFooter } from '@/utils/functions';
 
 const PageFunction = styled.h1`
   margin: 0 0 5rem;
@@ -60,11 +61,7 @@ const handleCreateTopic = (createTopic) => async (t_data, resetForm) => {
   toast.success('Topic created successfully', {
     position: toast.POSITION.BOTTOM_LEFT,
   });
-  const footer = document.querySelector('.slide-footer');
-  if (footer.classList.contains('active')) {
-    footer.classList.remove('active');
-    document.querySelector('.post--btn').innerText = 'Add a Topic';
-  }
+  removeFooter('.post--btn', 'Add a Topic');
   resetForm();
 };
 

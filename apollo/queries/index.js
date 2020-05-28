@@ -270,6 +270,9 @@ const pst_server_Res = `
     username
     avatar
   }
+  topic {
+    slug
+  }
   parent {
     content
     user {
@@ -282,6 +285,14 @@ const pst_server_Res = `
 export const POSTS_BY_TOPIC = gql`
   query PostsByTopic($slug: String) {
     postsByTopic(t_slug: $slug) {
+      ${pst_server_Res}
+    }
+  }
+`;
+
+export const CREATE_POST = gql`
+  mutation CreatePost($content: String, $topic: ID, $parent: ID) {
+    createPost(input: { content: $content, topic: $topic, parent: $parent }) {
       ${pst_server_Res}
     }
   }

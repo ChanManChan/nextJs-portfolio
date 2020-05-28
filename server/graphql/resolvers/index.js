@@ -94,4 +94,7 @@ exports.topicMutations = {
   createTopic: async (_, { input }, ctx) => {
     return await ctx.models.Topic.create(input);
   },
+  createPost: async (_, { input }, ctx) => {
+    return await ctx.models.Post.create(input);
+  },
 };
