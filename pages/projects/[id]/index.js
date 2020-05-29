@@ -2,14 +2,16 @@ import { useGetProject } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withParent from '@/hoc/withParent';
-import { useRouter } from 'next/router';
 import { Grid } from './styles';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 import {
   P_TITLE,
   Page_fnc,
   T_STACK,
   P_Desc,
   Deployed_Link,
+  REPOS,
   SS_1,
   SS_2,
   SS_3,
@@ -44,13 +46,16 @@ import {
 // }
 
 //! 3rd method:- getInitialProps on a functional component
-const ProjectDetail = () => {
-  const { id } = useRouter().query;
+const ProjectDetail = ({ query }) => {
+  // const { id } = useRouter().query;
   // const [portfolio, setPortfolio] = React.useState(null);
   //! "useLazyQuery" <- means it will not be executed immediately but it will wait.
   //! "useQuery" <- will be called immediately
   // const [getPortfolio, { loading, data }] = useLazyQuery(GET_PORTFOLIO);
-  const { data = {} } = useGetProject({ variables: { id } });
+  const { data, loading } = useGetProject({
+    variables: { id: query.id },
+  });
+
   const {
     title = '',
     techStack = [],
@@ -58,7 +63,7 @@ const ProjectDetail = () => {
     deployed = '',
     repoAPI = '',
     repoClient = '',
-  } = data.project;
+  } = (data && data.project) || {};
 
   //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
   // React.useEffect(() => {
@@ -67,23 +72,31 @@ const ProjectDetail = () => {
 
   //! We dont need to handle "loading" since our data will be loaded server-side & we dont need to set our state also.
   // if (data && !portfolio) setPortfolio(data.portfolio);
-
   return (
-    <Grid>
-      <P_TITLE title={title} />
-      <Page_fnc />
-      <T_STACK techStack={techStack} />
-      <P_Desc description={description} />
-      <Deployed_Link deployed={deployed} />
-      <REPOS repoAPI={repoAPI} repoClient={repoClient} />
-      <SS_1 />
-      <SS_2 />
-      <SS_3 />
-      <SS_4 />
-    </Grid>
+    <Disabled_State loading={`${loading}`}>
+      <Grid>
+        <P_TITLE title={title} />
+        <Page_fnc />
+        <T_STACK techStack={techStack} />
+        <P_Desc description={description} />
+        <Deployed_Link deployed={deployed} />
+        <REPOS repoAPI={repoAPI} repoClient={repoClient} />
+        <SS_1 />
+        <SS_2 />
+        <SS_3 />
+        <SS_4 />
+      </Grid>
+      <Loading msg='Fetching...' loading={`${loading}`} />
+    </Disabled_State>
   );
+};
+
+ProjectDetail.getInitialProps = ({ query }) => {
+  return { query };
 };
 
 //! so if you want this page to have SSR (and to be a lambda) for SEO purposes and remove the loading state, add "getDataFromTree" below.
 
-export default withApollo(withParent(ProjectDetail), { getDataFromTree });
+export default withApollo(withParent(ProjectDetail, 'ProjectDetail'), {
+  getDataFromTree,
+});

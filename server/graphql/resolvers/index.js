@@ -83,10 +83,12 @@ exports.topicQueries = {
   topicBySlug: (_, { t_slug }, ctx) => {
     return ctx.models.Topic.fetchBySlug(t_slug);
   },
-  postsByTopic: async (_, { t_slug }, ctx) => {
-    return ctx.models.Post.fetchAllByTopic(
-      (await ctx.models.Topic.fetchBySlug(t_slug))._id
-    );
+  postsByTopic: async (_, { t_slug, ...pagination }, ctx) => {
+    const topic = await ctx.models.Topic.fetchBySlug(t_slug);
+    return ctx.models.Post.fetchAllByTopic({
+      topicID: topic._id,
+      ...pagination,
+    });
   },
 };
 

@@ -13,6 +13,24 @@ export const Border = styled.div`
   align-items: center;
 `;
 
+export const Grid = styled.div`
+  display: grid;
+  margin: -10rem auto 5rem;
+  grid: 15rem repeat(9, 13rem) / repeat(4, 1fr);
+  & > * > ${Border} {
+    will-change: background, color;
+    transition: background 0.25s ease, color 0.25s ease;
+    &:hover {
+      background: ${(p) => p.theme.secondaryColor};
+      color: #ffff63;
+    }
+  }
+  .border {
+    position: relative;
+    background: ${(p) => p.theme.bg_gradient};
+  }
+`;
+
 export const Title = styled.div`
   grid-area: 3 / 2 / 5 / 4;
   display: flex;
@@ -64,24 +82,6 @@ export const Repository = styled.div`
     justify-content: space-evenly;
     left: 0;
     top: 0;
-  }
-`;
-
-export const Grid = styled.div`
-  display: grid;
-  margin: -10rem auto 5rem;
-  grid: 15rem repeat(9, 13rem) / repeat(4, 1fr);
-  & > * > ${Border} {
-    will-change: background, color;
-    transition: background 0.25s ease, color 0.25s ease;
-    &:hover {
-      background: ${(p) => p.theme.secondaryColor};
-      color: #ffff63;
-    }
-  }
-  .border {
-    position: relative;
-    background: ${(p) => p.theme.bg_gradient};
   }
 `;
 

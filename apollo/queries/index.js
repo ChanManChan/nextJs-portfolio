@@ -283,9 +283,12 @@ const pst_server_Res = `
 `;
 
 export const POSTS_BY_TOPIC = gql`
-  query PostsByTopic($slug: String) {
-    postsByTopic(t_slug: $slug) {
-      ${pst_server_Res}
+  query PostsByTopic($slug: String, $pageNum: Int, $pageSize: Int) {
+    postsByTopic(t_slug: $slug, pageNum: $pageNum, pageSize: $pageSize) {
+      posts {
+        ${pst_server_Res}
+      }
+      count
     }
   }
 `;

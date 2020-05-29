@@ -18,28 +18,37 @@ const Inner = styled.main`
   }
 `;
 
-const CheckLanding = (R_Child, comp_Name, childProps) => {
-  if (comp_Name === 'Home')
-    return (
-      <>
-        <Header />
-        <Hero />
-        <Inner>
-          <R_Child {...childProps} />
-        </Inner>
-        <Footer />
-      </>
-    );
-  else
-    return (
-      <>
-        <Header />
-        <Inner>
-          <R_Child {...childProps} />
-        </Inner>
-      </>
-    );
-};
+export default (ChildComponent, r_name) => {
+  function CheckLanding(props) {
+    if (r_name === 'Home')
+      return (
+        <>
+          <Header />
+          <Hero />
+          <Inner>
+            <ChildComponent {...props} />
+          </Inner>
+          <Footer />
+        </>
+      );
+    else
+      return (
+        <>
+          <Header />
+          <Inner>
+            <ChildComponent {...props} />
+          </Inner>
+        </>
+      );
+  }
 
-export default (ChildComponent, r_name) => (props) =>
-  CheckLanding(ChildComponent, r_name, props);
+  if (r_name === 'ProjectDetail') {
+    CheckLanding.getInitialProps = async (ctx) => {
+      const pageProps =
+        ChildComponent.getInitialProps &&
+        (await ChildComponent.getInitialProps(ctx));
+      return { ...pageProps };
+    };
+  }
+  return CheckLanding;
+};

@@ -93,6 +93,7 @@ const Span = styled.span`
     animation: ${glitch_anim2} 1s infinite linear alternate-reverse;
   }
 `;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -102,12 +103,11 @@ const Wrapper = styled.div`
 
 const Custom_Span = ({ children }) => (
   <Wrapper>
-    {children &&
-      children.split(' ').map((w, i) => (
-        <Span key={i} data-text={w}>
-          {w}
-        </Span>
-      ))}
+    {children.split(' ').map((w, i) => (
+      <Span key={i} data-text={w}>
+        {w}
+      </Span>
+    ))}
   </Wrapper>
 );
 export default Custom_Span;

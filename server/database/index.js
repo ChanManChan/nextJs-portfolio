@@ -28,7 +28,7 @@ exports.connectDB = () => {
 exports.initSessionStore = () => {
   const store = new MongoDBStore({
     uri: config.DB_URI,
-    collection: 'portfolioSessions',
+    collection: 'user-sessions',
   });
   return store;
 };

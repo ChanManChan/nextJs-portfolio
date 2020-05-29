@@ -6,12 +6,18 @@ class Post {
     this.Model = model;
     this.user = user;
   }
-  fetchAllByTopic(t_ID) {
-    return this.Model.find({ topic: t_ID })
+  async fetchAllByTopic({ topicID, pageNum = 1, pageSize = 5 }) {
+    const skips = pageSize * (pageNum - 1);
+    const count = await this.Model.countDocuments({ topic: topicID });
+    const posts = await this.Model.find({ topic: topicID })
       .sort('createdAt')
+      .skip(skips)
+      .limit(pageSize)
       .populate('user')
       .populate('topic')
       .populate({ path: 'parent', populate: 'user' });
+
+    return { posts, count };
   }
   async create(p_data) {
     if (!this.user) throw new Error('Not Authorized');

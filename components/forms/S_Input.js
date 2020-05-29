@@ -89,7 +89,6 @@ const FooterInput = ({
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         parent_fn(data, resetForm);
-        post && removeFooter('.post--btn', 'Add a Post');
         setSubmitting(false);
       }}
     >

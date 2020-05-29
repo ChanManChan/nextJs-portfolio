@@ -12,7 +12,7 @@ export const removeFooter = (btn_class = '', i_Text = '') => {
     const nl_list = document.querySelectorAll(btn_class);
     if (nl_list)
       for (let i = 0; i < nl_list.length; i++) nl_list[i].innerText = i_Text;
-  } else {
+  } else if (btn_class !== '') {
     const mutation_btn = document.querySelector(btn_class);
     if (mutation_btn) mutation_btn.innerText = i_Text;
   }

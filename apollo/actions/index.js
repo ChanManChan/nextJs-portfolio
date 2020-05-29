@@ -90,6 +90,7 @@ export const useDeleteProject = () =>
         },
       });
     },
+    onError: (error) => shared_operations.onFail(error),
   });
 
 //! AUTHENTICATION ------------------------------
@@ -150,6 +151,7 @@ export const useCreateBrief = () =>
     context: {
       hasUpload: true,
     },
+    onError: (error) => shared_operations.onFail(error),
   });
 
 //! TOPICS------------------------------
@@ -168,6 +170,7 @@ export const useCreateTopic = () =>
         debugger;
       }
     },
+    onError: (error) => shared_operations.onFail(error),
   });
 
 export const useFetchTopicBySlug = (options) =>
@@ -176,9 +179,25 @@ export const useFetchTopicBySlug = (options) =>
 export const useFetchPostsByTopic = (options) =>
   useQuery(POSTS_BY_TOPIC, options);
 
+//! Explanation for pagination
+//! When i'm not on the last page and creating new post, we are not fetching any data anymore ( because of condition [lastPage === pageNum] for fetching data ). And when we're navigating to lastPage, the page is already cached, we're displaying previous data. Solution:- remove cache data. Whenever we create a new post, remove the cache data.
 export const useCreatePost = () =>
   useMutation(CREATE_POST, {
-    update(cache, { data: { createPost } }) {
+    update(cache) {
+      try {
+        debugger;
+        //! Get keys of the posts
+        Object.keys(cache.data.data).forEach((key) => {
+          debugger;
+          //! basically removing the posts cache data so when we go to the lastPage, i'll fetch new data because they are not found in the cache
+          key.match(/^Post/) && cache.data.delete(key);
+        });
+      } catch (e) {}
+    },
+  });
+
+/** INSTEAD OF THIS (updating cache for "useCreatePost" ) I'M USING "FETCHMORE" TO UPDATE UI SIMULTANEOUSLY (in components > shared > posts > Post.js > handleAddComment > fetchMore)
+ *  update(cache, { data: { createPost } }) {
       try {
         const { postsByTopic } = cache.readQuery({
           query: POSTS_BY_TOPIC,
@@ -193,4 +212,5 @@ export const useCreatePost = () =>
         debugger;
       }
     },
-  });
+ *
+ */
