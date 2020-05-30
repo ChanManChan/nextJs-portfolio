@@ -1,4 +1,12 @@
 import withParent from '@/hoc/withParent';
 
-const Cv = () => <h1>CV Page</h1>;
+const Cv = () => (
+  <div>
+    <iframe
+      style={{ width: '100%', height: '100rem' }}
+      src='/NANDA GOPAL.pdf'
+    ></iframe>
+  </div>
+);
+
 export default withParent(Cv);
