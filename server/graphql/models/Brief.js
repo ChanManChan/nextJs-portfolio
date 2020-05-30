@@ -1,11 +1,8 @@
+const BaseModel = require('./BaseModel');
 const slugify = require('slugify');
 const uniqueSlug = require('unique-slug');
 
-class Brief {
-  constructor(model, user) {
-    this.Model = model;
-    this.user = user;
-  }
+class Brief extends BaseModel {
   fetchAllByCategory(c_ID) {
     return this.Model.find({ particularsCategory: c_ID })
       .populate('user')

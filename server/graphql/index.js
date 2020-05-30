@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server-express');
 const mongoose = require('mongoose');
+
 //! Resolvers
 const {
   projectQueries,
@@ -11,7 +12,9 @@ const {
   particularsMutations,
   topicQueries,
   topicMutations,
+  mixedQueries,
 } = require('./resolvers');
+
 //! Types
 const {
   projectTypes,
@@ -19,8 +22,10 @@ const {
   particularsTypes,
   topicTypes,
 } = require('./types');
+
 //! Authentication
 const { buildAuthContext } = require('./context');
+
 //! GraphQl Models
 const Project = require('./models/Project');
 const User = require('./models/User');
@@ -45,33 +50,25 @@ exports.createApolloServer = () => {
       project(id: ID): Project
       projects: [Project]
       userProjects: [Project]
-
       techStack: [Tech]
-
       user: User
-
       particularsCategories: [ParticularsCategory]
       briefsByCategory(c_slug: String): [Brief]
-
       topics: [Topic]
       topicBySlug(t_slug: String): Topic
-
       postsByTopic(t_slug: String, pageNum: Int, pageSize: Int): PagPosts
+      highlight(limit: Int): HighlightRes
     }
 
     type Mutation {
       createProject(input: ProjectInput): Project
       updateProject(id: ID, input: ProjectInput): Project
       deleteProject(id: ID): ID
-
       createBrief(input: BriefInput): Brief
-
       signUp(input: SignUpInput): String
       signIn(input: SignInInput): User
       signOut: Boolean
-
       createTopic(input: TopicInput): Topic
-
       createPost(input: PostInput): Post
     }
   `;
@@ -87,6 +84,7 @@ exports.createApolloServer = () => {
       ...authenticationQueries,
       ...particularsQueries,
       ...topicQueries,
+      ...mixedQueries,
     },
     Mutation: {
       ...projectMutations,

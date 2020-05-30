@@ -30,9 +30,9 @@ const Subtitle = styled.p`
   font-size: 1.4rem;
 `;
 
-const CategoryCard = ({ title, subtitle, href, as }) => (
+const CategoryCard = ({ consume, title, subtitle, href, as }) => (
   <Link href={href} as={as} passHref>
-    <Card>
+    <Card consume={consume}>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
     </Card>

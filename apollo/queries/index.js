@@ -300,3 +300,16 @@ export const CREATE_POST = gql`
     }
   }
 `;
+
+export const FETCH_HIGHLIGHT = gql`
+  query Highlight($ask: Int) {
+    highlight(limit: $ask) {
+      topics {
+        ${t_server_Res}
+      }
+      projects {
+        ${p_server_Res}
+      }
+    }
+  }
+`;

@@ -1,11 +1,8 @@
+const BaseModel = require('./BaseModel');
 const uniqueSlug = require('unique-slug');
 const moment = require('moment');
 
-class Post {
-  constructor(model, user) {
-    this.Model = model;
-    this.user = user;
-  }
+class Post extends BaseModel {
   async fetchAllByTopic({ topicID, pageNum = 1, pageSize = 5 }) {
     const skips = pageSize * (pageNum - 1);
     const count = await this.Model.countDocuments({ topic: topicID });

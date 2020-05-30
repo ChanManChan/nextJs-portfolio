@@ -1,5 +1,16 @@
 //! With ApolloServer, we need to separate our Mutations from our Queries
 //! ApolloServer is calling these methods differently and the parameters are like "methodName: (root, { params })" <- with "root" we can access the root mutation.
+exports.mixedQueries = {
+  highlight: async (_, { limit = 2 }, ctx) => {
+    const projects = await ctx.models.Project.fetchRandoms(limit);
+    const topics = await ctx.models.Topic.fetchRandoms(limit);
+    return {
+      projects,
+      topics,
+    };
+  },
+};
+
 exports.projectQueries = {
   projects: (_, _a, ctx) => {
     return ctx.models.Project.fetchAll();

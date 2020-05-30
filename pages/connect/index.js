@@ -13,6 +13,7 @@ import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { removeFooter } from '@/utils/functions';
+import { shortify } from '@/utils/functions';
 
 const PageFunction = styled.h1`
   margin: 0 0 5rem;
@@ -102,7 +103,7 @@ const Topics = () => {
         {topics.map((t, i) => (
           <TR key={i} onClick={() => redirectToTopic(t.slug)}>
             <Body_cell topic>{t.title}</Body_cell>
-            <Body_cell>{t.content}</Body_cell>
+            <Body_cell>{shortify(t.content, 100)}</Body_cell>
             <Body_cell>{t.user.username}</Body_cell>
           </TR>
         ))}

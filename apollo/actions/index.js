@@ -21,6 +21,7 @@ import {
   TOPIC_BY_SLUG,
   POSTS_BY_TOPIC,
   CREATE_POST,
+  FETCH_HIGHLIGHT,
 } from '@/apollo/queries';
 
 const shared_operations = {
@@ -185,10 +186,8 @@ export const useCreatePost = () =>
   useMutation(CREATE_POST, {
     update(cache) {
       try {
-        debugger;
         //! Get keys of the posts
         Object.keys(cache.data.data).forEach((key) => {
-          debugger;
           //! basically removing the posts cache data so when we go to the lastPage, i'll fetch new data because they are not found in the cache
           key.match(/^Post/) && cache.data.delete(key);
         });
@@ -214,3 +213,6 @@ export const useCreatePost = () =>
     },
  *
  */
+
+export const useFetchHighlight = (options) =>
+  useQuery(FETCH_HIGHLIGHT, options);

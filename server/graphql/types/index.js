@@ -122,4 +122,9 @@ exports.topicTypes = `
     parent: ID
     topic: ID
   }
+
+  type HighlightRes {
+    projects: [Project]
+    topics: [Topic]
+  }
 `;

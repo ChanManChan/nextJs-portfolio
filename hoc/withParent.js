@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Inner = styled.main`
   max-width: 120rem;
-  margin: 15rem auto 0 auto;
+  margin: 10rem auto 10rem auto;
   padding: 0 1rem;
   font-family: 'Open Sans', sans-serif;
   h1,

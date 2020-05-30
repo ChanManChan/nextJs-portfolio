@@ -66,8 +66,8 @@ const PostButton = ({
 }) => (
   <Button
     className={nl ? `${ext_class}` : `post--btn ${ext_class}`}
-    {...props}
     onClick={handleEvent(children, s_state, post_data)}
+    {...props}
   >
     {children}
   </Button>

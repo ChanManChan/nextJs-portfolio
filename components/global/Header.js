@@ -36,6 +36,7 @@ const SubGrid = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
 `;
+
 const Header = () => (
   <StyledHeader>
     <SubGrid>

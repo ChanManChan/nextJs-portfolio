@@ -1,13 +1,17 @@
+const BaseModel = require('./BaseModel');
 const promisesAll = require('promises-all');
 
 //! Pass Model from outside so that we can make this component reusable
-class Project {
+class Project extends BaseModel {
   //! Receive here an actual mongoose model not a graphql model
   constructor(model, user) {
     //! Eg:- this.Model === Project
-    this.Model = model;
-    this.user = user;
+    super(model, user);
     this.write_rights = ['admin', 'instructor'];
+  }
+  async fetchRandoms(asked) {
+    const query = await super.fetchRandoms(asked);
+    return query().populate('techStack');
   }
   fetchAll() {
     return this.Model.find({}).populate(

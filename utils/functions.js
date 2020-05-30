@@ -17,3 +17,9 @@ export const removeFooter = (btn_class = '', i_Text = '') => {
     if (mutation_btn) mutation_btn.innerText = i_Text;
   }
 };
+
+export const shortify = (text, maxLength = 50) => {
+  if (!text) return '';
+  if (text.length <= maxLength) return text;
+  return text.substr(0, maxLength) + '...';
+};

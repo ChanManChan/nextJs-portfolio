@@ -1,7 +1,6 @@
-class Tech {
-  constructor(model) {
-    this.Model = model;
-  }
+const BaseModel = require('./BaseModel');
+
+class Tech extends BaseModel {
   fetchAll() {
     return this.Model.find({});
   }

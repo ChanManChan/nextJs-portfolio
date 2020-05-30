@@ -1,4 +1,4 @@
-import Card from '@/components/shared/Card';
+import Card from '@/components/shared/card/Card';
 import styled from 'styled-components';
 import { useGetProjects } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
@@ -14,6 +14,10 @@ import withParent from '@/hoc/withParent';
 //! we need to wait 5s until this data is resolved and this page is displayed
 // });
 // };
+const PageFunction = styled.h2`
+  margin: 5rem 0 7rem;
+  font-size: 3rem;
+`;
 
 const Container = styled.div`
   display: grid;
@@ -69,22 +73,24 @@ const Projects = () => {
   //UPDATE:-updatePortfolio({ variables: { id: p._id } })
 
   return (
-    <Container>
-      {projects.map((p, i) => {
-        return (
-          <Card
-            key={i}
-            id={p._id}
-            projectName={p.title}
-            techStack={p.techStack}
-            projectImage="url('/bg.jpeg')"
-            buttonBg={p.theme}
-            update={() => {}}
-            remove={() => {}}
-          />
-        );
-      })}
-    </Container>
+    <>
+      <PageFunction>All Projects</PageFunction>
+      <Container>
+        {projects.map((p, i) => {
+          return (
+            <Card
+              key={i}
+              id={p._id}
+              projectName={p.title}
+              techStack={p.techStack}
+              projectImage="url('/bg.jpeg')"
+              buttonBg={p.theme}
+              disable_func
+            />
+          );
+        })}
+      </Container>
+    </>
   );
 };
 

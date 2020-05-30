@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import Link from 'next/link';
-import Anchor from './buttons/CustomIcon';
 
 //! Initial tech icons and right arrow styles
-const Icon = styled.i`
+export const Icon = styled.i`
   opacity: 0;
   font-size: 2.5rem;
   color: #fff;
@@ -13,7 +11,7 @@ const Icon = styled.i`
 `;
 
 //! Tech image container
-const ImageContainer = styled.div`
+export const ImageContainer = styled.div`
   width: 40rem;
   height: 20rem;
   background-image: ${(p) => p.projectImage};
@@ -25,7 +23,7 @@ const ImageContainer = styled.div`
 `;
 
 //! Expanding (radius wise) button
-const Button = styled.a`
+export const Button = styled.a`
   position: absolute;
   /* Initial position of the bottom-right corner circle */
   right: 1.4rem;
@@ -44,7 +42,7 @@ const Button = styled.a`
   mix-blend-mode: hard-light;
 `;
 
-const Card = styled.div`
+export const Card = styled.div`
   position: relative;
   width: 50rem;
   height: 20rem;
@@ -210,61 +208,30 @@ const Card = styled.div`
   }
 `;
 
-const CustomCard = ({
-  projectName,
-  techStack,
-  projectImage,
-  buttonBg,
-  id,
-  remove,
-  as,
-  ...props
-}) => (
-  <Card {...props}>
-    <h3>{projectName}</h3>
-    <Icon className='fas fa-arrow-right'></Icon>
-    <p>{techStack && techStack.map((t) => t.name + ', ')}</p>
-    <ImageContainer projectImage={projectImage} />
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <div className='tech'>
-      <Icon className='fab fa-node-js' />
-      <Icon className='fab fa-react' />
-      <Icon className='fas fa-database' />
-      <Icon className='fab fa-github' />
-    </div>
-    <Anchor link as={as} className='actionIcons editIcon'>
-      <Icon className='fas fa-wrench' />
-    </Anchor>
-    <Anchor action={remove} className='actionIcons deleteIcon'>
-      <Icon className='fas fa-trash-alt' />
-    </Anchor>
-    <Link href='/projects/[id]' as={`/projects/${id}`} passHref>
-      <Button buttonBg={buttonBg} />
-    </Link>
-  </Card>
+export const Punched_line = () => (
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
 );
-export default CustomCard;

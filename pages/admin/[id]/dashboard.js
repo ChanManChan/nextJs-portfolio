@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import withParent from '@/hoc/withParent';
-import Card from '@/components/shared/Card';
+import Card from '@/components/shared/card/Card';
 import { useGetUserProjects, useDeleteProject } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -17,13 +17,13 @@ const PageFunction = styled.h1`
   font-size: 3rem;
 `;
 
-const InstructorDashboard = () => {
+const AdminDashboard = () => {
   const { data } = useGetUserProjects();
   const [deleteProject] = useDeleteProject();
   const userProjects = (data && data.userProjects) || [];
   return (
     <>
-      <PageFunction>Instructor Projects</PageFunction>
+      <PageFunction>Admin Projects</PageFunction>
       <Container>
         {userProjects.map((p, i) => (
           <Card
@@ -52,7 +52,7 @@ const InstructorDashboard = () => {
 //! "ssr: true" <- Redirect on the server.
 
 export default withApollo(
-  withAuth(withParent(InstructorDashboard), ['admin', 'instructor'], {
+  withAuth(withParent(AdminDashboard), ['admin', 'instructor'], {
     ssr: true,
   }),
   { getDataFromTree }

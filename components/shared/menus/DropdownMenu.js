@@ -63,8 +63,8 @@ const DropdownMenu = ({ user }) => (
           </MenuItem>
           <MenuItem>
             <Anchor
-              href='/instructor/[id]/dashboard'
-              as={`/instructor/${user._id}/dashboard`}
+              href='/admin/[id]/dashboard'
+              as={`/admin/${user._id}/dashboard`}
             >
               Dashboard
             </Anchor>

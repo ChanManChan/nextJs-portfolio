@@ -55,4 +55,5 @@ const Button = styled.a`
     transform: translate(100%, 50%) rotate(45deg);
   }
 `;
+
 export default Button;
