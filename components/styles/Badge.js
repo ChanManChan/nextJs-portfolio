@@ -30,6 +30,9 @@ const Subtitle = styled.p`
     transition: word-spacing 0.3s;
     color: ${(p) => p.bdgTheme};
   }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Custom_Badge = styled.div`
@@ -39,24 +42,34 @@ const Custom_Badge = styled.div`
   &:hover ${Subtitle}:after {
     word-spacing: 1.5rem;
   }
+  @media (max-width: 768px) {
+    width: 11rem;
+  }
+`;
+
+const SVG = styled.svg`
+  width: 13.6rem;
+  height: 15.2rem;
+  @media (max-width: 768px) {
+    width: 11rem;
+    height: 12.6rem;
+  }
 `;
 
 const Badge = ({ title, subTitle, bdgTheme }) => (
   <Custom_Badge>
-    <svg
+    <SVG
       xmlns='http://www.w3.org/2000/svg'
       version='1.1'
       x='0px'
       y='0px'
-      width='136px'
-      height='152px'
       viewBox='0 0 216 232'
     >
       <path
         fill='#2B2B2B'
         d='M207,0C171.827,0.001,43.875,0.004,9.003,0c-5.619-0.001-9,3.514-9,9c0,28.23-0.006,151.375,0,169    c0.005,13.875,94.499,54,107.999,54S216,191.57,216,178V9C216,3.298,212.732,0,207,0z'
       />
-    </svg>
+    </SVG>
     <Title bdgTheme={bdgTheme}>{title}</Title>
     <Subtitle bdgTheme={bdgTheme}>{subTitle}</Subtitle>
   </Custom_Badge>

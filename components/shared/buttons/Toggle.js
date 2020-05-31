@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const ToggleWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1rem;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+  }
   width: 5rem;
   min-width: 5rem;
   height: 2.5rem;

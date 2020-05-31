@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 const MobileMenuIcon = styled.div`
-  margin: auto 0 auto auto;
-  width: 2.5rem;
-  min-width: 2.5rem;
+  width: 3.5rem;
+  min-width: 3.5rem;
   padding: 0.5rem;
   cursor: pointer;
   > div {

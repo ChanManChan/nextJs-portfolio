@@ -4,6 +4,7 @@ import Badge from '@/components/styles/Badge';
 import Span from '@/components/styles/Glitch_Effect';
 
 import {
+  H1,
   ProjectTitle,
   Title,
   Stack,
@@ -19,7 +20,7 @@ import {
 
 export const P_TITLE = ({ title }) => (
   <ProjectTitle>
-    <h1>{title}</h1>
+    <H1>{title}</H1>
   </ProjectTitle>
 );
 

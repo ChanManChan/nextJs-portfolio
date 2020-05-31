@@ -29,6 +29,18 @@ export const Grid = styled.div`
     position: relative;
     background: ${(p) => p.theme.bg_gradient};
   }
+  @media (max-width: 768px) {
+    grid: unset;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(25rem, auto);
+  }
+`;
+
+export const H1 = styled.h1`
+  font-size: 3.5rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const Title = styled.div`
@@ -52,6 +64,9 @@ export const Title = styled.div`
       letter-spacing: 0.1rem;
     }
   }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Stack = styled.div`
@@ -59,12 +74,28 @@ export const Stack = styled.div`
   > ${Border} {
     justify-content: space-evenly;
   }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      bottom: 0;
+    }
+  }
 `;
 
 export const Description = styled.div`
   grid-area: 3 / 3 / 7 / 5;
+  font-size: 4rem;
   > ${Border} {
     left: 0;
+  }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    font-size: 2.2rem;
+    ${Border} {
+      left: 0.2rem;
+    }
   }
 `;
 
@@ -72,6 +103,10 @@ export const Deployed = styled.div`
   grid-area: 6 / 1 / 8 / 2;
   > ${Border} {
     top: 0;
+  }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
   }
 `;
 
@@ -83,13 +118,24 @@ export const Repository = styled.div`
     left: 0;
     top: 0;
   }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      left: 0.2rem;
+    }
+  }
 `;
 
 export const ProjectTitle = styled.div`
   grid-area: 1 / 1 / 3 / 5;
   justify-self: center;
   align-self: center;
-  font-size: 2.2rem;
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    text-align: center;
+  }
 `;
 
 export const Screenshot1 = styled.div`
@@ -99,6 +145,13 @@ export const Screenshot1 = styled.div`
     top: 0;
     left: 0;
   }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      left: 0.2rem;
+    }
+  }
 `;
 
 export const Screenshot2 = styled.div`
@@ -107,6 +160,14 @@ export const Screenshot2 = styled.div`
     top: 0;
     left: 0;
   }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      top: 0.2rem;
+      left: 0.2rem;
+    }
+  }
 `;
 
 export const Screenshot3 = styled.div`
@@ -114,11 +175,25 @@ export const Screenshot3 = styled.div`
   > ${Border} {
     top: 0;
   }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      bottom: 0rem;
+    }
+  }
 `;
 
 export const Screenshot4 = styled.div`
   grid-area: 9 / 3 / 11 / 4;
   > ${Border} {
     left: 0;
+  }
+  @media (max-width: 768px) {
+    grid-area: unset;
+    grid-column: 1/-1;
+    ${Border} {
+      left: 0.2rem;
+    }
   }
 `;

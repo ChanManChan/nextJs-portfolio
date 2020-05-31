@@ -74,7 +74,6 @@ const shared = css`
 const Span = styled.span`
   position: relative;
   font-family: 'Orbitron', sans-serif;
-  font-size: 4rem;
   letter-spacing: 0.5rem;
   text-indent: 1rem;
   animation: ${glitch_skew} 1s infinite linear alternate-reverse;
