@@ -2,6 +2,10 @@ import Pagination from 'react-js-pagination';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  position: absolute;
+  bottom: -20rem;
+  left: 50%;
+  transform: translateX(-50%);
   .ul {
     display: flex;
     list-style: none;

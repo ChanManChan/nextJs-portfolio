@@ -40,6 +40,7 @@ export const Lead = ({
       <img src={avatar} />
       <p>{content}</p>
     </Data>
+    <br />
     {auth ? (
       <F_Button
         ext_class='reply--btn'
@@ -80,28 +81,31 @@ export const Siblings = ({
   },
   auth = {},
   setReplyTo,
-}) => (
-  <Details>
-    {parent && <Parent p={parent} />}
-    <Summary data-index={`${i + 1}. `}>
-      {username}
-      <span>{fromNow(createdAt)}</span>
-    </Summary>
-    <Data>
-      <img src={avatar} />
-      <p>{content}</p>
-    </Data>
-    {auth && (
-      <F_Button
-        ext_class='reply--btn nlead--btn'
-        size='small'
-        autoTheme
-        post_data={{ _id, user: { username } }}
-        s_state={(data) => setReplyTo({ ...data })}
-        nl
-      >
-        Reply
-      </F_Button>
-    )}
-  </Details>
-);
+}) => {
+  return (
+    <Details>
+      {parent && <Parent p={parent} />}
+      <Summary data-index={`${i + 1}. `}>
+        {username}
+        <span>{fromNow(createdAt)}</span>
+      </Summary>
+      <Data>
+        <img src={avatar} />
+        <p>{content}</p>
+      </Data>
+      <br />
+      {auth && (
+        <F_Button
+          ext_class='reply--btn nlead--btn'
+          size='small'
+          autoTheme
+          post_data={{ _id, user: { username } }}
+          s_state={(data) => setReplyTo({ ...data })}
+          nl
+        >
+          Reply
+        </F_Button>
+      )}
+    </Details>
+  );
+};

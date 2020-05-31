@@ -19,12 +19,21 @@ const ProjectContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
   grid-row-gap: 3rem;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    & ~ a {
+      padding: 1rem 2rem;
+      border: 0.15rem solid ${(p) => p.theme.bodyFontColor};
+      font-size: 1rem;
+    }
+  }
 `;
+
 const TopicContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   margin-bottom: 2rem;
+  padding: 3rem;
 `;
 
 const PageFunction = styled.h2`

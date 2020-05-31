@@ -56,7 +56,7 @@ const Flux = styled.div`
 `;
 
 const Title = ({ neon, flux }) => (
-  <TextWrapper>
+  <TextWrapper className='title--wrapper'>
     <Neon>{neon}</Neon>
     <Flux>{flux}</Flux>
   </TextWrapper>

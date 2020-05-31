@@ -68,9 +68,7 @@ const Posts = ({
 }) => {
   const pgDn = React.useRef();
   const [replyTo, setReplyTo] = React.useState({});
-
   const scroll2Btm = () => pgDn.current.scrollIntoView({ behavior: 'smooth' });
-
   const parameters = {
     ...rest,
     replyTo,

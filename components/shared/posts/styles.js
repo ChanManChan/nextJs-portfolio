@@ -79,6 +79,9 @@ export const Summary = styled.summary`
   span {
     float: right;
   }
+  @media (max-width: 400px) {
+    font-size: 1.6rem;
+  }
 `;
 
 /**

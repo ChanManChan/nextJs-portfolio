@@ -15,6 +15,15 @@ import FooterInput from '@/components/forms/S_Input';
 import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
 
+const Add_B_btn = styled(B_Button)`
+  @media (max-width: 500px) {
+    padding: 1rem 2rem;
+    border: 0.15rem solid
+      ${(p) => (p.autoTheme ? p.theme.bodyFontColor : p.themeColor)};
+    font-size: 1rem;
+  }
+`;
+
 const PageFunction = styled.h1`
   margin: 0 0 5rem;
   font-size: 3rem;
@@ -62,7 +71,7 @@ const useInitialData = () => {
   const s_Briefs = (data && data.briefsByCategory) || [];
   const user = (u_data && u_data.user) || null;
   const title =
-    (s_Briefs.length > 0 && s_Briefs[1].particularsCategory.title) || '';
+    (s_Briefs.length > 0 && s_Briefs[0].particularsCategory.title) || '';
 
   return {
     title,
@@ -95,9 +104,9 @@ const Briefs = () => {
       <PageFunction>{title}</PageFunction>
       {user ? (
         <>
-          <B_Button size='medium' themeColor='#444'>
+          <Add_B_btn size='medium' themeColor='#444'>
             Add a Brief
-          </B_Button>
+          </Add_B_btn>
           <FooterInput
             plc_Title='Enter brief title'
             plc_Content='Enter concepts covered in CSV fashion'

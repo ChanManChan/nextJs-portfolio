@@ -32,6 +32,27 @@ const HeroContainer = styled.div`
     right: 0;
     bottom: 0;
   }
+  @media (max-width: 768px) {
+    /*? Rows / Columns */
+    grid: 35rem 1fr / repeat(2, 1fr);
+    .title--wrapper {
+      grid-area: 1/1/2/2;
+    }
+    .title--info {
+      grid-area: 2/1/3/3;
+      align-self: start;
+      padding: 4rem;
+    }
+  }
+  @media (max-width: 450px) {
+    grid: 20rem 1fr / repeat(2, 1fr);
+    .title--wrapper {
+      align-self: end;
+    }
+    .title--info {
+      padding-top: 7rem;
+    }
+  }
 `;
 
 const textBackground = keyframes`
@@ -63,11 +84,34 @@ const TitleInfo = styled.div`
     animation: ${textBackground} 20s linear infinite;
   }
 `;
+
+const H1 = styled.h1`
+  @media (max-width: 1100px) {
+    font-size: 2.5rem;
+    & ~ a {
+      padding: 1.5rem 2.5rem;
+      border: 0.25rem solid #fff;
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 2.1rem;
+    & ~ h3 {
+      font-size: 1.2rem;
+    }
+    & ~ a {
+      padding: 1rem 2rem;
+      border: 0.15rem solid #fff;
+      font-size: 1rem;
+    }
+  }
+`;
+
 const Hero = () => (
   <HeroContainer>
     <Title neon='MERN' flux='Stack' />
-    <TitleInfo>
-      <h1> Hey, I'm Nanda Gopal. Experienced full stack developer</h1>
+    <TitleInfo className='title--info'>
+      <H1> Hey, I'm Nanda Gopal. Experienced full stack developer</H1>
       <h3> Check out my portfolio</h3>
       <Link href='/projects' passHref>
         <TitleButton size='large' themeColor='#fff'>

@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 const Card = styled.a`
   flex: 0 1 calc(33.33% - 3rem);
+  margin: 2rem 0;
+  min-width: 25rem;
   display: flex;
   text-decoration: none;
   flex-flow: column wrap;
