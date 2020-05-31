@@ -74,7 +74,7 @@ const BreakpointMenu = () => {
           </>
         ) : (
           <>
-            <Dropdown pathName={pathname} user={user} />
+            <Dropdown pathName={pathname} user={user} mobile />
             <Anchor href='/' isActive={pathname === '/'} username>
               {user.username}
             </Anchor>

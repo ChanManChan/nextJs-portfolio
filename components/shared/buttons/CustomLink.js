@@ -24,12 +24,10 @@ const shared = css`
 
 const StyledLink = styled.a`
   color: ${(p) => (p.isActive ? '#fff' : p.theme.staticColor2)};
-  font-size: 2rem;
   text-decoration: ${(p) =>
     p.signOut ? `solid underline ${p.theme.staticColor2} 2px` : 'none'};
   text-transform: ${(p) => (p.username ? 'capitalize' : 'uppercase')};
   padding: 0.5rem 1rem;
-  margin: 0 1.5rem;
   ${checkJustify}
   position: relative;
   transition: all 0.5s;

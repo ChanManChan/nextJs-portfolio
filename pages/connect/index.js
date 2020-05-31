@@ -18,6 +18,9 @@ import { shortify } from '@/utils/functions';
 const PageFunction = styled.h1`
   margin: 0 0 5rem;
   font-size: 3rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Body_cell = styled.td.attrs({ className: 'body--cell' })`
@@ -39,7 +42,6 @@ const Body_cell = styled.td.attrs({ className: 'body--cell' })`
     }`
       : ''}
   &:last-of-type {
-    width: 25%;
     text-align: center;
   }
 `;
@@ -97,9 +99,9 @@ const Topics = () => {
           />
         </>
       ) : (
-        <i>Log in to create a topic</i>
+        <i style={{ lineHeight: '5' }}>Log in to create a topic</i>
       )}
-      <Table col_1='Topic' col_2='Content' col_3='Author'>
+      <Table col_1='Topic' col_2='Content' col_3='Author' topics>
         {topics.map((t, i) => (
           <TR key={i} onClick={() => redirectToTopic(t.slug)}>
             <Body_cell topic>{t.title}</Body_cell>

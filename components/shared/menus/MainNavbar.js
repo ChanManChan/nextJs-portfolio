@@ -20,9 +20,12 @@ const Grid = styled.div`
   border-bottom: 0.5rem solid ${(p) => p.theme.primaryColor};
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 35% auto 30%;
+    grid-template-columns: 50% auto 45%;
     justify-items: center;
     align-items: center;
+  }
+  @media (min-width: 1750px) {
+    grid-template-columns: 35% auto 30%;
   }
 `;
 
@@ -30,12 +33,32 @@ const Grid_child1 = styled.div`
   grid-column: 1/2;
   display: grid;
   grid-template-columns: auto 1fr;
+  & > nav > a {
+    font-size: 2rem;
+    margin: 0 1.5rem;
+  }
+  @media (max-width: 1200px) {
+    & > nav > a {
+      font-size: 1.2rem;
+      margin: 0 0.9rem;
+    }
+  }
 `;
 
 const Grid_child2 = styled.div`
   grid-column: 3/-1;
   width: 100%;
   position: relative;
+  & > nav > a {
+    font-size: 2rem;
+    margin: 0 1.5rem;
+  }
+  @media (max-width: 1200px) {
+    & > nav > a {
+      font-size: 1.2rem;
+      margin: 0 0.9rem;
+    }
+  }
 `;
 
 const MainNavbar = () => {

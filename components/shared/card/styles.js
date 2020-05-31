@@ -20,6 +20,9 @@ export const ImageContainer = styled.div`
   filter: grayscale(100%);
   will-change: filter;
   transition: filter 0.2s ease;
+  @media (max-width: 768px) {
+    width: 30rem;
+  }
 `;
 
 //! Expanding (radius wise) button
@@ -49,7 +52,9 @@ export const Card = styled.div`
   background-color: #fff;
   overflow: hidden;
   margin-bottom: 0.4rem;
-
+  @media (max-width: 768px) {
+    width: 35rem;
+  }
   .actionIcons {
     position: absolute;
     cursor: pointer;
@@ -127,6 +132,10 @@ export const Card = styled.div`
     right: 13rem;
     font-size: 2rem;
     color: #fff;
+    @media (max-width: 768px) {
+      right: 7rem;
+      font-size: 1.3rem;
+    }
   }
 
   .fa-arrow-right {
@@ -152,6 +161,9 @@ export const Card = styled.div`
     /* The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress.  */
     writing-mode: vertical-rl;
     transition: color 0.2s ease;
+    @media (max-width: 768px) {
+      right: 3rem;
+    }
   }
 
   /* Tech icons container*/

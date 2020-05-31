@@ -20,12 +20,24 @@ const OrderedList = styled.ol`
   display: none;
   position: absolute;
   visibility: hidden;
-  top: 4.8rem;
+  top: 4rem;
   left: 0;
   opacity: 0;
   flex-direction: column;
   list-style: none;
   margin-top: 1rem;
+  ${(p) =>
+    p.mobile
+      ? 'width: 100%'
+      : `
+   @media(max-width:1200px) {
+    top: 3.2rem;
+    & > li > a {
+      font-size: 1.2rem;
+      margin: 0 0.9rem;
+    }
+  }
+  `}
 `;
 
 const Popup = styled.span`
@@ -50,12 +62,21 @@ const Popup = styled.span`
     opacity: 1;
     visibility: visible;
   }
+  ${(p) =>
+    p.mobile
+      ? 'width: 100%'
+      : `
+  @media(max-width:1200px) {
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+  }
+  `}
 `;
 
-const DropdownMenu = ({ user }) => (
-  <Popup aria-haspopup='true'>
-    <Anchor href='/'>Manage</Anchor>
-    <OrderedList>
+const DropdownMenu = ({ user, mobile = false }) => (
+  <Popup aria-haspopup='true' mobile={mobile}>
+    <Anchor href='#'>Manage</Anchor>
+    <OrderedList mobile={mobile}>
       {user && (user.role === 'admin' || user.role === 'instructor') && (
         <>
           <MenuItem>

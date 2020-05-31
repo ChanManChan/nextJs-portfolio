@@ -32,7 +32,7 @@ const V_Menu = ({ content }) => (
         height={height}
         width={width}
         itemCount={content.length}
-        itemSize={50}
+        itemSize={width < 365 ? 70 : 50}
         itemData={content}
       >
         {renderRow}

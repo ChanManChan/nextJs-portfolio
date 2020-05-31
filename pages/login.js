@@ -20,6 +20,9 @@ const PageFunction = styled.h1`
   /* margin: top | right & left | bottom */
   margin: 0 0 4rem;
   font-size: 3rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Login = () => {

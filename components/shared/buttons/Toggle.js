@@ -5,6 +5,9 @@ const ToggleWrapper = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    right: -1rem;
+  }
+  @media (min-width: 850px) {
     right: 1rem;
   }
   width: 5rem;
