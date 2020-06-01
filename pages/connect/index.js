@@ -64,7 +64,6 @@ const Topics = () => {
 
   const redirectToTopic = (slug) =>
     router.push('/connect/topics/[slug]', `/connect/topics/${slug}`);
-
   return (
     <Disabled_State loading={`${t_loading}`} cover>
       <PageFunction>Select a Topic</PageFunction>

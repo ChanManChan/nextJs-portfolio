@@ -36,6 +36,7 @@ const handleAddComment = ({
   if (replyTo) data.parent = replyTo._id;
   data.topic = _id;
   await cr_post({ variables: data });
+  cleanUp(scroll2Btm, resetForm);
   let lastPage = 0;
   if (count === 0) lastPage = 1;
   else lastPage = Math.ceil(count / pageSize);
@@ -49,7 +50,6 @@ const handleAddComment = ({
         });
       },
     }));
-  cleanUp(scroll2Btm, resetForm);
 };
 
 const Posts = ({

@@ -16,12 +16,12 @@ const userSchema = new Schema(
     },
     name: {
       type: String,
-      minlength: [6, 'Minimum name length is six characters'],
+      minlength: [3, 'Minimum name length is three characters'],
     },
     username: {
       type: String,
       required: true,
-      minlength: [6, 'Minimum username length is six characters'],
+      minlength: [3, 'Minimum username length is three characters'],
     },
     hashed_password: {
       type: String,
@@ -29,7 +29,7 @@ const userSchema = new Schema(
     },
     salt: String,
     role: {
-      enum: ['admin', 'guest','instructor'],
+      enum: ['admin', 'guest', 'instructor'],
       type: String,
       required: true,
       default: 'guest',
