@@ -4,6 +4,8 @@ import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withParent from '@/hoc/withParent';
 import { PageFunction, Container } from '@/components/styles/common';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 
 //! Pretend we're making some asynchronous calls
 // const apiCall = () => {
@@ -20,7 +22,7 @@ const Projects = () => {
   //! we dont need state because we are fetching data from server now onwards and rendering the HTML with the fetched data from server-side and sending it to the client.
   // const [portfolios, setPortfolios] = React.useState([]);
 
-  const { data } = useGetProjects();
+  const { data, loading } = useGetProjects();
   const projects = (data && data.projects) || [];
   //! We don't need "useEffect" anymore because the data is fetched from server-side from now onwards.
   // React.useEffect(() => {
@@ -63,7 +65,7 @@ const Projects = () => {
   //UPDATE:-updatePortfolio({ variables: { id: p._id } })
 
   return (
-    <>
+    <Disabled_State loading={`${loading}`} cover>
       <PageFunction>All Projects</PageFunction>
       <Container>
         {projects.map((p, i) => {
@@ -80,7 +82,8 @@ const Projects = () => {
           );
         })}
       </Container>
-    </>
+      <Loading msg='Fetching all projects...' loading={`${loading}`} />
+    </Disabled_State>
   );
 };
 
