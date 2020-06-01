@@ -61,6 +61,18 @@ const RegisterForm = ({ req_Parent, loading }) => (
             placeholder='Re-Type Password'
             as={CustomInput}
           />
+          {errors.password && (
+            <p
+              style={{
+                color: 'red',
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                margin: ' -2rem 0 2rem',
+              }}
+            >
+              {errors.password}
+            </p>
+          )}
           <CustomButton
             type='submit'
             disabled={isSubmitting}

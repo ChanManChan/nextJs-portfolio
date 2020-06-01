@@ -27,27 +27,37 @@ const Dropzone = ({
       });
   }, [fileRejections]);
 
-  React.useEffect(() => {
-    if (pot_err.avatar && pot_err.avatar.includes('Add a profile image'))
-      toast.warning(pot_err.avatar, {
-        position: toast.POSITION.BOTTOM_LEFT,
-        toastId: 10,
-        autoClose: false,
-      });
-  }, [pot_err]);
+  if (pot_err.avatar && pot_err.avatar.includes('Add a profile image of'))
+    toast.warning(pot_err.avatar, {
+      position: toast.POSITION.BOTTOM_LEFT,
+      toastId: 10,
+      autoClose: 10000,
+    });
 
   return (
-    <div {...getRootProps({ className: 'dropzone' })}>
-      <input {...getInputProps()} />
-      <Button
-        className='dropzone--btn'
-        type='button'
-        loading={loading}
-        onClick={open}
+    <>
+      <p
+        style={{
+          color: 'red',
+          fontSize: '1.5rem',
+          fontWeight: 'bold',
+          marginBottom: '1rem',
+        }}
       >
-        Open File Dialog
-      </Button>
-    </div>
+        {pot_err.avatar}
+      </p>
+      <div {...getRootProps({ className: 'dropzone' })}>
+        <input {...getInputProps()} />
+        <Button
+          className='dropzone--btn'
+          type='button'
+          loading={loading}
+          onClick={open}
+        >
+          Open File Dialog
+        </Button>
+      </div>
+    </>
   );
 };
 

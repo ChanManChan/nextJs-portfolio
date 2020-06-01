@@ -66,17 +66,18 @@ const Control = styled.div`
 const InputField = ({ loading, type, placeholder, ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
+
   if (errorText.includes('Password must Contain at least 8'))
     toast.warning(errorText, {
       position: toast.POSITION.BOTTOM_LEFT,
       toastId: 13,
-      autoClose: false,
+      autoClose: 10000,
     });
   else if (errorText.includes('Username must be at least 3'))
     toast.warning(errorText, {
       position: toast.POSITION.BOTTOM_LEFT,
       toastId: 11,
-      autoClose: false,
+      autoClose: 10000,
     });
 
   return (
