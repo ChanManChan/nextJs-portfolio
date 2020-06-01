@@ -7,7 +7,13 @@ import {
   validationSchemaTopic,
   validationSchemaPost,
 } from '@/components/global/Validator';
-import { Footer, Container, Input, Button, RES_TO } from './styles';
+import {
+  Footer,
+  Container,
+  Input,
+  Button,
+  RES_TO,
+} from '@/components/styles/specific/forms[S_Input]_styles';
 import { removeFooter } from '@/utils/functions';
 
 const Vul_Input = ({ loading, placeholder, ...props }) => {

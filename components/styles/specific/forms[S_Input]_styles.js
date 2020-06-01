@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { BP } from './media';
+import { BP } from './forms[S_Input]_media';
 
 export const Footer = styled.footer`
   padding: 2rem 0;
