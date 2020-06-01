@@ -5,13 +5,15 @@ import Card from '@/components/shared/card/Card';
 import { useGetUserProjects, useDeleteProject } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { PageFunction, Container } from '@/components/styles/common';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 
 const AdminDashboard = () => {
-  const { data } = useGetUserProjects();
+  const { data, loading } = useGetUserProjects();
   const [deleteProject] = useDeleteProject();
   const userProjects = (data && data.userProjects) || [];
   return (
-    <>
+    <Disabled_State loading={`${loading}`} cover>
       <PageFunction>Admin Projects</PageFunction>
       <Container>
         {userProjects.map((p, i) => (
@@ -32,7 +34,8 @@ const AdminDashboard = () => {
           />
         ))}
       </Container>
-    </>
+      <Loading msg='Fetching admin projects...' loading={`${loading}`} />
+    </Disabled_State>
   );
 };
 
