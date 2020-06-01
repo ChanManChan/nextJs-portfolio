@@ -121,8 +121,15 @@ const MainNavbar = () => {
             </>
           ) : (
             <>
-              <Dropdown pathName={pathname} user={user} />
-              <Anchor href='/' isActive={pathname === '/'} username>
+              {user.role === 'admin' && (
+                <Dropdown pathName={pathname} user={user} />
+              )}
+              <Anchor
+                href='/'
+                isActive={pathname === '/'}
+                username
+                justify={user.role === 'admin' ? 'center' : 'end'}
+              >
                 {user.username}
               </Anchor>
               <Anchor href='/logout' signOut isActive={pathname === '/logout'}>
