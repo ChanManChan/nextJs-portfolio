@@ -1,7 +1,7 @@
 //! CONNECT TO DB AND EXECUTE SOME FUNCTIONS WHILE WE ARE CONNECTED TO DB
 
 const mongoose = require('mongoose');
-const config = require('../config/dev');
+const config = require('../config');
 const fakeDb = require('./FakeDb');
 
 mongoose.connect(

@@ -9,15 +9,11 @@ import {
   useUpdateProject,
 } from '@/apollo/actions';
 import { useRouter } from 'next/router';
+import { PageFunction } from '@/components/styles/common';
 
 const FormWrapper = styled.div`
   width: 100%;
   padding: 3rem 1.5rem 2.4rem;
-`;
-
-const PageFunction = styled.h1`
-  margin: 0 0 4rem;
-  font-size: 3rem;
 `;
 
 const EditProject = () => {

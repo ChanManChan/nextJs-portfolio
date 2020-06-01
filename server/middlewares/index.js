@@ -1,4 +1,4 @@
-const config = require('../config/dev');
+const config = require('../config');
 const session = require('express-session');
 const passport = require('passport');
 const cloudinary = require('cloudinary');
@@ -23,6 +23,13 @@ exports.init = (server, db) => {
     saveUninitialized: false,
     store: db.initSessionStore(),
   };
+  if (process.env.NODE_ENV === 'production') {
+    server.set('trust proxy', 1);
+    sess.cookie.secure = true;
+    sess.cookie.httpOnly = true;
+    sess.cookie.sameSite = true;
+    sess.cookie.domain = process.env.DOMAIN;
+  }
   server.use(session(sess));
 
   //! Propagate this "req" object returned from "passport.initialize()" into the graphql context.

@@ -13,11 +13,9 @@ import Loading from '@/components/styles/Loading';
 import Button from '@/components/shared/buttons/ShimmerButton';
 import Link from 'next/link';
 import { shortify } from '@/utils/functions';
+import { PageFunction, Container } from '@/components/styles/common';
 
-const ProjectContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
-  grid-row-gap: 3rem;
+const ProjectContainer = styled(Container)`
   margin-bottom: 2rem;
   @media (max-width: 768px) {
     & ~ a {
@@ -34,14 +32,6 @@ const TopicContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 3rem;
-`;
-
-const PageFunction = styled.h2`
-  margin: 5rem 0 7rem;
-  font-size: 3rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const useGetInitialData = () => {
@@ -87,7 +77,7 @@ const Home = () => {
         ))}
       </ProjectContainer>
       <Link href='/projects' passHref>
-        <Button size='medium' autoTheme>
+        <Button style={{ marginBottom: '2rem' }} size='medium' autoTheme>
           See More Projects
         </Button>
       </Link>
@@ -104,7 +94,7 @@ const Home = () => {
         ))}
       </TopicContainer>
       <Link href='/connect' passHref>
-        <Button size='medium' autoTheme>
+        <Button style={{ marginTop: '-2rem' }} size='medium' autoTheme>
           See More Topics
         </Button>
       </Link>

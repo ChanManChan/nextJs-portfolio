@@ -14,36 +14,15 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { removeFooter } from '@/utils/functions';
 import { shortify } from '@/utils/functions';
+import { PageFunction, Body_cell } from '@/components/styles/common';
 
-const PageFunction = styled.h1`
-  margin: 0 0 5rem;
-  font-size: 3rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
-const Body_cell = styled.td.attrs({ className: 'body--cell' })`
-  color: #000;
-  text-align: left;
-  padding: 1.5rem 0.5rem;
-  font-size: 2rem;
-  width: 37.5%;
-  height: 18rem;
-  white-space: initial;
-  border-bottom: 0.3rem solid ${(p) => p.theme.primaryColor};
-  &:not(:last-child) {
-    border-right: 0.3rem solid ${(p) => p.theme.primaryColor};
-  }
+const M_body_cell = styled(Body_cell)`
   ${(p) =>
     p.topic
       ? `&:first-of-type {
           text-align: center;
     }`
       : ''}
-  &:last-of-type {
-    text-align: center;
-  }
 `;
 
 const useInitialData = () => {
@@ -104,9 +83,9 @@ const Topics = () => {
       <Table col_1='Topic' col_2='Content' col_3='Author' topics>
         {topics.map((t, i) => (
           <TR key={i} onClick={() => redirectToTopic(t.slug)}>
-            <Body_cell topic>{t.title}</Body_cell>
-            <Body_cell>{shortify(t.content, 100)}</Body_cell>
-            <Body_cell>{t.user.username}</Body_cell>
+            <M_body_cell topic>{t.title}</M_body_cell>
+            <M_body_cell>{shortify(t.content, 100)}</M_body_cell>
+            <M_body_cell>{t.user.username}</M_body_cell>
           </TR>
         ))}
       </Table>

@@ -16,7 +16,7 @@ import {
   Screenshot2,
   Screenshot3,
   Screenshot4,
-} from './styles';
+} from '../styles/specific/projects[id]_styles';
 
 export const P_TITLE = ({ title }) => (
   <ProjectTitle>

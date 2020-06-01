@@ -12,7 +12,7 @@ import { BatchHttpLink } from 'apollo-link-batch-http';
 //! "withApollo" is a Higher Order Component which takes our page and it will render our page wrapped with ApolloProvider so that we can use queries and mutations in our page and also it will be executed server side.
 
 const OPTS = {
-  uri: 'http://localhost:3000/graphql',
+  uri: process.env.GRAPH_URL,
   credentials: 'include',
 };
 

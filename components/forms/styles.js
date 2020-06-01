@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { BP } from './media';
 
 export const Footer = styled.footer`
   padding: 2rem 0;
@@ -22,71 +23,34 @@ const shared = css`
   transition: all 0.5s ease;
 `;
 
-const mediaQueries = css`
-  @media (max-width: 1670px) {
-    left: 3.95%;
-    &:last-of-type {
-      left: 14.5%;
-    }
-  }
-  @media (max-width: 1450px) {
-    left: 4%;
-    &:last-of-type {
-      left: 16.5%;
-    }
-  }
-  @media (max-width: 1270px) {
-    left: 4.5%;
-    &:last-of-type {
-      left: 18.5%;
-    }
-  }
-  @media (max-width: 1160px) {
-    left: 5%;
-    &:last-of-type {
-      left: 21.5%;
-    }
-  }
-  @media (max-width: 1000px) {
-    left: 5.5%;
-    &:last-of-type {
-      left: 24.5%;
-    }
-  }
-  @media (max-width: 890px) {
-    left: 6%;
-    &:last-of-type {
-      left: 27.5%;
-    }
-  }
-  @media (max-width: 767px) {
-    left: 9%;
-    bottom: -1.8rem;
-    padding: 0.75rem 1.75rem;
-    font-size: 1.1rem;
-    &:last-of-type {
-      left: 30.5%;
-    }
-  }
-  @media (max-width: 560px) {
-    left: 11%;
-    &:last-of-type {
-      left: 33.5%;
-    }
-  }
-  @media (max-width: 500px) {
-    left: 13.5%;
-    &:last-of-type {
-      left: 40.5%;
-    }
-  }
-  @media (max-width: 440px) {
-    left: 14%;
-    &:last-of-type {
-      left: 44.5%;
-    }
-  }
-`;
+const iterateMedia = () => {
+  let styles = '';
+  for (let i = 0; i < BP.media.length; i++)
+    if (BP.media[i].bp === 767)
+      styles += `
+      @media (max-width: ${BP.media[i].bp}px) {
+        left: ${BP.media[i].left1}%;
+        bottom: -1.8rem;
+        padding: 0.75rem 1.75rem;
+        font-size: 1.1rem;
+        &:last-of-type {
+          left: ${BP.media[i].left2}%;
+        }
+      }
+      `;
+    else
+      styles += `
+      @media (max-width: ${BP.media[i].bp}px) {
+        left: ${BP.media[i].left1}%;
+        &:last-of-type {
+          left: ${BP.media[i].left2}%;
+        }
+      }
+      `;
+  return css`
+    ${styles}
+  `;
+};
 
 export const Container = styled.div`
   display: flex;
@@ -188,7 +152,7 @@ export const Button = styled.button`
   &:hover {
     border: 0.6rem solid ${(p) => p.theme.primaryColor};
   }
-  ${mediaQueries}
+  ${iterateMedia()}
 `;
 
 export const RES_TO = styled.div`

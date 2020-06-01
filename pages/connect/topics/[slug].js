@@ -11,18 +11,12 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import Thread from '@/components/shared/posts/Posts';
 import AppPagination from '@/components/shared/Pagination';
 import styled from 'styled-components';
+import { PageFunction } from '@/components/styles/common';
 
 const Hook = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
-
-const H1 = styled.h1`
-  font-size: 3rem;
-  @media (max-width: 600px) {
-    font-size: 2.35rem;
-  }
 `;
 
 const useInitialData = (slug, pagination) => {
@@ -69,7 +63,7 @@ const Posts = () => {
   const [createPost, { loading: cr_loading }] = useCreatePost();
   return (
     <Hook>
-      <H1>{rest.topic.title}</H1>
+      <PageFunction>{rest.topic.title}</PageFunction>
       <Thread
         loading={t_loading || p_loading || u_loading}
         cr_post={createPost}

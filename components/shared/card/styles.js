@@ -210,6 +210,9 @@ export const Card = styled.div`
 
   &:hover ${Button} {
     transform: scale(16.5);
+    @media (max-width: 768px) {
+      transform: scale(10.5);
+    }
   }
 
   &:hover p {

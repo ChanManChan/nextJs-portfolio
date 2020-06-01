@@ -1,9 +1,9 @@
 import Card from '@/components/shared/card/Card';
-import styled from 'styled-components';
 import { useGetProjects } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withParent from '@/hoc/withParent';
+import { PageFunction, Container } from '@/components/styles/common';
 
 //! Pretend we're making some asynchronous calls
 // const apiCall = () => {
@@ -14,19 +14,6 @@ import withParent from '@/hoc/withParent';
 //! we need to wait 5s until this data is resolved and this page is displayed
 // });
 // };
-const PageFunction = styled.h2`
-  margin: 5rem 0 7rem;
-  font-size: 3rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
-  grid-row-gap: 3rem;
-`;
 
 const Projects = () => {
   // debugger;

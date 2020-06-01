@@ -1,24 +1,10 @@
-import styled from 'styled-components';
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 import withParent from '@/hoc/withParent';
 import Card from '@/components/shared/card/Card';
 import { useGetUserProjects, useDeleteProject } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
-  grid-row-gap: 3rem;
-`;
-
-const PageFunction = styled.h1`
-  margin: 0 0 4rem;
-  font-size: 3rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
+import { PageFunction, Container } from '@/components/styles/common';
 
 const AdminDashboard = () => {
   const { data } = useGetUserProjects();

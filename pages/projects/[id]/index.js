@@ -2,9 +2,9 @@ import { useGetProject } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withParent from '@/hoc/withParent';
-import { Grid } from './styles';
 import Disabled_State from '@/components/styles/Disabled_State';
 import Loading from '@/components/styles/Loading';
+import { Grid } from '@/components/styles/specific/projects[id]_styles';
 import {
   P_TITLE,
   Page_fnc,
@@ -16,7 +16,7 @@ import {
   SS_2,
   SS_3,
   SS_4,
-} from './fragments';
+} from '@/components/fragments/projects[id]_fragments';
 
 //! 1st method:- Functional component without getInitialProps
 // const PortfolioDetail = () => {

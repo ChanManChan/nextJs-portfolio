@@ -14,6 +14,7 @@ import Button from '@/components/shared/buttons/ShimmerButton';
 import FooterInput from '@/components/forms/S_Input';
 import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
+import { PageFunction, Body_cell } from '@/components/styles/common';
 
 const Add_B_btn = styled(B_Button)`
   @media (max-width: 500px) {
@@ -24,29 +25,7 @@ const Add_B_btn = styled(B_Button)`
   }
 `;
 
-const PageFunction = styled.h1`
-  margin: 0 0 5rem;
-  font-size: 3rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
-const Body_cell = styled.td.attrs({ className: 'body--cell' })`
-  color: #000;
-  text-align: left;
-  padding: 1.5rem 0.5rem;
-  font-size: 2rem;
-  width: 37.5%;
-  height: 18rem;
-  white-space: initial;
-  border-bottom: 0.3rem solid ${(p) => p.theme.primaryColor};
-  &:not(:last-child) {
-    border-right: 0.3rem solid ${(p) => p.theme.primaryColor};
-  }
-  &:last-of-type {
-    text-align: center;
-  }
+const M_body_cell = styled(Body_cell)`
   @media (max-width: 768px) {
     & > ${Button} {
       padding: 0.9rem 1.2rem;
@@ -121,13 +100,13 @@ const Briefs = () => {
       <Table col_1='Course' col_2='Concepts' col_3='Certificate' mobile>
         {s_Briefs.map((b, i) => (
           <tr key={i}>
-            <Body_cell>{b.title}</Body_cell>
-            <Body_cell>
+            <M_body_cell>{b.title}</M_body_cell>
+            <M_body_cell>
               <FSL_Container>
                 <V_Menu content={b.content} />
               </FSL_Container>
-            </Body_cell>
-            <Body_cell>
+            </M_body_cell>
+            <M_body_cell>
               <Button
                 href='https://google.com'
                 size='medium'
@@ -136,7 +115,7 @@ const Briefs = () => {
               >
                 View Certificate
               </Button>
-            </Body_cell>
+            </M_body_cell>
           </tr>
         ))}
       </Table>
