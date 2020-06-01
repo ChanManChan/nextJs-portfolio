@@ -26,6 +26,9 @@ const Title = styled.h2`
   margin-bottom: 1rem;
   text-transform: uppercase;
   flex: 1;
+  @media (max-width: 1065px) {
+    font-size: 1.7rem;
+  }
 `;
 
 const Subtitle = styled.p`
