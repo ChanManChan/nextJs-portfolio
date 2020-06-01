@@ -25,8 +25,8 @@ const ParticularsCategories = () => {
 
   return (
     <Container>
-      <PageFunction>Categories</PageFunction>
       <Disabled_State loading={`${loading}`}>
+        <PageFunction>Categories</PageFunction>
         <FlexWrapper>
           {p_Categories.map((c, i) => (
             <CategoryCard

@@ -46,10 +46,7 @@ const validationSchemaBrief = yup.object({
   content: yup
     .string()
     .required('Mention the concepts covered in CSV format')
-    .matches(
-      /^([A-Za-z1-9][A-Za-z0-9]*,[ ])*[A-Za-z1-9][A-Za-z0-9]*$/,
-      'Must be in CSV format'
-    ),
+    .matches(/^([A-Za-z1-9].*,[ ])*[A-Za-z1-9].*$/, 'Must be in CSV format'),
   certificate_img: yup.mixed().required('Provide a certificate'),
 });
 

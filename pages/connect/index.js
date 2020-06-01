@@ -15,6 +15,8 @@ import { useRouter } from 'next/router';
 import { removeFooter } from '@/utils/functions';
 import { shortify } from '@/utils/functions';
 import { PageFunction, Body_cell } from '@/components/styles/common';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 
 const M_body_cell = styled(Body_cell)`
   ${(p) =>
@@ -27,7 +29,7 @@ const M_body_cell = styled(Body_cell)`
 
 const useInitialData = () => {
   const router = useRouter();
-  const { data } = useFetchAllTopics();
+  const { data, loading: t_loading } = useFetchAllTopics();
   const { data: u_data } = useFetchUser();
   const topics = (data && data.topics) || [];
   const user = (u_data && u_data.user) || null;
@@ -35,6 +37,7 @@ const useInitialData = () => {
     user,
     topics,
     router,
+    t_loading,
   };
 };
 
@@ -56,14 +59,14 @@ const TR = styled.tr`
 `;
 
 const Topics = () => {
-  const { topics, user, router } = useInitialData();
+  const { topics, user, router, t_loading } = useInitialData();
   const [createTopic, { loading }] = useCreateTopic();
 
   const redirectToTopic = (slug) =>
     router.push('/connect/topics/[slug]', `/connect/topics/${slug}`);
 
   return (
-    <>
+    <Disabled_State loading={`${t_loading}`} cover>
       <PageFunction>Select a Topic</PageFunction>
       {user ? (
         <>
@@ -89,7 +92,8 @@ const Topics = () => {
           </TR>
         ))}
       </Table>
-    </>
+      <Loading msg='Fetching topics...' loading={`${t_loading}`} />
+    </Disabled_State>
   );
 };
 

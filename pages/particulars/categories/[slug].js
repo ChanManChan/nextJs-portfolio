@@ -15,8 +15,11 @@ import FooterInput from '@/components/forms/S_Input';
 import B_Button from '@/components/shared/buttons/F_Button';
 import { toast } from 'react-toastify';
 import { PageFunction, Body_cell } from '@/components/styles/common';
+import { removeFooter } from '@/utils/functions';
+import Disabled_State from '@/components/styles/Disabled_State';
+import Loading from '@/components/styles/Loading';
 
-const Add_B_btn = styled(B_Button)`
+const Add_B_btn = styled(B_Button).attrs({ className: 'post--btn' })`
   @media (max-width: 500px) {
     padding: 1rem 2rem;
     border: 0.15rem solid
@@ -43,7 +46,7 @@ const FSL_Container = styled.div`
 const useInitialData = () => {
   const router = useRouter();
   const slug = router.query.slug;
-  const { data } = useFetchBriefsByCategory({
+  const { data, loading: f_loading } = useFetchBriefsByCategory({
     variables: { slug },
   });
   const { data: u_data } = useFetchUser();
@@ -57,6 +60,7 @@ const useInitialData = () => {
     user,
     s_Briefs,
     slug,
+    f_loading,
   };
 };
 
@@ -66,20 +70,16 @@ const handleCreateBrief = (slug, createBrief) => async (b_data, resetForm) => {
   toast.success('Brief created successfully', {
     position: toast.POSITION.BOTTOM_LEFT,
   });
-  const footer = document.querySelector('.slide-footer');
-  if (footer.classList.contains('active')) {
-    footer.classList.remove('active');
-    document.querySelector('.post--btn').innerText = 'Add a Brief';
-  }
+  removeFooter('.post--btn', 'Add a Brief');
   resetForm();
 };
 
 const Briefs = () => {
-  const { s_Briefs, title, user, slug } = useInitialData();
+  const { s_Briefs, title, user, slug, f_loading } = useInitialData();
   const [createBrief, { loading }] = useCreateBrief();
 
   return (
-    <>
+    <Disabled_State loading={`${f_loading}`} cover>
       <PageFunction>{title}</PageFunction>
       {user ? (
         <>
@@ -119,7 +119,8 @@ const Briefs = () => {
           </tr>
         ))}
       </Table>
-    </>
+      <Loading msg='Fetching briefs...' loading={`${f_loading}`} />
+    </Disabled_State>
   );
 };
 

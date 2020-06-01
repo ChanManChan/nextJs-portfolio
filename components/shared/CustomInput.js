@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Bg_right, Bg_top, Bg_inner, Bg } from '../styles/Cuboid';
 import { useField } from 'formik';
+import { toast } from 'react-toastify';
 
 const Input = styled.input.attrs((props) => ({
   placeholder: props.helperText ? props.helperText : props.placeholder,
@@ -65,6 +66,12 @@ const Control = styled.div`
 const InputField = ({ loading, type, placeholder, ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
+  if (errorText.includes('Must Contain 8 Characters'))
+    toast.warning(errorText, {
+      position: toast.POSITION.BOTTOM_LEFT,
+      toastId: 13,
+      autoClose: false,
+    });
   return (
     <Control helperText={errorText}>
       <Input
