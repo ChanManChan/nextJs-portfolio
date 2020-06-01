@@ -23,7 +23,7 @@ const RegisterForm = ({ req_Parent, loading }) => (
       resetForm();
     }}
   >
-    {({ isSubmitting, setFieldValue }) => (
+    {({ isSubmitting, setFieldValue, errors }) => (
       <Disabled_State loading={`${loading}`}>
         <Form>
           <Dropzone
@@ -31,6 +31,7 @@ const RegisterForm = ({ req_Parent, loading }) => (
             setFieldValue={setFieldValue}
             maxSize={100000}
             fieldKey='avatar'
+            pot_err={errors}
           />
           <Field
             name='username'

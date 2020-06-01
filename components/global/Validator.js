@@ -7,25 +7,29 @@ const validationSchemaSignIn = yup.object({
     .required('Enter your password')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
+      'Password must Contain at least 8 Characters, One Uppercase, One Lowercase, One Number and one special Character'
     ),
 });
 
 const validationSchemaRegister = yup.object({
-  username: yup.string().min(5).max(35).required('Enter a username'),
+  username: yup
+    .string()
+    .min(3, 'Username must be at least 3 characters')
+    .max(35)
+    .required('Enter a username'),
   email: yup.string().required('Enter your Email').email(),
   password: yup
     .string()
     .required('Enter your password')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
+      'Password must Contain at least 8 Characters, One Uppercase, One Lowercase, One Number and one special Character'
     ),
   confirmPassword: yup
     .string()
     .required('Confirm Password and Password do not match')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  avatar: yup.mixed().required('Add a profile image'),
+  avatar: yup.mixed().required('Add a profile image of size <=100KB'),
 });
 
 const validationSchemaProject = yup.object({
