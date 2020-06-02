@@ -1,7 +1,7 @@
 import Loading from '@/components/styles/Loading';
 import Disabled_State from '@/components/styles/Disabled_State';
 import CustomButton from '@/components/shared/buttons/CustomButton';
-import Dropzone from '@/components/shared/Dropzone';
+import P_Dropzone from '@/components/shared/P_Dropzone';
 import CustomInput from '@/components/shared/CustomInput';
 import { Field, Formik, Form } from 'formik';
 import { validationSchemaProject } from '@/components/global/Validator';
@@ -63,11 +63,12 @@ const ProjectForm = ({
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
         parent_req(data);
+        console.log('DATA: ', data);
         setInitialValues(data);
         setSubmitting(false);
       }}
     >
-      {({ isSubmitting, setFieldValue, values }) => (
+      {({ isSubmitting, setFieldValue, values, errors }) => (
         <Disabled_State loading={`${loading}`}>
           <Form>
             <AccordionMenu
@@ -76,11 +77,10 @@ const ProjectForm = ({
               stack={f_Stack}
               s_Formik_Arr={values.techStack}
             />
-            <Dropzone
+            <P_Dropzone
               setFieldValue={setFieldValue}
               fieldKey='screenshots'
               maxSize={100000}
-              multi_Sel
               loading={`${loading}`}
             />
             <Field
@@ -130,6 +130,7 @@ const ProjectForm = ({
               disabled={isSubmitting}
               buttonText={btn_txt}
             />
+            <pre>{JSON.stringify(errors, null, 2)}</pre>
           </Form>
           <Loading msg={ld_msg} loading={`${loading}`} />
         </Disabled_State>

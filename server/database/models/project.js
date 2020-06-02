@@ -26,7 +26,7 @@ const projectSchema = new Schema(
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     screenshots: {
-      type: [String],
+      type: [Schema.Types.Mixed],
       required: true,
     },
   },

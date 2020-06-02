@@ -96,38 +96,73 @@ export const REPOS = ({ repoAPI, repoClient }) => (
   </Repository>
 );
 
-export const SS_1 = () => (
+export const SS_1 = ({
+  img_Link = '',
+  caption = '',
+  desc = '',
+  projectName = '',
+}) => (
   <Screenshot1 className='border'>
     <Border>
-      <Image />
+      <Image
+        caption={caption}
+        desc={desc}
+        altName={projectName}
+        img_Link={img_Link}
+      />
     </Border>
   </Screenshot1>
 );
 
-export const SS_2 = () => (
+export const SS_2 = ({
+  img_Link = '',
+  caption = '',
+  desc = '',
+  projectName = '',
+}) => (
   <Screenshot2 className='border'>
     <Border>
-      <Image />
+      <Image
+        caption={caption}
+        desc={desc}
+        altName={projectName}
+        img_Link={img_Link}
+      />
     </Border>
   </Screenshot2>
 );
 
-export const SS_3 = () => (
+export const SS_3 = ({
+  img_Link = '',
+  caption = '',
+  desc = '',
+  projectName = '',
+}) => (
   <Screenshot3 className='border'>
     <Border>
-      <Image />
+      <Image
+        caption={caption}
+        desc={desc}
+        altName={projectName}
+        img_Link={img_Link}
+      />
     </Border>
   </Screenshot3>
 );
 
-export const SS_4 = () => (
+export const SS_4 = ({
+  img_Link = '',
+  caption = '',
+  desc = '',
+  projectName = '',
+}) => (
   <Screenshot4 className='border'>
     <Border>
       <Image
-        caption='Testing'
-        desc='lorem ipsum'
-        projectName='Testing name'
-        img_Link='/bg.jpeg'
+        caption={caption}
+        desc={desc}
+        altName={projectName}
+        img_Link={img_Link}
       />
     </Border>
   </Screenshot4>

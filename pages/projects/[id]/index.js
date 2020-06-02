@@ -63,8 +63,8 @@ const ProjectDetail = ({ query }) => {
     deployed = '',
     repoAPI = '',
     repoClient = '',
+    screenshots = [],
   } = (data && data.project) || {};
-
   //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
   // React.useEffect(() => {
   //   getPortfolio({ variables: { id: query.id } });
@@ -81,10 +81,10 @@ const ProjectDetail = ({ query }) => {
         <P_Desc description={description} />
         <Deployed_Link deployed={deployed} />
         <REPOS repoAPI={repoAPI} repoClient={repoClient} />
-        <SS_1 />
-        <SS_2 />
-        <SS_3 />
-        <SS_4 />
+        <SS_1 projectName={title} />
+        <SS_2 projectName={title} />
+        <SS_3 projectName={title} />
+        <SS_4 projectName={title} />
       </Grid>
       <Loading msg='Fetching...' loading={`${loading}`} />
     </Disabled_State>
@@ -100,3 +100,5 @@ ProjectDetail.getInitialProps = ({ query }) => {
 export default withApollo(withParent(ProjectDetail, 'ProjectDetail'), {
   getDataFromTree,
 });
+
+// img_Link={} caption={} desc={}

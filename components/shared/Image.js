@@ -41,9 +41,9 @@ const Container = styled.div`
   }
 `;
 
-const Image = ({ caption, desc, img_Link, projectName }) => (
+const Image = ({ caption, desc, img_Link, altName }) => (
   <Container>
-    <img src={img_Link} alt={projectName} />
+    <img src={img_Link} alt={altName} />
     <Caption>
       <h2>{caption}</h2>
       <p>{desc}</p>

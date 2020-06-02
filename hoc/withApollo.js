@@ -6,6 +6,7 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { createUploadLink } from 'apollo-upload-client';
 import { BatchHttpLink } from 'apollo-link-batch-http';
+import gql from 'graphql-tag';
 
 //! PROVIDE "APOLLOPROVIDER" ONLY TO THE COMPONENTS OR TO THE PAGES WHICH NEEDS TO WORK WITH QUERIES AND MUTATIONS.
 

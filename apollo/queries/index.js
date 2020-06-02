@@ -25,6 +25,7 @@ export const GET_PROJECT = gql`
       deployed
       description
       theme
+      screenshots
     }
   }
 `;

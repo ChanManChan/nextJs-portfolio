@@ -43,6 +43,10 @@ const validationSchemaProject = yup.object({
   deployed: yup.string().required('Please enter your deployed link'),
   theme: yup.string().required('Please enter a theme eg:- [#fff]'),
   description: yup.string().required('Describe your project'),
+  screenshots: yup
+    .array()
+    .of(yup.mixed())
+    .required('Provide [0<x<=4] screenshot(s) with caption and description'),
 });
 
 const validationSchemaBrief = yup.object({

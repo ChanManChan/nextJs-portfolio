@@ -44,7 +44,19 @@ class Project extends BaseModel {
         reject.forEach(({ name, message }) => {
           console.log(`${name}: ${message}`);
         });
-      return await this.Model.create({ ...port_data, screenshots: resolve });
+      let mutated_screenshots = [];
+      for (let i = 0; i < resolve.length; i++)
+        mutated_screenshots.push({
+          screenshot: resolve[i],
+          caption: port_data.screenshots[i].caption,
+          description: port_data.screenshots[i].description,
+        });
+      console.log('TESTING INCOMING DATA: ', port_data.screenshots);
+      console.log('MUTATED SCREENSHOTS: ', mutated_screenshots);
+      // return await this.Model.create({
+      //   ...port_data,
+      //   screenshots: mutated_screenshots,
+      // });
     }
   }
 
