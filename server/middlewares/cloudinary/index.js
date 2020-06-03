@@ -1,5 +1,6 @@
 const esrever = require('esrever');
 const promisesAll = require('promises-all');
+const crypto = require('crypto');
 
 exports.upload_cloudinary = async (file) => {
   const { createReadStream, filename } = await file;
@@ -8,7 +9,7 @@ exports.upload_cloudinary = async (file) => {
     try {
       await new Promise((res, rej) => {
         const streamLoad = require('../index').cloudinary.v2.uploader.upload_stream(
-          { public_id: filename },
+          { public_id: filename + crypto.randomBytes(5).toString('hex') },
           function (err, result) {
             if (result) {
               resultSecure_URL = result.secure_url;
