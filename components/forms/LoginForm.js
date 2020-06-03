@@ -7,6 +7,9 @@ import Loading from '@/components/styles/Loading';
 
 const LoginForm = ({ req_Parent, loading }) => (
   <Formik
+    validateOnMount={false}
+    validateOnBlur={false}
+    validateOnChange={false}
     initialValues={{
       email: '',
       password: '',

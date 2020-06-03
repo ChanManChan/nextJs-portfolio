@@ -8,6 +8,9 @@ import Disabled_State from '@/components/styles/Disabled_State';
 
 const RegisterForm = ({ req_Parent, loading }) => (
   <Formik
+    validateOnMount={false}
+    validateOnBlur={false}
+    validateOnChange={false}
     initialValues={{
       username: '',
       email: '',

@@ -22,18 +22,13 @@ const P_Dropzone = ({
     maxSize,
     onDrop: (acceptedFiles) => {
       setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(
-            {},
-            {
-              screenshot: file,
-              fileName: file.name,
-              preview: URL.createObjectURL(file),
-              caption: '',
-              description: '',
-            }
-          )
-        )
+        acceptedFiles.map((file) => ({
+          screenshot: file,
+          fileName: file.name,
+          preview: URL.createObjectURL(file),
+          caption: '',
+          description: '',
+        }))
       );
     },
     noClick: true,
@@ -46,6 +41,16 @@ const P_Dropzone = ({
         position: toast.POSITION.BOTTOM_LEFT,
       });
   }, [fileRejections]);
+
+  if (
+    pot_err.screenshots &&
+    pot_err.screenshots.includes('Provide [0<x<=4] screenshot(s)')
+  )
+    toast.warning(pot_err.screenshots, {
+      position: toast.POSITION.BOTTOM_LEFT,
+      toastId: 21,
+      autoClose: false,
+    });
 
   const handleChange = (index) => (e) => {
     let arr = [...files];

@@ -84,6 +84,9 @@ const FooterInput = ({
 }) => (
   <Footer className='slide-footer'>
     <Formik
+      validateOnMount={false}
+      validateOnBlur={false}
+      validateOnChange={false}
       initialValues={switchInit(brief, post)}
       validationSchema={
         brief
@@ -98,7 +101,7 @@ const FooterInput = ({
         setSubmitting(false);
       }}
     >
-      {({ isSubmitting, setFieldValue }) => (
+      {({ isSubmitting, setFieldValue, errors }) => (
         <Disabled_State loading={`${loading}`}>
           <Form>
             <Container>
@@ -108,6 +111,8 @@ const FooterInput = ({
                   setFieldValue={setFieldValue}
                   maxSize={100000}
                   fieldKey='certificate_img'
+                  pot_err={errors}
+                  no_prev
                 />
               )}
               {Switch_F(post, loading, plc_Title, Vul_Input, replyTo)}

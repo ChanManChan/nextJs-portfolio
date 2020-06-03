@@ -47,6 +47,9 @@ const ProjectForm = ({
 
   return (
     <Formik
+      validateOnMount={false}
+      validateOnBlur={false}
+      validateOnChange={false}
       enableReinitialize={true}
       initialValues={{
         title: initialValues.title,
@@ -63,7 +66,6 @@ const ProjectForm = ({
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
         parent_req(data);
-        console.log('DATA: ', data);
         setInitialValues(data);
         setSubmitting(false);
       }}
@@ -82,6 +84,7 @@ const ProjectForm = ({
               fieldKey='screenshots'
               maxSize={100000}
               loading={`${loading}`}
+              pot_err={errors}
             />
             <Field
               name='title'
@@ -130,7 +133,6 @@ const ProjectForm = ({
               disabled={isSubmitting}
               buttonText={btn_txt}
             />
-            <pre>{JSON.stringify(errors, null, 2)}</pre>
           </Form>
           <Loading msg={ld_msg} loading={`${loading}`} />
         </Disabled_State>

@@ -44,8 +44,10 @@ const Container = styled.div`
 const Dialog = styled.dialog`
   box-shadow: 0 0.8rem 0.6rem -0.6rem #000;
   position: absolute;
-  left: 20%;
-  top: 10%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 `;
 
 const Image = ({
@@ -65,11 +67,11 @@ const Image = ({
       </Caption>
     </Container>
     {openDialog && (
-      <Dialog open onClick={handleShowDialog}>
+      <Dialog open>
         <img
           src={img_Link}
           alt={altName}
-          style={{ width: '100vw' }}
+          style={{ width: '50vw' }}
           onClick={handleShowDialog}
         />
       </Dialog>

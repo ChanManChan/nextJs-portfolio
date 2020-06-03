@@ -71,13 +71,13 @@ const InputField = ({ loading, type, placeholder, ...props }) => {
     toast.warning(errorText, {
       position: toast.POSITION.BOTTOM_LEFT,
       toastId: 13,
-      autoClose: 10000,
+      autoClose: false,
     });
   else if (errorText.includes('Username must be at least 3'))
     toast.warning(errorText, {
       position: toast.POSITION.BOTTOM_LEFT,
       toastId: 11,
-      autoClose: 10000,
+      autoClose: false,
     });
 
   return (
