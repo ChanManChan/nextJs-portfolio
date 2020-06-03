@@ -1,5 +1,4 @@
 const BaseModel = require('./BaseModel');
-const promisesAll = require('promises-all');
 
 //! Pass Model from outside so that we can make this component reusable
 class Project extends BaseModel {
@@ -30,37 +29,17 @@ class Project extends BaseModel {
       'name description theme'
     );
   }
-  async create(port_data) {
+
+  async create(proj_data) {
     if (!this.user || !this.write_rights.includes(this.user.role))
       throw new Error('Not Authorized');
     else {
-      port_data.user = this.user;
-      const { resolve, reject } = await promisesAll.all(
-        port_data.screenshots.map((ss) =>
-          require('../../middlewares/cloudinary').upload_cloudinary(
-            ss['screenshot']
-          )
-        )
-      );
-      if (reject.length)
-        reject.forEach(({ name, message }) => {
-          console.log(`${name}: ${message}`);
-        });
-      let mutated_screenshots = [];
-      for (let i = 0; i < resolve.length; i++) {
-        for (let j = 0; j < port_data.screenshots.length; j++) {
-          if (resolve[i].includes(port_data.screenshots[j]['fileName'])) {
-            mutated_screenshots.push({
-              screenshot: resolve[i],
-              caption: port_data.screenshots[j].caption,
-              description: port_data.screenshots[j].description,
-            });
-          }
-        }
-      }
+      proj_data.user = this.user;
       return await this.Model.create({
-        ...port_data,
-        screenshots: mutated_screenshots,
+        ...proj_data,
+        screenshots: await require('../../middlewares/cloudinary').upload_Merge(
+          proj_data
+        ),
       });
     }
   }
@@ -75,22 +54,19 @@ class Project extends BaseModel {
         true
       );
       udt_data.user = this.user;
-      const { resolve, reject } = await promisesAll.all(
-        udt_data.screenshots.map(
-          require('../../middlewares/cloudinary').upload_cloudinary
-        )
-      );
-      if (reject.length)
-        reject.forEach(({ name, message }) => {
-          console.log(`${name}: ${message}`);
-        });
       return this.Model.findOneAndUpdate(
         { _id: id },
-        { ...udt_data, screenshots: resolve },
+        {
+          ...udt_data,
+          screenshots: await require('../../middlewares/cloudinary').upload_Merge(
+            udt_data
+          ),
+        },
         { new: true, runValidators: true }
       );
     }
   }
+
   findAndDelete(id) {
     if (!this.user || !this.write_rights.includes(this.user.role))
       throw new Error('Not Authorized');

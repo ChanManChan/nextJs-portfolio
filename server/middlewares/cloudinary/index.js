@@ -1,4 +1,5 @@
 const esrever = require('esrever');
+const promisesAll = require('promises-all');
 
 exports.upload_cloudinary = async (file) => {
   const { createReadStream, filename } = await file;
@@ -63,4 +64,27 @@ exports.destroy_cloud = (model, id, switchProps) => {
           );
       }
     });
+};
+
+exports.upload_Merge = async (proj_data) => {
+  const { resolve, reject } = await promisesAll.all(
+    proj_data.screenshots.map((ss) => this.upload_cloudinary(ss['screenshot']))
+  );
+  if (reject.length)
+    reject.forEach(({ name, message }) => {
+      console.log(`${name}: ${message}`);
+    });
+  let mutated_screenshots = [];
+  for (let i = 0; i < resolve.length; i++) {
+    for (let j = 0; j < proj_data.screenshots.length; j++) {
+      if (resolve[i].includes(proj_data.screenshots[j]['fileName'])) {
+        mutated_screenshots.push({
+          screenshot: resolve[i],
+          caption: proj_data.screenshots[j].caption,
+          description: proj_data.screenshots[j].description,
+        });
+      }
+    }
+  }
+  return mutated_screenshots;
 };

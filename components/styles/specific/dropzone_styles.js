@@ -4,8 +4,8 @@ const Label = styled.label.attrs((props) => ({ htmlFor: props.att }))`
   position: relative;
   margin: auto;
   width: 100%;
-  max-width: 280px;
-  border-radius: 3px;
+  max-width: 28rem;
+  border-radius: 0.3rem;
   overflow: hidden;
   &.caption {
     grid-row: 2/3;
@@ -17,9 +17,9 @@ const Label = styled.label.attrs((props) => ({ htmlFor: props.att }))`
 
 const Placeholder = styled.span`
   position: absolute;
-  top: 1.5rem;
-  left: 1.2rem;
-  font-size: 1.2rem;
+  top: 1.2rem;
+  left: 0.8rem;
+  font-size: 1.3rem;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   transform-origin: 0 0;
@@ -46,8 +46,9 @@ const Input = styled.input.attrs((props) => ({ id: props.att }))`
   width: 100%;
   border: 0;
   padding: 1rem 0.8rem 0;
-  height: 3.6rem;
-  font-size: 1.3rem;
+  height: 4rem;
+  font-size: 1.5rem;
+
   background: rgba(0, 0, 0, 0.02);
   box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.3);
   color: #000;
@@ -102,14 +103,12 @@ export const Thumb = styled.div`
   border: 0.1rem solid ${(p) => p.theme.staticColor2};
   margin: -2rem 1rem 3rem;
   width: 20rem;
-  height: 30rem;
   padding: 0.4rem;
 `;
 
 export const ThumbInner = styled.div`
   display: grid;
-  flex-direction: column;
-  grid-template-rows: 2fr repeat(2, 1fr);
+  grid-template-rows: 2fr repeat(2, 4rem);
 `;
 
 export const Image = styled.img`

@@ -99,7 +99,7 @@ export const UPDATE_PROJECT = gql`
     $deployed: String
     $theme: String
     $description: String
-    $screenshots: [Upload!]!
+    $screenshots: [ScreenshotInput!]!
   ) {
     updateProject(
       id: $id

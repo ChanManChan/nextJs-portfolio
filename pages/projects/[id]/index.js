@@ -82,27 +82,27 @@ const ProjectDetail = ({ query }) => {
         <Deployed_Link deployed={deployed} />
         <REPOS repoAPI={repoAPI} repoClient={repoClient} />
         <SS_1
-          img_Link={screenshots[0].screenshot}
-          caption={screenshots[0].caption}
-          desc={screenshots[0].description}
+          img_Link={screenshots[0] && screenshots[0].screenshot}
+          caption={screenshots[0] && screenshots[0].caption}
+          desc={screenshots[0] && screenshots[0].description}
           projectName={title}
         />
         <SS_2
-          img_Link={screenshots[1].screenshot}
-          caption={screenshots[1].caption}
-          desc={screenshots[1].description}
+          img_Link={screenshots[1] && screenshots[1].screenshot}
+          caption={screenshots[1] && screenshots[1].caption}
+          desc={screenshots[1] && screenshots[1].description}
           projectName={title}
         />
         <SS_3
-          img_Link={screenshots[2].screenshot}
-          caption={screenshots[2].caption}
-          desc={screenshots[2].description}
+          img_Link={screenshots[2] && screenshots[2].screenshot}
+          caption={screenshots[2] && screenshots[2].caption}
+          desc={screenshots[2] && screenshots[2].description}
           projectName={title}
         />
         <SS_4
-          img_Link={screenshots[3].screenshot}
-          caption={screenshots[3].caption}
-          desc={screenshots[3].description}
+          img_Link={screenshots[3] && screenshots[3].screenshot}
+          caption={screenshots[3] && screenshots[3].caption}
+          desc={screenshots[3] && screenshots[3].description}
           projectName={title}
         />
       </Grid>
@@ -120,5 +120,3 @@ ProjectDetail.getInitialProps = ({ query }) => {
 export default withApollo(withParent(ProjectDetail, 'ProjectDetail'), {
   getDataFromTree,
 });
-
-// img_Link={} caption={} desc={}
