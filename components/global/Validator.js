@@ -46,7 +46,8 @@ const validationSchemaProject = yup.object({
   screenshots: yup
     .array()
     .of(yup.mixed())
-    .required('Provide [0<x<=4] screenshot(s) with caption and description'),
+    .required('Provide [0<x<=4] screenshot(s) with caption and description')
+    .max(4, 'Screenshots upload range = [0<x<=4]'),
 });
 
 const validationSchemaBrief = yup.object({

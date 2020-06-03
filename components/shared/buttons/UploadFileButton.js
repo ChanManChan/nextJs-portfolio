@@ -64,6 +64,11 @@ const Button = styled.button.attrs((props) => ({
     cursor: none;
     pointer-events: none;
   }
+  @media (max-width: 768px) {
+    height: 4.5rem;
+    letter-spacing: 0.1rem;
+    line-height: 2rem;
+  }
 `;
 
 export default Button;

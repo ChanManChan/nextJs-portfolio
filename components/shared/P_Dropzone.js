@@ -42,10 +42,7 @@ const P_Dropzone = ({
       });
   }, [fileRejections]);
 
-  if (
-    pot_err.screenshots &&
-    pot_err.screenshots.includes('Provide [0<x<=4] screenshot(s)')
-  )
+  if (pot_err.screenshots)
     toast.warning(pot_err.screenshots, {
       position: toast.POSITION.BOTTOM_LEFT,
       toastId: 21,
@@ -95,7 +92,7 @@ const P_Dropzone = ({
           loading={loading}
           onClick={open}
         >
-          Open File Dialog
+          Open File Dialog -- at most 4 uploads
         </Button>
       </div>
       <ThumbsContainer>{thumbs}</ThumbsContainer>
