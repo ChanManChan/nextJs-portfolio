@@ -23,11 +23,16 @@ const P_Dropzone = ({
     onDrop: (acceptedFiles) => {
       setFiles(
         acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-            caption: '',
-            description: '',
-          })
+          Object.assign(
+            {},
+            {
+              screenshot: file,
+              fileName: file.name,
+              preview: URL.createObjectURL(file),
+              caption: '',
+              description: '',
+            }
+          )
         )
       );
     },

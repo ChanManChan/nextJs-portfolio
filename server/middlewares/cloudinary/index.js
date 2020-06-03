@@ -1,12 +1,13 @@
 const esrever = require('esrever');
 
 exports.upload_cloudinary = async (file) => {
-  const { createReadStream } = await file;
+  const { createReadStream, filename } = await file;
   let resultSecure_URL = '';
   const cloudinaryUpload = async ({ createReadStream }) => {
     try {
       await new Promise((res, rej) => {
         const streamLoad = require('../index').cloudinary.v2.uploader.upload_stream(
+          { public_id: filename },
           function (err, result) {
             if (result) {
               resultSecure_URL = result.secure_url;
@@ -34,13 +35,8 @@ exports.destroy_cloud = (model, id, switchProps) => {
     let st_index = '',
       ed_index = '';
     str = esrever.reverse(str);
-    for (let i = 0; i < str.length; i++) {
-      if (str.charAt(i) === '.') st_index = i + 1;
-      else if (str.charAt(i) === '/') {
-        ed_index = i;
-        break;
-      } else continue;
-    }
+    st_index = str.indexOf('.') + 1;
+    ed_index = str.indexOf('/');
     return esrever.reverse(str.substring(st_index, ed_index));
   };
 
@@ -51,20 +47,16 @@ exports.destroy_cloud = (model, id, switchProps) => {
       if (err || !fetch_data) throw new Error('Intended data not found');
       else {
         if (switch_model_prop(switchProps) === 'screenshots')
-          for (
-            let i = 0;
-            i < fetch_data[switch_model_prop(switchProps)].length;
-            i++
-          )
+          for (let i = 0; i < fetch_data['screenshots'].length; i++)
             require('../index').cloudinary.v2.uploader.destroy(
-              extractSubstring(fetch_data[switch_model_prop(switchProps)][i]),
+              extractSubstring(fetch_data['screenshots'][i].screenshot),
               function (err, result) {
                 console.log('ERROR: ', err, 'RESULT: ', result);
               }
             );
         else if (switch_model_prop(switchProps) === 'avatar')
           require('../index').cloudinary.v2.uploader.destroy(
-            extractSubstring(fetch_data[switch_model_prop(switchProps)]),
+            extractSubstring(fetch_data['avatar']),
             function (err, result) {
               console.log('ERROR: ', err, 'RESULT: ', result);
             }

@@ -24,6 +24,16 @@ const httpLink = (head) =>
     new BatchHttpLink({ ...OPTS, headers: head })
   );
 
+const typeDefs = gql`
+  type ScreenshotInput {
+    screenshot: Upload
+    caption: String
+    description: String
+    preview: String
+    fileName: String
+  }
+`;
+
 export default withApollo(
   ({ initialState, headers }) => {
     return new ApolloClient({
@@ -40,6 +50,7 @@ export default withApollo(
         httpLink(headers),
       ]),
       cache: new InMemoryCache().restore(initialState || {}),
+      typeDefs,
     });
   },
   {

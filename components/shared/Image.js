@@ -41,14 +41,40 @@ const Container = styled.div`
   }
 `;
 
-const Image = ({ caption, desc, img_Link, altName }) => (
-  <Container>
-    <img src={img_Link} alt={altName} />
-    <Caption>
-      <h2>{caption}</h2>
-      <p>{desc}</p>
-    </Caption>
-  </Container>
+const Dialog = styled.dialog`
+  box-shadow: 0 0.8rem 0.6rem -0.6rem #000;
+  position: absolute;
+  left: 20%;
+  top: 10%;
+`;
+
+const Image = ({
+  caption,
+  desc,
+  img_Link,
+  altName,
+  handleShowDialog,
+  openDialog = false,
+}) => (
+  <>
+    <Container>
+      <img src={img_Link} alt={altName} onClick={handleShowDialog} />
+      <Caption>
+        <h2>{caption}</h2>
+        <p>{desc}</p>
+      </Caption>
+    </Container>
+    {openDialog && (
+      <Dialog open onClick={handleShowDialog}>
+        <img
+          src={img_Link}
+          alt={altName}
+          style={{ width: '100vw' }}
+          onClick={handleShowDialog}
+        />
+      </Dialog>
+    )}
+  </>
 );
 
 export default Image;

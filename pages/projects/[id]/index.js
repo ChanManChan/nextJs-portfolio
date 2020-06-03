@@ -63,7 +63,7 @@ const ProjectDetail = ({ query }) => {
     deployed = '',
     repoAPI = '',
     repoClient = '',
-    screenshots = [],
+    screenshots = [{}, {}, {}, {}],
   } = (data && data.project) || {};
   //! "useEffect" is executed client-side (fetching data through client) <- not the desired way because i'm trying for SSR (fetch the data from server itself).
   // React.useEffect(() => {
@@ -81,10 +81,30 @@ const ProjectDetail = ({ query }) => {
         <P_Desc description={description} />
         <Deployed_Link deployed={deployed} />
         <REPOS repoAPI={repoAPI} repoClient={repoClient} />
-        <SS_1 projectName={title} />
-        <SS_2 projectName={title} />
-        <SS_3 projectName={title} />
-        <SS_4 projectName={title} />
+        <SS_1
+          img_Link={screenshots[0].screenshot}
+          caption={screenshots[0].caption}
+          desc={screenshots[0].description}
+          projectName={title}
+        />
+        <SS_2
+          img_Link={screenshots[1].screenshot}
+          caption={screenshots[1].caption}
+          desc={screenshots[1].description}
+          projectName={title}
+        />
+        <SS_3
+          img_Link={screenshots[2].screenshot}
+          caption={screenshots[2].caption}
+          desc={screenshots[2].description}
+          projectName={title}
+        />
+        <SS_4
+          img_Link={screenshots[3].screenshot}
+          caption={screenshots[3].caption}
+          desc={screenshots[3].description}
+          projectName={title}
+        />
       </Grid>
       <Loading msg='Fetching...' loading={`${loading}`} />
     </Disabled_State>

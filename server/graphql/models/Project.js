@@ -36,8 +36,10 @@ class Project extends BaseModel {
     else {
       port_data.user = this.user;
       const { resolve, reject } = await promisesAll.all(
-        port_data.screenshots.map(
-          require('../../middlewares/cloudinary').upload_cloudinary
+        port_data.screenshots.map((ss) =>
+          require('../../middlewares/cloudinary').upload_cloudinary(
+            ss['screenshot']
+          )
         )
       );
       if (reject.length)
@@ -45,18 +47,21 @@ class Project extends BaseModel {
           console.log(`${name}: ${message}`);
         });
       let mutated_screenshots = [];
-      for (let i = 0; i < resolve.length; i++)
-        mutated_screenshots.push({
-          screenshot: resolve[i],
-          caption: port_data.screenshots[i].caption,
-          description: port_data.screenshots[i].description,
-        });
-      console.log('TESTING INCOMING DATA: ', port_data.screenshots);
-      console.log('MUTATED SCREENSHOTS: ', mutated_screenshots);
-      // return await this.Model.create({
-      //   ...port_data,
-      //   screenshots: mutated_screenshots,
-      // });
+      for (let i = 0; i < resolve.length; i++) {
+        for (let j = 0; j < port_data.screenshots.length; j++) {
+          if (resolve[i].includes(port_data.screenshots[j]['fileName'])) {
+            mutated_screenshots.push({
+              screenshot: resolve[i],
+              caption: port_data.screenshots[j].caption,
+              description: port_data.screenshots[j].description,
+            });
+          }
+        }
+      }
+      return await this.Model.create({
+        ...port_data,
+        screenshots: mutated_screenshots,
+      });
     }
   }
 

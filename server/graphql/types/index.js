@@ -10,6 +10,18 @@ const projectFields = `
 `;
 
 exports.projectTypes = `
+  input ScreenshotInput {
+    screenshot: Upload
+    caption: String
+    description: String
+    preview: String
+    fileName: String
+  }
+  type Screenshot {
+    screenshot: String
+    caption: String
+    description: String
+  }
   type Tech {
     _id: ID
     name: String
@@ -19,12 +31,12 @@ exports.projectTypes = `
   type Project {
       _id: ID,
       techStack: [Tech],
-      screenshots: [String]
+      screenshots: [Screenshot]
      ${projectFields}
   }
   input ProjectInput {
      techStack: [ID],
-     screenshots: [Upload!]!
+     screenshots: [ScreenshotInput!]!
      ${projectFields}
   }
 `;

@@ -25,7 +25,11 @@ export const GET_PROJECT = gql`
       deployed
       description
       theme
-      screenshots
+      screenshots {
+        screenshot
+        caption
+        description
+      }
     }
   }
 `;
@@ -66,7 +70,7 @@ export const CREATE_PROJECT = gql`
     $deployed: String
     $theme: String
     $description: String
-    $screenshots: [Upload!]!
+    $screenshots: [ScreenshotInput!]!
   ) {
     createProject(
       input: {

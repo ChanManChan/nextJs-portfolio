@@ -96,74 +96,47 @@ export const REPOS = ({ repoAPI, repoClient }) => (
   </Repository>
 );
 
-export const SS_1 = ({
+const Border_Image = ({
   img_Link = '',
   caption = '',
   desc = '',
   projectName = '',
-}) => (
-  <Screenshot1 className='border'>
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
     <Border>
       <Image
         caption={caption}
         desc={desc}
         altName={projectName}
         img_Link={img_Link}
+        handleShowDialog={() => setIsOpen((cs) => !cs)}
+        openDialog={isOpen}
       />
     </Border>
+  );
+};
+
+export const SS_1 = (props) => (
+  <Screenshot1 className='border'>
+    <Border_Image {...props} />
   </Screenshot1>
 );
 
-export const SS_2 = ({
-  img_Link = '',
-  caption = '',
-  desc = '',
-  projectName = '',
-}) => (
+export const SS_2 = (props) => (
   <Screenshot2 className='border'>
-    <Border>
-      <Image
-        caption={caption}
-        desc={desc}
-        altName={projectName}
-        img_Link={img_Link}
-      />
-    </Border>
+    <Border_Image {...props} />
   </Screenshot2>
 );
 
-export const SS_3 = ({
-  img_Link = '',
-  caption = '',
-  desc = '',
-  projectName = '',
-}) => (
+export const SS_3 = (props) => (
   <Screenshot3 className='border'>
-    <Border>
-      <Image
-        caption={caption}
-        desc={desc}
-        altName={projectName}
-        img_Link={img_Link}
-      />
-    </Border>
+    <Border_Image {...props} />
   </Screenshot3>
 );
 
-export const SS_4 = ({
-  img_Link = '',
-  caption = '',
-  desc = '',
-  projectName = '',
-}) => (
+export const SS_4 = (props) => (
   <Screenshot4 className='border'>
-    <Border>
-      <Image
-        caption={caption}
-        desc={desc}
-        altName={projectName}
-        img_Link={img_Link}
-      />
-    </Border>
+    <Border_Image {...props} />
   </Screenshot4>
 );
