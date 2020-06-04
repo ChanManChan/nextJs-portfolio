@@ -41,6 +41,9 @@ export const H1 = styled.h1`
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
+  @media (max-width: 500px) {
+    font-size: 1.9rem;
+  }
 `;
 
 export const Title = styled.div`

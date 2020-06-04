@@ -89,6 +89,15 @@ const List = styled.div`
       opacity: 1;
     }
     margin-bottom: 120%;
+    @media (max-width: 768px) {
+      margin-bottom: 150%;
+    }
+    @media (max-width: 376px) {
+      margin-bottom: 170%;
+    }
+    @media (max-width: 333px) {
+      margin-bottom: 200%;
+    }
   }
 `;
 
