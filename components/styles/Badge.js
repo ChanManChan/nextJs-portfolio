@@ -11,6 +11,11 @@ const Title = styled.p`
   width: 100%;
   padding: 2rem 0;
   background: ${(p) => p.bdgTheme};
+  @media (max-width: 768px) {
+    top: -0.5rem;
+    padding: 1rem 0px;
+    font-size: 1rem;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -31,7 +36,7 @@ const Subtitle = styled.p`
     color: ${(p) => p.bdgTheme};
   }
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -43,7 +48,10 @@ const Custom_Badge = styled.div`
     word-spacing: 1.5rem;
   }
   @media (max-width: 768px) {
-    width: 11rem;
+    width: 9rem;
+    &:hover ${Subtitle}:after {
+      word-spacing: 1rem;
+    }
   }
 `;
 
@@ -51,8 +59,8 @@ const SVG = styled.svg`
   width: 13.6rem;
   height: 15.2rem;
   @media (max-width: 768px) {
-    width: 11rem;
-    height: 12.6rem;
+    height: 10.6rem;
+    width: 9rem;
   }
 `;
 

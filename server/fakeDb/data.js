@@ -8,6 +8,10 @@ const tech1Id = mongoose.Types.ObjectId();
 const tech2Id = mongoose.Types.ObjectId();
 const tech3Id = mongoose.Types.ObjectId();
 const tech4Id = mongoose.Types.ObjectId();
+const tech5Id = mongoose.Types.ObjectId();
+const tech6Id = mongoose.Types.ObjectId();
+const tech7Id = mongoose.Types.ObjectId();
+const tech8Id = mongoose.Types.ObjectId();
 
 const detail1Id = mongoose.Types.ObjectId();
 const detail2Id = mongoose.Types.ObjectId();
@@ -62,31 +66,77 @@ const data = {
   projects: [
     {
       title: 'E-commerce',
-      techStack: [tech1Id, tech2Id, tech3Id],
+      techStack: [tech1Id, tech2Id, tech3Id, tech4Id],
       repoAPI: 'https://github.com/ChanManChan/E-commerce-API',
       repoClient: 'https://github.com/ChanManChan/E-commerce-Client',
-      deployed: 'https://xyz.com',
-      theme: '#DA4D1D',
+      deployed: 'https://google.com',
       description:
         'Online book store made using ReactJS, Braintree payment system & MATERIAL-UI',
-      user: user1Id,
+      theme: '#DA4D1D',
       screenshots: [
         {
-          screenshot: '',
-          caption: 'Testing data for testing purposed',
-          description: 'Testing the description for fontsize',
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263948/admin_manage.jpg4d9fa6af81.jpg',
+          caption: 'Role based access',
+          description: 'Admin Product management',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263948/Client-package_json.jpgb56df63968.jpg',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263949/API-package_json.png3b4be26726.png',
+          caption: 'Server package.json',
+          description: 'Packages used on server',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263949/home.jpg85a1208946.jpg',
+          caption: 'Home page',
+          description:
+            'Search wide variety of books based on category and price range',
         },
       ],
+      user: user1Id,
     },
     {
       title: 'Social Network',
-      techStack: [tech1Id],
+      techStack: [tech1Id, tech4Id, tech8Id],
       repoAPI: 'https://github.com/ChanManChan/API-Social',
       repoClient: 'https://github.com/ChanManChan/Client-Social',
-      deployed: 'https://xyz.com',
+      deployed: 'https://google.com',
       theme: '#2b26c3',
       description:
         'Platform where users can follow, like, comment & share files',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591264301/API_package.png44fd13aa28.png',
+          caption: 'Server package.json',
+          description: 'Packages used on server',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591264301/Client_package.png22dfbdabd8.png',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591264302/home.jpg6a5f3c7598.jpg',
+          caption: 'Home Page',
+          description: 'Displays recently created posts',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591264302/user_page.jpg75ed6c497e.jpg',
+          caption: 'User home page',
+          description: 'CRUD operations on user profile',
+        },
+      ],
       user: user1Id,
     },
     {
@@ -96,10 +146,152 @@ const data = {
         'https://github.com/ChanManChan/authentication-MERN-boilerplate-/tree/master/server',
       repoClient:
         'https://github.com/ChanManChan/authentication-MERN-boilerplate-/tree/master/client',
-      deployed: 'https://xyz.com',
+      deployed: 'https://google.com',
       theme: '#00897b',
       description:
         'Basic authentication boilerplate with facebook and google login with forgot and reset password functionality',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263319/role_based.pngeaadb01cc3.png',
+          caption: 'Update profile info',
+          description: 'Role-Based Routing',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263319/client_package.jpgf727a3d352.jpg',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263319/sign_in_page.png20a542668b.png',
+          caption: 'SignIn Page',
+          description: 'Facebook and Google login',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591263319/server_package.png3ba2536e5a.png',
+          caption: 'Server package.json',
+          description: 'Packages used on server',
+        },
+      ],
+      user: user1Id,
+    },
+    {
+      title: 'Contact Keeper [Udemy course]',
+      techStack: [tech1Id],
+      repoAPI: 'https://github.com/ChanManChan/contact-keeper',
+      repoClient:
+        'https://github.com/ChanManChan/contact-keeper/tree/master/client',
+      deployed: 'https://epic-roentgen-99737e.netlify.app',
+      theme: '#f50057',
+      description:
+        'Contacts management app where you can do CRUD operations on individual contacts',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591267218/contacts.pngdc54611c84.png',
+          caption: 'Home page',
+          description: 'Add new contacts to directory',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591267218/package_json_api.png240a63f006.png',
+          caption: 'Server package.json',
+          description: 'Packages used on server',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591267219/package_json_client.pngfca1b02a24.png',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591267219/update_and_filter.pngf5d914b855.png',
+          caption: 'Mutate data ',
+          description: 'Filter through and update contacts',
+        },
+      ],
+      user: user1Id,
+    },
+    {
+      title: 'Portfolio [NextJS/GraphQl]',
+      techStack: [tech1Id, tech5Id, tech6Id, tech7Id],
+      repoAPI:
+        'https://github.com/ChanManChan/nextJs-portfolio/tree/master/server',
+      repoClient: 'https://github.com/ChanManChan/nextJs-portfolio',
+      deployed: 'https://nandagopal-portfolio.herokuapp.com',
+      theme: '#9e9d24',
+      description:
+        'Portfolio app made using Apollo Server, Apollo Client and GraphQl',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591279111/dependencies.jpg5c25a9823c.jpg',
+          caption: 'Package.json [Client & Server]',
+          description: 'List of dependencies',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591279111/interactive_chat.jpg6f250ec445.jpg',
+          caption: 'Chat system',
+          description:
+            'Real time chat component with custom PollInterval and automatic pagination',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591279111/random_fetch.pngc38be54bb2.png',
+          caption: 'Highlights',
+          description: 'Random data fetching',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591279111/table.jpge3688963ab.jpg',
+          caption: 'Responsive tables',
+          description:
+            'Table that efficiently renders large lists and tabular data',
+        },
+      ],
+      user: user1Id,
+    },
+    {
+      title: 'Feedback form',
+      techStack: [tech1Id, tech3Id, tech7Id],
+      repoAPI: 'https://github.com/ChanManChan/feedback-form-server',
+      repoClient: 'https://github.com/ChanManChan/feedback-form-client',
+      deployed: 'https://google.com',
+      theme: '#d500f9',
+      description:
+        'Testing out cloudinary API by making an online feedback form',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591265518/API_package.png8c0fc9fc77.png',
+          caption: 'Server package.json',
+          description: 'Packages used on server',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591265518/Client_package.jpgd79a1d2861.jpg',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591265518/cloudinary_widget.jpg2df2c48d90.jpg',
+          caption: 'Cloudinary widget',
+          description:
+            'Made cloudinary variable available on the window object',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591265519/form.png488cbc7ad9.png',
+          caption: 'Feedback form',
+          description: 'Learning how to use cloudinary API',
+        },
+      ],
       user: user1Id,
     },
   ],
@@ -127,6 +319,30 @@ const data = {
       name: 'Google oAUth',
       description: 'Authentication and Authorization',
       theme: '#3498db',
+    },
+    {
+      _id: tech5Id,
+      name: 'GraphQl',
+      description: 'Data query language for APIs',
+      theme: '#f50057',
+    },
+    {
+      _id: tech6Id,
+      name: 'Apollo',
+      description: 'Used for building a data graph',
+      theme: '#8bf6f2',
+    },
+    {
+      _id: tech7Id,
+      name: 'Cloudinary',
+      description: 'Image management services',
+      theme: '#9c27b0',
+    },
+    {
+      _id: tech8Id,
+      name: 'Nodemailer',
+      description: 'E-mails from Node.js',
+      theme: '#827717',
     },
   ],
   particularsCategories: [
@@ -163,6 +379,8 @@ const data = {
         'Redux - Reducers, Actions, etc',
         'Basic Animation',
       ],
+      certificate_img:
+        'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591272139/Modern%20React16.8Including%20Hooks%20Context%20API%20Full%20Stack%20MERN%20Redux.jpg3c3c216132.jpg',
       particularsCategory: detail1Id,
       user: user1Id,
     },
@@ -180,6 +398,8 @@ const data = {
         'Creating many container components that integrate with Redux',
         'Testing with the Redux Chrome extension',
       ],
+      certificate_img:
+        'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591272562/social%20network%20with%20Node.js%20Express%20React%20Redux%20MongoDB.jpgb3f85940ec.jpg',
       particularsCategory: detail1Id,
       user: user1Id,
     },
@@ -205,6 +425,8 @@ const data = {
         'Security: NoSQL Injection, XSS, etc',
         'Deployment With PM2, NGINX, SSL',
       ],
+      certificate_img:
+        'https://res.cloudinary.com/ddsk7jazd/image/upload/v1591271594/real%20world%20backend%20for%20a%20bootcamp%20directory%20app.jpg48b5da43d5.jpg',
       particularsCategory: detail1Id,
       user: user1Id,
     },

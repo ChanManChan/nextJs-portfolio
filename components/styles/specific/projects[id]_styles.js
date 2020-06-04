@@ -73,6 +73,7 @@ export const Stack = styled.div`
   grid-area: 3 / 1 / 6 / 3;
   > ${Border} {
     justify-content: space-evenly;
+    flex-flow: row wrap;
   }
   @media (max-width: 768px) {
     grid-area: unset;
