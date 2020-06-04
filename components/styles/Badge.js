@@ -36,7 +36,12 @@ const Subtitle = styled.p`
     color: ${(p) => p.bdgTheme};
   }
   @media (max-width: 768px) {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    top: 4rem;
+    &:after {
+      font-size: 0.7rem;
+      margin-top: 0.8rem;
+    }
   }
 `;
 
