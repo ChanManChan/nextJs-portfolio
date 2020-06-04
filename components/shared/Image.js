@@ -14,6 +14,7 @@ const Caption = styled.div`
   transition: all 0.5s;
   background-color: #000;
   transform: translateY(100%);
+  text-align: center;
   h2 {
     text-transform: uppercase;
     margin: 0;
@@ -62,8 +63,8 @@ const Image = ({
     <Container>
       <img src={img_Link} alt={altName} onClick={handleShowDialog} />
       <Caption>
-        <h2>{caption}</h2>
-        <p>{desc}</p>
+        <h2 style={{ fontSize: '1.5rem' }}>{caption}</h2>
+        <p style={{ fontSize: '1.2rem' }}>{desc}</p>
       </Caption>
     </Container>
     {openDialog && (

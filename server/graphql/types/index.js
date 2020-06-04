@@ -88,6 +88,7 @@ exports.particularsTypes = `
     particularsCategory: ParticularsCategory
     user: Affiliated
     createdAt: String
+    certificate_img: String
   }
 
   input BriefInput {

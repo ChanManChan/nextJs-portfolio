@@ -20,7 +20,7 @@ const Placeholder = styled.span`
   top: 1.2rem;
   left: 0.8rem;
   font-size: 1.3rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${(p) => p.theme.bodyFontColor};
   font-weight: 500;
   transform-origin: 0 0;
   transform: translate3d(0, 0, 0);
@@ -51,7 +51,7 @@ const Input = styled.input.attrs((props) => ({ id: props.att }))`
 
   background: rgba(0, 0, 0, 0.02);
   box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.3);
-  color: #000;
+  color: ${(p) => p.theme.bodyFontColor};
   transition: all 0.15s ease;
   &:hover {
     background: rgba(0, 0, 0, 0.04);

@@ -200,6 +200,7 @@ const b_server_Res = `
       title
       slug
     }
+    certificate_img
 `;
 
 export const BRIEFS_BY_CATEGORY = gql`

@@ -108,7 +108,7 @@ const Briefs = () => {
             </M_body_cell>
             <M_body_cell>
               <Button
-                href='https://google.com'
+                href={b.certificate_img}
                 size='medium'
                 target='_blank'
                 themeColor='#757575'

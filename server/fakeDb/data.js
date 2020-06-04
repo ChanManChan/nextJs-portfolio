@@ -70,6 +70,13 @@ const data = {
       description:
         'Online book store made using ReactJS, Braintree payment system & MATERIAL-UI',
       user: user1Id,
+      screenshots: [
+        {
+          screenshot: '',
+          caption: 'Testing data for testing purposed',
+          description: 'Testing the description for fontsize',
+        },
+      ],
     },
     {
       title: 'Social Network',
