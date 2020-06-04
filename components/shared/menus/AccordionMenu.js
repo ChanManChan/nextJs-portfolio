@@ -88,7 +88,7 @@ const List = styled.div`
       transform: translateX(0);
       opacity: 1;
     }
-    margin-bottom: calc(100% - 10rem);
+    margin-bottom: 120%;
   }
 `;
 
