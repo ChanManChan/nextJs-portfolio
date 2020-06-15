@@ -18,7 +18,7 @@ const Meta = () => (
     />
     <link
       rel='stylesheet'
-      href='https://use.fontawesome.com/releases/v5.6.1/css/all.css'
+      href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
     />
     <link rel='stylesheet' type='text/css' href='/nprogress.css' />
     <link rel='shortcut icon' href='/favicon.png' />

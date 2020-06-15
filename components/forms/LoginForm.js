@@ -38,6 +38,7 @@ const LoginForm = ({ req_Parent, loading }) => (
             loading={`${loading}`}
             placeholder='Enter your password'
             as={CustomInput}
+            password='regular_password'
           />
           <CustomButton
             type='submit'

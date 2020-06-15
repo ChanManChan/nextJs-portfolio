@@ -56,6 +56,7 @@ const RegisterForm = ({ req_Parent, loading }) => (
             loading={`${loading}`}
             placeholder='Enter your password'
             as={CustomInput}
+            password='regular_password'
           />
           <Field
             name='confirmPassword'
@@ -63,6 +64,7 @@ const RegisterForm = ({ req_Parent, loading }) => (
             loading={`${loading}`}
             placeholder='Re-Type Password'
             as={CustomInput}
+            password='confirm_password'
           />
           {errors.password && (
             <p

@@ -63,7 +63,26 @@ const Control = styled.div`
   }
 `;
 
-const InputField = ({ loading, type, placeholder, ...props }) => {
+const Span = styled.span`
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  i {
+    font-size: 2.5rem;
+    color: #fff;
+  }
+`;
+
+const InputField = ({
+  password = '',
+  loading,
+  type,
+  placeholder,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
 
@@ -80,15 +99,40 @@ const InputField = ({ loading, type, placeholder, ...props }) => {
       autoClose: false,
     });
 
+  const handleToggle = (password) => {
+    const toggleIcon = document.querySelector(`.${password}`);
+    const passwordInput = document.querySelector(`#${password}`);
+    if (toggleIcon.classList.contains('fa-eye')) {
+      // Reveal the password
+      passwordInput.type = 'text';
+      toggleIcon.className = `fas fa-eye-slash ${
+        password === 'regular_password' ? password : 'confirm_password'
+      }`;
+    } else {
+      // Hide the password
+      passwordInput.type = 'password';
+      toggleIcon.className = `fas fa-eye ${
+        password === 'regular_password' ? password : 'confirm_password'
+      }`;
+    }
+  };
+
   return (
     <Control helperText={errorText}>
       <Input
         {...field}
+        id={password}
         placeholder={placeholder}
         type={type}
         loading={loading}
         helperText={errorText}
+        password={password}
       />
+      {password && (
+        <Span onClick={() => handleToggle(password)}>
+          <i className={`fas fa-eye ${password}`} />
+        </Span>
+      )}
       <Bg_top>
         <Bg_inner />
       </Bg_top>

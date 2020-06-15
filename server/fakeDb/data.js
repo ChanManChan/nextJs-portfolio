@@ -294,6 +294,43 @@ const data = {
       ],
       user: user1Id,
     },
+    {
+      title: 'Graphql Social Network',
+      techStack: [tech1Id, tech4Id, tech5Id, tech6Id, tech7Id],
+      repoAPI: 'https://github.com/ChanManChan/graphql-test-server',
+      repoClient: 'https://github.com/ChanManChan/graphql-test-client',
+      deployed: 'https://graphql-client-react.herokuapp.com/',
+      theme: '#ffb74d',
+      description:
+        'Learned GraphQl Subscriptions along with other gql features',
+      screenshots: [
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1592223222/recent%20activity.jpgc1b0b74fb6.jpg',
+          caption: 'User control panel',
+          description: 'CRUD operations on Profile or on created Posts',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1592223216/client_packagejson.jpg706f46a8df.jpg',
+          caption: 'Client package.json',
+          description: 'Packages used on client',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1592223218/search%20posts.jpg8fde2f6eb9.jpg',
+          caption: 'Search posts',
+          description: 'Filter based on topics of interest',
+        },
+        {
+          screenshot:
+            'https://res.cloudinary.com/ddsk7jazd/image/upload/v1592223216/SUBSCRIPTIONS.jpga4cbc69dbb.jpg',
+          caption: 'GraphQl subscriptions',
+          description: 'Realtime mutations using apollo-link-ws',
+        },
+      ],
+      user: user1Id,
+    },
   ],
   tech_util: [
     {
