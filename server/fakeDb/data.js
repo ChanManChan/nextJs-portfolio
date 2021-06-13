@@ -222,7 +222,7 @@ const data = {
       repoAPI:
         'https://github.com/ChanManChan/nextJs-portfolio/tree/master/server',
       repoClient: 'https://github.com/ChanManChan/nextJs-portfolio',
-      deployed: 'https://nandagopal-portfolio.herokuapp.com',
+      deployed: 'https://nandagopal.network',
       theme: '#9e9d24',
       description:
         'Portfolio app made using Apollo Server, Apollo Client and GraphQl',

@@ -12,6 +12,6 @@ module.exports = {
   env: {
     GRAPH_URL: dev
       ? 'http://localhost:3000/graphql'
-      : 'https://nandagopal-portfolio.herokuapp.com/graphql',
+      : 'https://nandagopal.network/graphql',
   },
 };
